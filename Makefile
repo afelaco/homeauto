@@ -1,3 +1,7 @@
+.PHONY: bootstrap
+bootstrap:
+	bash ./bootstrap/main.sh
+
 pre-commit-autoupdate:
 	uv run pre-commit autoupdate
 

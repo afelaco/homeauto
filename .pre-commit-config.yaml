@@ -26,7 +26,9 @@ repos:
     rev: v1.18.2
     hooks:
       - id: mypy
+        args: [ --strict ]
         additional_dependencies:
+          - pydantic-settings
           - types-requests
 
   - repo: https://github.com/scop/pre-commit-shfmt

@@ -1,14 +1,3 @@
-# Root
-/.git/
+/.env
 /.idea/
 /.venv/
-
-# Airflow
-/airflow/.env
-/airflow/.venv/
-
-# Terraform
-/terraform/terraform.tfvars.json
-
-# Scripts
-/scripts/bootstrap/.config.sh
