@@ -1,3 +1,4 @@
-/.env
 /.idea/
 /.venv/
+/config/.env.secret
+/config/.env.sp.terraform

@@ -8,10 +8,6 @@ on:
       - 'terraform/**'
   workflow_dispatch:
 
-env:
-  TF_VERSION: 1.13.3
-  TF_VAR_kv_secrets: ${{ secrets.TF_VAR_KV_SECRETS }}
-
 jobs:
   terraform-plan:
     name: Plan Terraform Changes
@@ -20,10 +16,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Load Configuration
+        run: source config/.env.versions
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: ${{ env.TF_VERSION }}
+          terraform_version: $TERRAFORM_VERSION
 
       - name: Check Formatting
         run: terraform fmt -check

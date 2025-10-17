@@ -8,15 +8,23 @@ echo "$GH_TOKEN" | gh auth login --with-token
 # -----------------------------
 echo "  ➡️ Uploading Azure Service Principal credentials to GitHub Actions..."
 
-gh secret set AZURE_TENANT_ID --repo "$GH_REPO" --body "$AZ_TENANT_ID"
-gh secret set AZURE_SUBSCRIPTION_ID --repo "$GH_REPO" --body "$AZ_SUBSCRIPTION_ID"
-gh secret set AZURE_CLIENT_ID --repo "$GH_REPO" --body "$AZ_CLIENT_ID"
-gh secret set AZURE_CLIENT_SECRET --repo "$GH_REPO" --body "$AZ_CLIENT_SECRET"
+gh secret set AZ_TENANT_ID --repo "$GH_REPO" --body "$AZ_TENANT_ID"
+gh secret set AZ_SUBSCRIPTION_ID --repo "$GH_REPO" --body "$AZ_SUBSCRIPTION_ID"
+gh secret set TF_CLIENT_ID --repo "$GH_REPO" --body "$TF_CLIENT_ID"
+gh secret set TF_CLIENT_SECRET --repo "$GH_REPO" --body "$TF_CLIENT_SECRET"
+gh secret set TF_OBJECT_ID --repo "$GH_REPO" --body "$TF_OBJECT_ID"
 
 # -----------------------------
-# Set Docker Hub credentials as a GitHub Actions secret
+# Set the Key Vault secrets as GitHub Actions secrets
 # -----------------------------
-echo "  ➡️ Uploading Docker Hub credentials to GitHub Actions..."
-
-gh secret set DOCKERHUB_USERNAME --repo "$GH_REPO" --body "$DH_USERNAME"
-gh secret set DOCKERHUB_PASSWORD --repo "$GH_REPO" --body "$DH_PASSWORD"
+#echo "  ➡️ Uploading '$GH_SECRETS_FILE' to GitHub Actions..."
+#
+#for key in $(jq -r 'keys[]' "$GH_SECRETS_FILE"); do
+#    value=$(jq -r --arg k "$key" '.[$k]' "$GH_SECRETS_FILE")
+#    secret_name="TF_VAR_$(echo "$key" | tr '[:lower:]' '[:upper:]')"
+#    gh secret set "$secret_name" \
+#        --repo "$GH_REPO" \
+#        --body "$value"
+#done
+#
+#echo "  ✅ GitHub Actions secrets upload complete!"

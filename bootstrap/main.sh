@@ -7,9 +7,10 @@ set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
 # -----------------------------
-# Load configuration from .env file
+# Load configuration
 # -----------------------------
-source .env
+source config/.env.shared
+source config/.env.secret
 
 # -----------------------------
 # Sync system environment with Brewfile
@@ -28,16 +29,16 @@ echo "✅ Git bootstrap complete!"
 # -----------------------------
 # Create Azure Service Principal or refresh its credentials
 # -----------------------------
-#echo "➡️ Updating Azure Service Principal..."
-#source "scripts/bootstrap/modules/az-sp.sh"
-#echo "✅ Azure bootstrap complete!"
+echo "➡️ Updating Azure Service Principal..."
+source bootstrap/modules/az-sp.sh
+echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
 # Set GitHub Actions secrets
 # -----------------------------
-#echo "➡️ Setting GitHub Actions secrets..."
-#source "scripts/bootstrap/modules/gh-secrets.sh"
-#echo "✅ GitHub bootstrap complete!"
+echo "➡️ Setting GitHub Actions secrets..."
+source bootstrap/modules/gh-secrets.sh
+echo "✅ GitHub bootstrap complete!"
 
 # -----------------------------
 # Sync virtual environment
