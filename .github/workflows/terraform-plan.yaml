@@ -1,0 +1,46 @@
+name: Plan
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+  workflow_dispatch:
+
+env:
+  TF_VERSION: 1.13.3
+  TF_VAR_kv_secrets: ${{ secrets.TF_VAR_KV_SECRETS }}
+
+jobs:
+  terraform-plan:
+    name: Plan Terraform Changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Check Formatting
+        run: terraform fmt -check
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: >-
+            {
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}"
+            }
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Plan Terraform Changes
+        run: terraform plan -input=false
