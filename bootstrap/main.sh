@@ -27,10 +27,28 @@ source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
 # -----------------------------
-# Create Azure Service Principal or refresh its credentials
+# Create Azure Service Principal for Terraform or refresh its credentials
 # -----------------------------
 echo "➡️ Updating Azure Service Principal..."
-source bootstrap/modules/tf-sp.sh
+source bootstrap/modules/az-sp-tf.sh
+echo "✅ Azure bootstrap complete!"
+
+# -----------------------------
+# Terraform bootstrap: create backend if not exists
+# -----------------------------
+echo "➡️ Running Terraform bootstrap..."
+if [ ! -f "$TF_BE_CONFIG" ]; then
+    source "modules/tf-backend.sh"
+    echo "✅ Terraform bootstrap complete!"
+else
+    echo "⚠️ Terraform backend configuration already exists at $TF_BE_CONFIG!"
+fi
+
+# -----------------------------
+# Create Azure Service Principal for Airflow or refresh its credentials
+# -----------------------------
+echo "➡️ Updating Azure Service Principal..."
+source bootstrap/modules/az-sp-af.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------

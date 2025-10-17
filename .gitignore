@@ -1,4 +1,5 @@
 /.idea/
 /.venv/
 /config/.env.secret
+/config/.env.secret.sp.af
 /config/.env.secret.sp.tf
