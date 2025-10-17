@@ -17,7 +17,6 @@ dev = [
     "apache-airflow==3.0.6",
     "pandas==2.3.2",
     "pyarrow==21.0.0",
-    "pytest==8.4.2",
 ]
 
 [build-system]
