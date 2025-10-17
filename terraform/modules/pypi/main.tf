@@ -1,7 +1,7 @@
 resource "azurerm_storage_account" "pypi" {
-  name                          = var.storage_account_name
-  location                      = var.storage_account_location
-  resource_group_name           = var.resource_group_name
+  name                = var.storage_account_name
+  location            = var.storage_account_location
+  resource_group_name = var.resource_group_name
 
   account_tier             = "Standard"
   account_replication_type = "LRS"

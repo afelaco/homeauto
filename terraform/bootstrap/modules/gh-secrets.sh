@@ -20,11 +20,11 @@ gh secret set AZURE_OBJECT_ID --repo "$GH_REPO" --body "$AZ_OBJECT_ID"
 echo "  ➡️ Uploading '$GH_SECRETS_FILE' to GitHub Actions..."
 
 for key in $(jq -r 'keys[]' "$GH_SECRETS_FILE"); do
-    value=$(jq -r --arg k "$key" '.[$k]' "$GH_SECRETS_FILE")
-    secret_name="TF_VAR_$(echo "$key" | tr '[:lower:]' '[:upper:]')"
-    gh secret set "$secret_name" \
-        --repo "$GH_REPO" \
-        --body "$value"
+	value=$(jq -r --arg k "$key" '.[$k]' "$GH_SECRETS_FILE")
+	secret_name="TF_VAR_$(echo "$key" | tr '[:lower:]' '[:upper:]')"
+	gh secret set "$secret_name" \
+		--repo "$GH_REPO" \
+		--body "$value"
 done
 
 echo "  ✅ GitHub Actions secrets upload complete!"
