@@ -49,7 +49,6 @@ echo "  ✅  Service Principal credentials exported!"
 # Write Service Principal credentials to config/.env.terraform-sp
 # -----------------------------
 cat >"$TF_SP_CONFIG" <<EOF
-AZURE_TENANT_ID=AZ_TENANT_ID
 AZURE_CLIENT_ID=$TF_CLIENT_ID
 AZURE_CLIENT_SECRET=$TF_CLIENT_SECRET
 EOF

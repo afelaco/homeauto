@@ -30,7 +30,7 @@ echo "✅ Git bootstrap complete!"
 # Create Azure Service Principal or refresh its credentials
 # -----------------------------
 echo "➡️ Updating Azure Service Principal..."
-source bootstrap/modules/az-sp.sh
+source bootstrap/modules/tf-sp.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
