@@ -17,10 +17,10 @@ CURRENT_NAME=$(git config --get user.name)
 CURRENT_EMAIL=$(git config --get user.email)
 
 if [ "$CURRENT_NAME" != "$GIT_NAME" ] || [ "$CURRENT_EMAIL" != "$GIT_EMAIL" ]; then
-	source "modules/git-config.sh"
-	echo "✅ Git bootstrap complete!"
+    source "modules/git-config.sh"
+    echo "✅ Git bootstrap complete!"
 else
-	echo "⚠️ Git identity already set."
+    echo "⚠️ Git identity already set."
 fi
 
 # -----------------------------
@@ -42,10 +42,10 @@ echo "✅ GitHub bootstrap complete!"
 # -----------------------------
 echo "➡️ Running Terraform bootstrap..."
 if [ ! -f "$TF_BE_CONFIG_FILE" ]; then
-	source "modules/tf-backend.sh"
-	echo "✅ Terraform bootstrap complete!"
+    source "modules/tf-backend.sh"
+    echo "✅ Terraform bootstrap complete!"
 else
-	echo "⚠️ Terraform backend configuration already exists at $TF_BE_CONFIG_FILE!"
+    echo "⚠️ Terraform backend configuration already exists at $TF_BE_CONFIG_FILE!"
 fi
 
 # -----------------------------

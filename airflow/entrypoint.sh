@@ -9,10 +9,10 @@ CONTAINER_NAME="pypi"
 echo "Logging into Azure..."
 
 az login --service-principal \
-	--tenant $AZURE_TENANT_ID \
-	--username $AZURE_CLIENT_ID \
-	--password $AZURE_CLIENT_SECRET \
-	--output none
+    --tenant $AZURE_TENANT_ID \
+    --username $AZURE_CLIENT_ID \
+    --password $AZURE_CLIENT_SECRET \
+    --output none
 
 echo "Login successful."
 
@@ -20,12 +20,12 @@ echo "Login successful."
 echo "Generating SAS token for Azure Blob Storage..."
 
 SAS_TOKEN=$(az storage container generate-sas \
-	--account-name "$ACCOUNT_NAME" \
-	--account-key "$AZURE_STORAGE_KEY" \
-	--name "$CONTAINER_NAME" \
-	--permissions r \
-	--expiry 2025-10-19 \
-	--output tsv)
+    --account-name "$ACCOUNT_NAME" \
+    --account-key "$AZURE_STORAGE_KEY" \
+    --name "$CONTAINER_NAME" \
+    --permissions r \
+    --expiry 2025-10-19 \
+    --output tsv)
 
 echo "SAS token generated."
 
