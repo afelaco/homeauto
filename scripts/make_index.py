@@ -19,7 +19,7 @@ def make_index(path: str) -> None:
 
 
 # Generate package-level indexes first
-for root, dirs, files in os.walk(DIST_DIR):
+for root, _dirs, files in os.walk(DIST_DIR):
     if any(f.endswith((".whl", ".tar.gz", ".zip")) for f in files):
         make_index(root)
 

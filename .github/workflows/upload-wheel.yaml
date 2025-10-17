@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
   workflow_dispatch:
-
-env:
-  PYPI_ACCOUNT_NAME: "homeautopypi"
-  PYPI_CONTAINER_NAME: "pypi"
 
 jobs:
   python-wheel-upload:
@@ -17,6 +15,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Load Configuration
+        run: source config/.env.shared
 
       - name: Install uv
         run: |
@@ -37,17 +38,17 @@ jobs:
         with:
           creds: >-
             {
-              "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
-              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
-              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
-              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}"
+              "tenantId": "${{ secrets.AZ_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.AZ_SUBSCRIPTION_ID }}",
+              "clientId": "${{ secrets.AF_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AF_CLIENT_SECRET }}"
             }
 
       - name: Upload Latest Wheel to PyPI
         run: |
           az storage blob upload \
-            --account-name $PYPI_ACCOUNT_NAME \
-            --container-name $PYPI_CONTAINER_NAME \
+            --account-name $PYPI_SA \
+            --container-name $PYPI_CONTAINER \
             --file dist/$WHEEL_NAME \
             --name simple/airflow/$WHEEL_NAME \
             --overwrite \
@@ -57,8 +58,8 @@ jobs:
         run: |
           mkdir -p temp && \
           az storage blob download-batch \
-            --account-name $PYPI_ACCOUNT_NAME \
-            --source $PYPI_CONTAINER_NAME \
+            --account-name $PYPI_SA \
+            --source $PYPI_CONTAINER \
             --destination temp \
             --pattern "*.whl" \
             --auth-mode login
@@ -70,8 +71,8 @@ jobs:
       - name: Batch Upload PyPI
         run: |
           az storage blob upload-batch \
-              --account-name $PYPI_ACCOUNT_NAME \
+              --account-name $PYPI_SA \
               --source temp \
-              --destination $PYPI_CONTAINER_NAME \
+              --destination $PYPI_CONTAINER \
               --overwrite \
               --auth-mode login

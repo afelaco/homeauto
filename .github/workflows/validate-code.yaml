@@ -17,10 +17,13 @@ jobs:
         run: pip install uv
 
       - name: Install Dependencies
-        run: uv sync --group dev
+        run: uv sync --group workflow
 
       - name: Lint Check
         run: uv run ruff check .
 
       - name: Format Check
         run: uv run ruff format --check .
+
+      - name: Run Tests
+        run: uv run pytest

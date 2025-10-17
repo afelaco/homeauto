@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'terraform/**'
   workflow_dispatch:
 
 env:
   TF_VERSION: 1.13.3
   TF_VAR_kv_secrets: ${{ secrets.TF_VAR_KV_SECRETS }}
-
 
 jobs:
   terraform-apply:
@@ -20,10 +21,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Load Configuration
+        run: |
+          source config/versions.env
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: ${{ env.TF_VERSION }}
+          terraform_version: $TERRAFORM_VERSION
 
       - name: Login to Azure
         uses: azure/login@v2

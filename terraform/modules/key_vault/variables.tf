@@ -34,5 +34,5 @@ variable "sp_object_id" {
 
 variable "secrets" {
   description = "Secrets to sync to Key Vault"
-  type = map(string)
+  type        = map(string)
 }
