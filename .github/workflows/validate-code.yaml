@@ -1,4 +1,4 @@
-name: Test Code
+name: Validate Code
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   ci-tests:
-    name: Lint, Format, Type & Test Code
+    name: Lint, Format & Type Check Code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
