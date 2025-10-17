@@ -1,6 +1,5 @@
 repos:
 
-  # Pre-commit
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -16,7 +15,6 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
 
-  # Ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.1
     hooks:
@@ -24,14 +22,12 @@ repos:
         args: [ --fix ]
       - id: ruff-format
 
-  # Shfmt
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.12.0-2
     hooks:
       - id: shfmt
         args: [ -s, -w, -i, "4" ]
 
-  # Terraform
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.103.0
     hooks:
