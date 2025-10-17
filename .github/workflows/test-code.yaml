@@ -1,0 +1,26 @@
+name: Test Code
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-tests:
+    name: Lint, Format, Type & Test Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install Dependencies
+        run: uv sync --group dev
+
+      - name: Lint Check
+        run: uv run ruff check .
+
+      - name: Format Check
+        run: uv run ruff format --check .

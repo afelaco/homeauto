@@ -1,0 +1,77 @@
+name: Upload Wheel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  PYPI_ACCOUNT_NAME: "homeautopypi"
+  PYPI_CONTAINER_NAME: "pypi"
+
+jobs:
+  python-wheel-upload:
+    name: Build & Upload Python Wheel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: |
+          pip install uv
+
+      - name: Update Azure CLI
+        run: |
+          az upgrade --yes
+
+      - name: Build Python Wheel
+        run: |
+          uv build --wheel
+          WHEEL_NAME=$(basename dist/*.whl)
+          echo "WHEEL_NAME=$WHEEL_NAME" >> $GITHUB_ENV
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: >-
+            {
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}"
+            }
+
+      - name: Upload Latest Wheel to PyPI
+        run: |
+          az storage blob upload \
+            --account-name $PYPI_ACCOUNT_NAME \
+            --container-name $PYPI_CONTAINER_NAME \
+            --file dist/$WHEEL_NAME \
+            --name simple/airflow/$WHEEL_NAME \
+            --overwrite \
+            --auth-mode login
+
+      - name: Batch Download PyPI
+        run: |
+          mkdir -p temp && \
+          az storage blob download-batch \
+            --account-name $PYPI_ACCOUNT_NAME \
+            --source $PYPI_CONTAINER_NAME \
+            --destination temp \
+            --pattern "*.whl" \
+            --auth-mode login
+
+      - name: Refresh PyPI Index
+        run: |
+          uv run scripts/make_index.py
+
+      - name: Batch Upload PyPI
+        run: |
+          az storage blob upload-batch \
+              --account-name $PYPI_ACCOUNT_NAME \
+              --source temp \
+              --destination $PYPI_CONTAINER_NAME \
+              --overwrite \
+              --auth-mode login
