@@ -8,41 +8,38 @@ echo "$GH_TOKEN" | gh auth login --with-token
 # -----------------------------
 echo "  ➡️ Uploading Azure Service Principal credentials to GitHub Actions..."
 
-gh secret set AZ_TENANT_ID --repo "$GH_REPO" --body "$AZ_TENANT_ID"
-gh secret set AZ_SUBSCRIPTION_ID --repo "$GH_REPO" --body "$AZ_SUBSCRIPTION_ID"
-gh secret set TF_CLIENT_ID --repo "$GH_REPO" --body "$TF_CLIENT_ID"
-gh secret set TF_CLIENT_SECRET --repo "$GH_REPO" --body "$TF_CLIENT_SECRET"
-gh secret set TF_OBJECT_ID --repo "$GH_REPO" --body "$TF_OBJECT_ID"
-gh secret set AF_CLIENT_ID --repo "$GH_REPO" --body "$AF_CLIENT_ID"
-gh secret set AF_CLIENT_SECRET --repo "$GH_REPO" --body "$AF_CLIENT_SECRET"
+credentials=(
+    AZ_TENANT_ID
+    AZ_SUBSCRIPTION_ID
+    TF_CLIENT_ID
+    TF_CLIENT_SECRET
+    TF_OBJECT_ID
+    AF_CLIENT_ID
+    AF_CLIENT_SECRET
+)
+
+for credential in "${credentials[@]}"; do
+    if [ -z "${!credential}" ]; then
+        echo "    ⚠️ Warning: $credential is empty or not set."
+    fi
+    gh secret set "$credential" --repo "$GH_REPO" --body "${!credential}"
+done
 
 # -----------------------------
-# Set Docker Hub credentials as a GitHub Actions secret
+# Set .env.secrets as GitHub Actions secrets
 # -----------------------------
-echo "  ➡️ Uploading Docker Hub credentials to GitHub Actions..."
+echo "  ➡️ Uploading .env.secrets to GitHub Actions..."
 
-gh secret set DH_USER --repo "$GH_REPO" --body "$DH_USER"
-gh secret set DH_PASSWORD --repo "$GH_REPO" --body "$DH_PASSWORD"
+secrets=(
+    DH_USER
+    DH_PASSWORD
+    STEAM_ID
+    STEAM_KEY
+)
 
-# -----------------------------
-# Set PyPI as a GitHub Actions secret
-# -----------------------------
-echo "  ➡️ Uploading Docker Hub credentials to GitHub Actions..."
-
-gh secret set PYPI_SA --repo "$GH_REPO" --body "$PYPI_SA"
-gh secret set PYPI_CONTAINER --repo "$GH_REPO" --body "$PYPI_CONTAINER"
-
-# -----------------------------
-# Set the Key Vault secrets as GitHub Actions secrets
-# -----------------------------
-#echo "  ➡️ Uploading '$GH_SECRETS_FILE' to GitHub Actions..."
-#
-#for key in $(jq -r 'keys[]' "$GH_SECRETS_FILE"); do
-#    value=$(jq -r --arg k "$key" '.[$k]' "$GH_SECRETS_FILE")
-#    secret_name="TF_VAR_$(echo "$key" | tr '[:lower:]' '[:upper:]')"
-#    gh secret set "$secret_name" \
-#        --repo "$GH_REPO" \
-#        --body "$value"
-#done
-#
-#echo "  ✅ GitHub Actions secrets upload complete!"
+for secret in "${secrets[@]}"; do
+    if [ -z "${!secret}" ]; then
+        echo "    ⚠️ Warning: $secret is empty or not set."
+    fi
+    gh secret set "$secret" --repo "$GH_REPO" --body "${!secret}"
+done

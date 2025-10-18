@@ -726,8 +726,8 @@ dev = [
     { name = "pandas", specifier = "==2.3.3" },
 ]
 workflow = [
-    { name = "pre-commit", specifier = ">=4.3.0" },
-    { name = "pytest", specifier = ">=8.4.2" },
+    { name = "pre-commit", specifier = "==4.3.0" },
+    { name = "pytest", specifier = "==8.4.2" },
 ]
 
 [[package]]

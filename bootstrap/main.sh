@@ -62,7 +62,7 @@ echo "✅ GitHub bootstrap complete!"
 # Sync virtual environment
 # -----------------------------
 echo "➡️ Syncing virtual environment..."
-uv sync
+uv sync --all-groups
 echo "✅ Virtual environment synced!"
 
 # -----------------------------

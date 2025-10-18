@@ -44,13 +44,3 @@ AF_OBJECT_ID=$(az ad sp list --display-name "$AF_SP_NAME" --query "[].id" -o tsv
 export AZ_TENANT_ID AF_CLIENT_ID AF_CLIENT_SECRET AF_OBJECT_ID
 
 echo "  ✅  Service Principal credentials exported!"
-
-# -----------------------------
-# Write Service Principal credentials to config/.env.terraform-sp
-# -----------------------------
-cat >"$AF_SP_CONFIG" <<EOF
-AZURE_CLIENT_ID=$AF_CLIENT_ID
-AZURE_CLIENT_SECRET=$AF_CLIENT_SECRET
-EOF
-
-echo "  📁 Credentials written to $AF_SP_CONFIG"
