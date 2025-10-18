@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Literal
 
 import polars as pl
 from pandera.polars import DataFrameSchema
@@ -16,11 +15,7 @@ class Dataset(ABC):
     name: str
     schema: DataFrameSchema
     container: str
-    storage_account: Literal[
-        "homeautobronzesa",
-        "homeautosilversa",
-        "homeautogoldsa",
-    ]
+    storage_account: str
 
     def __post_init__(self) -> None:
         self.storage_account_key = get_secret(f"{self.storage_account.upper()}-KEY")

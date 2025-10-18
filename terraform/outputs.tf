@@ -1,3 +1,15 @@
-output "pypi_name" { value = module.pypi.name }
-output "pypi_container_name" { value = module.pypi.container_name }
-output "sa_name" { value = { for k, m in module.sa : k => m.sa_name } }
+output "pypi" {
+  value = {
+    storage_account = module.pypi.name
+    container       = module.pypi.container_name
+  }
+}
+
+output "datalake" {
+  value = {
+    for k, m in module.datalake : k => {
+      storage_account = m.storage_account_name
+      secret          = m.secret_name
+    }
+  }
+}
