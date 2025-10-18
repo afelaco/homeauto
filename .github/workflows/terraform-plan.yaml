@@ -1,7 +1,7 @@
-name: Plan
+name: Terraform Plan
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -24,9 +24,6 @@ jobs:
         with:
           terraform_version: $TF_VERSION
 
-      - name: Check Formatting
-        run: terraform fmt -check
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -34,12 +31,21 @@ jobs:
             {
               "tenantId": "${{ secrets.AZ_TENANT_ID }}",
               "subscriptionId": "${{ secrets.AZ_SUBSCRIPTION_ID }}",
-              "clientId": "${{ secrets.TF_CLIENT_ID }}",
-              "clientSecret": "${{ secrets.TF_CLIENT_SECRET }}"
+              "clientId": "${{ secrets.AZ_SP_TF_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZ_SP_TF_CLIENT_SECRET }}"
             }
 
       - name: Initialize Terraform
+        working-directory: ./terraform
         run: terraform init
 
       - name: Plan Terraform Changes
+        working-directory: ./terraform
         run: terraform plan -input=false
+        env:
+          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
+          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
+          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
+          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
+          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}

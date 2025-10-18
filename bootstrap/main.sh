@@ -27,10 +27,11 @@ source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
 # -----------------------------
-# Create Azure Service Principal for Terraform or refresh its credentials
+# Create/update Azure Service Principals
 # -----------------------------
-echo "➡️ Updating Azure Service Principal..."
-source bootstrap/modules/az-sp-tf.sh
+echo "➡️ Creating Azure Service Principal..."
+source bootstrap/modules/az-login.sh
+source bootstrap/modules/az-sp.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
@@ -45,13 +46,6 @@ else
 fi
 
 # -----------------------------
-# Create Azure Service Principal for Airflow or refresh its credentials
-# -----------------------------
-echo "➡️ Updating Azure Service Principal..."
-source bootstrap/modules/az-sp-af.sh
-echo "✅ Azure bootstrap complete!"
-
-# -----------------------------
 # Set GitHub Actions secrets
 # -----------------------------
 echo "➡️ Setting GitHub Actions secrets..."
@@ -62,7 +56,7 @@ echo "✅ GitHub bootstrap complete!"
 # Sync virtual environment
 # -----------------------------
 echo "➡️ Syncing virtual environment..."
-uv sync
+uv sync --all-groups
 echo "✅ Virtual environment synced!"
 
 # -----------------------------

@@ -18,11 +18,14 @@ module "rg" {
 # Key Vault
 module "kv" {
   source              = "./modules/key_vault"
+  tenant_id           = var.tenant_id
+  resource_group_name = module.rg.resource_group_name
   key_vault_name      = "${var.project_name}-kv"
   key_vault_location  = module.rg.resource_group_location
-  resource_group_name = module.rg.resource_group_name
-  tenant_id           = var.tenant_id
-  secrets             = var.kv_secrets
+  admin_object_id     = var.admin_object_id
+  sp_object_id        = var.sp_object_id
+  steam_id            = var.steam_id
+  steam_key           = var.steam_key
 }
 
 # PyPI

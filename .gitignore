@@ -1,5 +1,10 @@
+# Root
 /.idea/
 /.venv/
+
+# Config
 /config/.env.secret
-/config/.env.secret.sp.af
-/config/.env.secret.sp.tf
+
+# Terraform
+/terraform/.terraform/
+/terraform/.terraform.lock.hcl

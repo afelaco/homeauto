@@ -7,23 +7,28 @@ on:
 
 jobs:
   ci-tests:
-    name: Lint, Format & Type Check Code
+    name: Validate Code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Load Configuration
+        run: source config/.env.shared
+
       - name: Install uv
         run: pip install uv
 
-      - name: Install Dependencies
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: $TF_VERSION
+
+      - name: Install Workflow Dependencies
         run: uv sync --group workflow
 
-      - name: Lint Check
-        run: uv run ruff check .
-
-      - name: Format Check
-        run: uv run ruff format --check .
+      - name: Run Pre-commit Hooks
+        run: uv run pre-commit run --all-files
 
       - name: Run Tests
         run: uv run pytest
