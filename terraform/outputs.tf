@@ -7,8 +7,7 @@ output "pypi" {
 
 output "keyvault" {
   value = {
-    name = module.kv.name
-    uri  = module.kv.uri
+    uri = module.kv.uri
   }
 }
 
