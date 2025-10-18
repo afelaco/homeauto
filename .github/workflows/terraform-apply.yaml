@@ -56,11 +56,4 @@ jobs:
         run: terraform output -json > tf-outputs.json
 
       - name: Commit & Push Terraform Output
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add terraform/tf-outputs.json
-          git commit -am "Update Terraform Outputs"
-          git push
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: stefanzweifel/git-auto-commit-action@v7
