@@ -1,6 +1,7 @@
 # Root
 /.idea/
 /.venv/
+/dist/
 
 # Config
 /config/.env.secret
