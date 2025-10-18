@@ -2,11 +2,24 @@ import json
 
 from pydantic import BaseModel
 
+from homeauto.core.utils import get_secret
+
+
+class StorageAccount(BaseModel):
+    name: str
+    secret: str
+
+    def get_storage_options(self) -> dict[str, str]:
+        return {
+            "account_name": self.name,
+            "account_key": get_secret(self.secret),
+        }
+
 
 class DataLake(BaseModel):
-    bronze: str
-    silver: str
-    gold: str
+    bronze: StorageAccount
+    silver: StorageAccount
+    gold: StorageAccount
 
 
 class Infrastructure(BaseModel):

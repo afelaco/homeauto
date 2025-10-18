@@ -5,11 +5,18 @@ output "pypi" {
   }
 }
 
+output "keyvault" {
+  value = {
+    name = module.kv.name
+    uri  = module.kv.uri
+  }
+}
+
 output "datalake" {
   value = {
     for k, m in module.datalake : k => {
-      storage_account = m.storage_account_name
-      secret          = m.secret_name
+      name   = m.storage_account_name
+      secret = m.secret_name
     }
   }
 }
