@@ -26,7 +26,7 @@ resource "azurerm_role_assignment" "sp" {
 resource "azurerm_key_vault_secret" "steam_id" {
   depends_on = [azurerm_role_assignment.sp]
 
-  name         = "STEAM_ID"
+  name         = "STEAM-ID"
   value        = var.steam_id
   key_vault_id = azurerm_key_vault.this.id
 }
@@ -34,7 +34,7 @@ resource "azurerm_key_vault_secret" "steam_id" {
 resource "azurerm_key_vault_secret" "steam_key" {
   depends_on = [azurerm_role_assignment.sp]
 
-  name         = "STEAM_KEY"
+  name         = "STEAM-KEY"
   value        = var.steam_key
   key_vault_id = azurerm_key_vault.this.id
 }
