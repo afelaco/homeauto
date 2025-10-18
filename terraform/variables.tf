@@ -9,12 +9,6 @@ variable "location" {
   default = "northeurope"
 }
 
-variable "layers" {
-  description = "List of storage account layers"
-  type        = list(string)
-  default     = ["bronze", "silver", "gold"]
-}
-
 # .env
 variable "tenant_id" { type = string }
 variable "subscription_id" { type = string }

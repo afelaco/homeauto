@@ -37,11 +37,25 @@ module "pypi" {
 }
 
 # Storage Accounts
-module "sa" {
-  for_each = toset(var.layers)
-
+module "sa-bronze" {
   source                   = "./modules/storage_account"
-  storage_account_name     = "${var.project_name}${each.key}sa"
+  storage_account_name     = "${var.project_name}bronzesa"
+  storage_account_location = module.rg.resource_group_location
+  resource_group_name      = module.rg.resource_group_name
+  key_vault_id             = module.kv.key_vault_id
+}
+
+module "sa-silver" {
+  source                   = "./modules/storage_account"
+  storage_account_name     = "${var.project_name}silversa"
+  storage_account_location = module.rg.resource_group_location
+  resource_group_name      = module.rg.resource_group_name
+  key_vault_id             = module.kv.key_vault_id
+}
+
+module "sa-gold" {
+  source                   = "./modules/storage_account"
+  storage_account_name     = "${var.project_name}goldsa"
   storage_account_location = module.rg.resource_group_location
   resource_group_name      = module.rg.resource_group_name
   key_vault_id             = module.kv.key_vault_id

@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/airflow
 
 jobs:
-  docker-build-push:
+  build-image:
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
     steps:
