@@ -1,4 +1,4 @@
-# Terraform Backend Configuration
+# Terraform Backend
 terraform {
   backend "azurerm" {
     resource_group_name  = "tfstate-rg"
