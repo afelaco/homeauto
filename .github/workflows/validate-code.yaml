@@ -13,8 +13,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Load Configuration
+        run: source config/.env.shared
+
       - name: Install uv
         run: pip install uv
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: $TF_VERSION
 
       - name: Install Workflow Dependencies
         run: uv sync --group workflow
