@@ -16,14 +16,11 @@ jobs:
       - name: Install uv
         run: pip install uv
 
-      - name: Install Dependencies
+      - name: Install Workflow Dependencies
         run: uv sync --group workflow
 
-      - name: Lint Check
-        run: uv run ruff check .
-
-      - name: Format Check
-        run: uv run ruff format --check .
+      - name: Pre-commit Checks
+        run: uv run pre-commit run --all-files
 
       - name: Run Tests
         run: uv run pytest
