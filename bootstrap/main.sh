@@ -27,42 +27,11 @@ source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
 # -----------------------------
-# Login to Azure with an admin account
-# -----------------------------
-CURR_AZ_USER=$(az account show --query "{user:user.name}" -o tsv)
-if [ "$CURR_AZ_USER" != "$AZ_USER" ]; then
-    echo "  ➡️ Logging in to Azure CLI..."
-    az login
-
-    CURR_AZ_USER=$(az account show --query "{user:user.name}" -o tsv)
-    if [ "$CURR_AZ_USER" != "$AZ_USER" ]; then
-        echo "  ❌ Login failed or incorrect account. Please try again."
-        exit 1
-    fi
-
-    echo "  ✅  Azure CLI login complete!"
-else
-    echo "  ⚠️ Already logged in to Azure CLI!"
-fi
-
-# -----------------------------
 # Create/update Azure Service Principals
 # -----------------------------
-echo "➡️ Updating Azure Service Principal..."
-
+echo "➡️ Creating Azure Service Principal..."
+source bootstrap/modules/az-login.sh
 source bootstrap/modules/az-sp.sh
-
-SP_LIST=(
-    "terraform-sp:Owner"
-    "airflow-sp:Storage Blob Data Contributor"
-)
-
-for entry in "${SP_LIST[@]}"; do
-    SP_NAME="${entry%%:*}"
-    SP_ROLE="${entry#*:}"
-    create_sp "$SP_NAME" "$SP_ROLE"
-done
-
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------

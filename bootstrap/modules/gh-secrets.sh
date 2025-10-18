@@ -4,13 +4,27 @@
 echo "$GH_TOKEN" | gh auth login --with-token
 
 # -----------------------------
-# Set the Azure Service Principal credentials as a GitHub Actions secret
+# Set GitHub Actions secrets
 # -----------------------------
-echo "  ➡️ Uploading Azure Service Principal credentials to GitHub Actions..."
+echo "  ➡️ Uploading secrets to GitHub Actions..."
 
-for var in $(printenv | grep -E '^(AZ_|TF_)' | cut -d= -f1); do
-    if [ -z "${!var}" ]; then
-        echo "    ⚠️ $var is empty or not set!"
+secrets=(
+    # GitHub Actions
+    AZ_TENANT_ID
+    AZ_SUBSCRIPTION_ID
+    AZ_SP_TF_CLIENT_ID
+    AZ_SP_TF_CLIENT_SECRET
+    AZ_SP_TF_OBJECT_ID
+    DH_USERNAME
+    DH_PASSWORD
+    # Key Vault
+    STEAM_ID
+    STEAM_KEY
+)
+
+for secret in "${secrets[@]}"; do
+    if [ -z "${!secret}" ]; then
+        echo "    ⚠️ Warning: $secret is empty or not set."
     fi
-    gh secret set "$var" --repo "$GH_REPO" --body "${!var}"
+    gh secret set "$secret" --repo "$GH_REPO" --body "${!secret}"
 done

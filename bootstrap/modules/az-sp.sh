@@ -1,31 +1,26 @@
-create_sp() {
-    local SP_NAME="$1"
-    local SP_ROLE="$2"
+# -----------------------------
+# Create Terraform Service Principal with Owner role and export credentials
+# -----------------------------
+CURRENT_TF_SP_NAME=$(az ad sp list --display-name "$TF_SP_NAME" --query '[0].appId' -o tsv)
+if [ -n "$CURRENT_TF_SP_NAME" ]; then
+    echo "  ⚠️ Service Principal '$TF_SP_NAME' already exists. Resetting credentials..."
+    AZ_CREDENTIAL=$(az ad sp credential reset --id "$CURRENT_TF_SP_NAME")
+else
+    echo "  ➡️ Creating Azure Service Principal $TF_SP_NAME..."
+    AZ_CREDENTIAL=$(az ad sp create-for-rbac \
+        --name "$TF_SP_NAME" \
+        --role Owner \
+        --scopes "/subscriptions/$AZ_SUBSCRIPTION_ID")
+    echo "  ✅  Azure Service Principal $TF_SP_NAME created!"
+fi
 
-    echo "  ➡️  Creating Service Principal $SP_NAME with role $SP_ROLE)"
+# -----------------------------
+# Export Service Principal credentials as environment variables
+# -----------------------------
+AZ_SP_TF_CLIENT_ID=$(echo "$AZ_CREDENTIAL" | jq -r .appId)
+AZ_SP_TF_CLIENT_SECRET=$(echo "$AZ_CREDENTIAL" | jq -r .password)
+AZ_SP_TF_OBJECT_ID=$(az ad sp list --display-name "$TF_SP_NAME" --query "[].id" -o tsv)
 
-    local EXISTING_APP_ID
-    EXISTING_APP_ID=$(az ad sp list --display-name "$SP_NAME" --query '[0].appId' -o tsv)
+export AZ_SP_TF_CLIENT_ID AZ_SP_TF_CLIENT_SECRET AZ_SP_TF_OBJECT_ID
 
-    local AZ_CREDENTIAL
-    if [[ -n $EXISTING_APP_ID ]]; then
-        echo "  ⚠️  Service Principal '$SP_NAME' already exists. Resetting credentials..."
-        AZ_CREDENTIAL=$(az ad sp credential reset --id "$EXISTING_APP_ID")
-    else
-        echo "  ➡️  Creating Azure Service Principal '$SP_NAME'..."
-        AZ_CREDENTIAL=$(az ad sp create-for-rbac \
-            --name "$SP_NAME" \
-            --role "$SP_ROLE" \
-            --scopes "/subscriptions/$AZ_SUBSCRIPTION_ID")
-        echo "  ✅  Azure Service Principal '$SP_NAME' created!"
-    fi
-
-    # normalize SP_NAME: replace hyphens with underscores and uppercase
-    SP_NAME_VAR=$(echo "$SP_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
-
-    declare -x "AZ_${SP_NAME_VAR}_CLIENT_ID=$(echo "$AZ_CREDENTIAL" | jq -r .appId)"
-    declare -x "AZ_${SP_NAME_VAR}_CLIENT_SECRET=$(echo "$AZ_CREDENTIAL" | jq -r .password)"
-    declare -x "AZ_${SP_NAME_VAR}_OBJECT_ID=$(az ad sp list --display-name "$SP_NAME" --query "[].id" -o tsv)"
-
-    echo "  ✅  Service Principal credentials exported!"
-}
+echo "  ✅  Service Principal credentials exported!"
