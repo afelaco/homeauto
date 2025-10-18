@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  python-wheel-upload:
+  upload-wheel:
     name: Build & Upload Python Wheel
     runs-on: ubuntu-latest
     steps:
@@ -20,12 +20,10 @@ jobs:
         run: source config/.env.shared
 
       - name: Install uv
-        run: |
-          pip install uv
+        run: pip install uv
 
       - name: Update Azure CLI
-        run: |
-          az upgrade --yes
+        run: az upgrade --yes
 
       - name: Build Python Wheel
         run: |
@@ -65,8 +63,7 @@ jobs:
             --auth-mode login
 
       - name: Refresh PyPI Index
-        run: |
-          uv run scripts/make_index.py
+        run: uv run scripts/make_index.py
 
       - name: Batch Upload PyPI
         run: |

@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  ci-tests:
+  validate-code:
     name: Validate Code
     runs-on: ubuntu-latest
     steps:
