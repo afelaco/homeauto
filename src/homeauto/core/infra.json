@@ -4,15 +4,56 @@
     "type": [
       "object",
       {
-        "bronze": "string",
-        "gold": "string",
-        "silver": "string"
+        "bronze": [
+          "object",
+          {
+            "secret": "string",
+            "storage_account": "string"
+          }
+        ],
+        "gold": [
+          "object",
+          {
+            "secret": "string",
+            "storage_account": "string"
+          }
+        ],
+        "silver": [
+          "object",
+          {
+            "secret": "string",
+            "storage_account": "string"
+          }
+        ]
       }
     ],
     "value": {
-      "bronze": "homeautobronzesa",
-      "gold": "homeautogoldsa",
-      "silver": "homeautosilversa"
+      "bronze": {
+        "secret": "HOMEAUTOBRONZESA-KEY",
+        "storage_account": "homeautobronzesa"
+      },
+      "gold": {
+        "secret": "HOMEAUTOGOLDSA-KEY",
+        "storage_account": "homeautogoldsa"
+      },
+      "silver": {
+        "secret": "HOMEAUTOSILVERSA-KEY",
+        "storage_account": "homeautosilversa"
+      }
+    }
+  },
+  "pypi": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "container": "string",
+        "storage_account": "string"
+      }
+    ],
+    "value": {
+      "container": "pypi",
+      "storage_account": "homeautopypi"
     }
   }
 }
