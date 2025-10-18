@@ -31,7 +31,7 @@ resource "azurerm_key_vault_secret" "steam_id" {
   key_vault_id = azurerm_key_vault.this.id
 }
 
-resource "azurerm_key_vault_secret" "steam_id" {
+resource "azurerm_key_vault_secret" "steam_key" {
   depends_on = [azurerm_role_assignment.sp]
 
   name         = "STEAM_KEY"
