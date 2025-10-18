@@ -70,10 +70,10 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_TOKEN }}
-          commit-message: Update Terraform Outputs
+          commit-message: Update Infrastructure Configuration
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-          branch: tf-outputs-update
+          branch: update-infra-config
           base: main
           delete-branch: true
-          title: Update Terraform Outputs
+          title: Update Infrastructure Configuration
