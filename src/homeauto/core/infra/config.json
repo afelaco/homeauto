@@ -54,18 +54,14 @@
       "uri": "https://homeauto-kv.vault.azure.net/"
     }
   },
-  "pypi": {
+  "pypi_container": {
     "sensitive": false,
-    "type": [
-      "object",
-      {
-        "container": "string",
-        "storage_account": "string"
-      }
-    ],
-    "value": {
-      "container": "pypi",
-      "storage_account": "homeautopypi"
-    }
+    "type": "string",
+    "value": "pypi"
+  },
+  "pypi_storage_account": {
+    "sensitive": false,
+    "type": "string",
+    "value": "homeautopypi"
   }
 }
