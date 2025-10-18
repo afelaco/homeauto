@@ -52,7 +52,6 @@
       }
     ],
     "value": {
-      "name": "homeauto-kv",
       "uri": "https://homeauto-kv.vault.azure.net/"
     }
   },

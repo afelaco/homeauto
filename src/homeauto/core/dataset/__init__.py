@@ -4,8 +4,8 @@ from dataclasses import dataclass
 import polars as pl
 from pandera.polars import DataFrameSchema
 
-from homeauto.core.infra import StorageAccount
-from homeauto.core.logger import get_logger
+from homeauto.core import get_logger
+from homeauto.core.infra import StorageAccount, infra
 
 logger = get_logger(name=__name__)
 
@@ -25,7 +25,7 @@ class Dataset(ABC):
         source = self.get_path()
         df = pl.read_parquet(
             source=source,
-            storage_options=self.storage_account.get_storage_options(),
+            storage_options=self.storage_account.get_storage_options(keyvault=infra.keyvault),
         ).pipe(self.schema.validate)
 
         logger.info("%s records read from %s", len(df), source)
@@ -36,7 +36,7 @@ class Dataset(ABC):
         file = self.get_path()
         df.pipe(self.schema.validate).write_parquet(
             file=file,
-            storage_options=self.storage_account.get_storage_options(),
+            storage_options=self.storage_account.get_storage_options(keyvault=infra.keyvault),
         )
 
         logger.info("%s records written to %s", len(df), file)

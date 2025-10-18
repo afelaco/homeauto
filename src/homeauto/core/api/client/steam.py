@@ -1,20 +1,20 @@
 from typing import Any
 
+from homeauto.core import get_logger
 from homeauto.core.api.authentication.api_key import ApiKeyAuthentication
 from homeauto.core.api.client import ApiClient
 from homeauto.core.endpoint import Endpoint
-from homeauto.core.logger import get_logger
-from homeauto.core.utils import get_secret
+from homeauto.core.infra import infra
 
 logger = get_logger(name=__name__)
 
 
 class SteamApiClient(ApiClient, ApiKeyAuthentication):
     def __init__(self) -> None:
-        self.steam_id = get_secret("STEAM-ID")
+        self.steam_id = infra.keyvault.get_secret("STEAM-ID")
         super().__init__(
             base_url="https://api.steampowered.com",
-            api_key=get_secret("STEAM-API-KEY"),
+            api_key=infra.keyvault.get_secret("STEAM-KEY"),
         )
 
     def get_url(self, endpoint: Endpoint) -> str:
@@ -32,7 +32,7 @@ class SteamApiClient(ApiClient, ApiKeyAuthentication):
 
         logger.info("%s records read from %s", len(data), response.url)
 
-        return [data]
+        return data  # type: ignore
 
     def get_auth_headers(self) -> dict[str, str]:
         return {"x-webapi-key": self.api_key}
