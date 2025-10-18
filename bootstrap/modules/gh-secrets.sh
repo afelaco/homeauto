@@ -10,14 +10,15 @@ echo "  ➡️ Uploading secrets to GitHub Actions..."
 
 secrets=(
     # GitHub Actions
-    AZ_TENANT_ID
-    AZ_SUBSCRIPTION_ID
     AZ_SP_TF_CLIENT_ID
     AZ_SP_TF_CLIENT_SECRET
-    AZ_SP_TF_OBJECT_ID
     DH_USERNAME
     DH_PASSWORD
-    # Key Vault
+    # Terraform
+    TF_VAR_AZ_TENANT_ID
+    TF_VAR_AZ_SUBSCRIPTION_ID
+    TF_VAR_AZ_ADMIN_OBJECT_ID
+    TF_VAR_AZ_SP_TF_OBJECT_ID
     TF_VAR_STEAM_ID
     TF_VAR_STEAM_KEY
 )

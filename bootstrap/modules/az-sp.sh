@@ -19,8 +19,8 @@ fi
 # -----------------------------
 AZ_SP_TF_CLIENT_ID=$(echo "$AZ_CREDENTIAL" | jq -r .appId)
 AZ_SP_TF_CLIENT_SECRET=$(echo "$AZ_CREDENTIAL" | jq -r .password)
-AZ_SP_TF_OBJECT_ID=$(az ad sp list --display-name "$TF_SP_NAME" --query "[].id" -o tsv)
+TF_VAR_AZ_SP_TF_OBJECT_ID=$(az ad sp list --display-name "$TF_SP_NAME" --query "[].id" -o tsv)
 
-export AZ_SP_TF_CLIENT_ID AZ_SP_TF_CLIENT_SECRET AZ_SP_TF_OBJECT_ID
+export AZ_SP_TF_CLIENT_ID AZ_SP_TF_CLIENT_SECRET TF_VAR_AZ_SP_TF_OBJECT_ID
 
 echo "  ✅  Service Principal credentials exported!"
