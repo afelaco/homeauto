@@ -57,3 +57,7 @@ jobs:
 
       - name: Commit & Push Terraform Output
         uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+            commit_message: "Update Terraform outputs"
+            file_pattern: "terraform/tf-outputs.json"
+            branch: main
