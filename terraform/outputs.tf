@@ -1,9 +1,5 @@
-output "pypi" {
-  value = {
-    storage_account = module.pypi.name
-    container       = module.pypi.container_name
-  }
-}
+output "pypi_storage_account" { value = module.pypi.name }
+output "pypi_container" { value = module.pypi.container_name }
 
 output "keyvault" {
   value = {
