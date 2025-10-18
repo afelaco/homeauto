@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Load Configuration
-        run: source config/versions.env
+        run: source config/.env.shared
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
