@@ -14,6 +14,7 @@ secrets=(
     AZ_SP_TF_CLIENT_SECRET
     DH_USERNAME
     DH_PASSWORD
+    GH_TOKEN
     # Terraform
     AZ_TENANT_ID
     AZ_SUBSCRIPTION_ID
