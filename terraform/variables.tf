@@ -26,11 +26,6 @@ variable "subscription_id" {
   sensitive   = true
 }
 
-variable "kv_secrets" {
-  description = "Secrets to store in Key Vault"
-  type        = map(string)
-}
-
 # Architecture
 variable "layers" {
   description = "List of storage account layers"
