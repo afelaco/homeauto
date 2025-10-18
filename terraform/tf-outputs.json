@@ -1,0 +1,33 @@
+[command]/home/runner/work/_temp/fae722fe-8032-496c-aaff-ebf747364590/terraform-bin output -json
+{
+  "pypi_container_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "pypi"
+  },
+  "pypi_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "homeautopypi"
+  },
+  "sa_name": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "bronze": "string",
+        "gold": "string",
+        "silver": "string"
+      }
+    ],
+    "value": {
+      "bronze": "homeautobronzesa",
+      "gold": "homeautogoldsa",
+      "silver": "homeautosilversa"
+    }
+  }
+}
+::debug::Terraform exited with code 0.
+::debug::stdout: {%0A  "pypi_container_name": {%0A    "sensitive": false,%0A    "type": "string",%0A    "value": "pypi"%0A  },%0A  "pypi_name": {%0A    "sensitive": false,%0A    "type": "string",%0A    "value": "homeautopypi"%0A  },%0A  "sa_name": {%0A    "sensitive": false,%0A    "type": [%0A      "object",%0A      {%0A        "bronze": "string",%0A        "gold": "string",%0A        "silver": "string"%0A      }%0A    ],%0A    "value": {%0A      "bronze": "homeautobronzesa",%0A      "gold": "homeautogoldsa",%0A      "silver": "homeautosilversa"%0A    }%0A  }%0A}%0A
+::debug::stderr: 
+::debug::exitcode: 0
