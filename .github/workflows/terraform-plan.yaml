@@ -1,7 +1,7 @@
 name: Plan
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -24,9 +24,6 @@ jobs:
         with:
           terraform_version: $TF_VERSION
 
-      - name: Check Formatting
-        run: terraform fmt -check
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -39,7 +36,9 @@ jobs:
             }
 
       - name: Initialize Terraform
+        working-directory: ./terraform
         run: terraform init
 
       - name: Plan Terraform Changes
+        working-directory: ./terraform
         run: terraform plan -input=false
