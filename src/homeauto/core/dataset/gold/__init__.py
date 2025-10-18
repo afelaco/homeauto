@@ -1,12 +1,12 @@
 from dataclasses import dataclass
-from typing import Literal
 
 from homeauto.core.dataset import Dataset
+from homeauto.core.infra import infra
 
 
 @dataclass
 class GoldDataset(Dataset):
-    storage_account: Literal["homeautogoldsa"] = "homeautogoldsa"
+    storage_account: str = infra.datalake.gold
 
     def get_path(self) -> str:
         return f"abfss://{self.container}/{self.name}.parquet"

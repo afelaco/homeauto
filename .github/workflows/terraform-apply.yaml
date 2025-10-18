@@ -53,11 +53,11 @@ jobs:
           TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
           TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
 
-      - name: Terraform Output to JSON
+      - name: Output Infrastructure to JSON
         working-directory: ./terraform
-        run: terraform output -json > tf-outputs.json
+        run: terraform output -json > ../src/core/infra.json
 
-      - name: Create Pull Request for Terraform Outputs
+      - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_TOKEN }}

@@ -1,15 +1,5 @@
 {
-  "pypi_container_name": {
-    "sensitive": false,
-    "type": "string",
-    "value": "pypi"
-  },
-  "pypi_name": {
-    "sensitive": false,
-    "type": "string",
-    "value": "homeautopypi"
-  },
-  "sa_name": {
+  "datalake": {
     "sensitive": false,
     "type": [
       "object",
