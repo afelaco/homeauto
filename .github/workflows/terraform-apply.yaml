@@ -52,7 +52,7 @@ jobs:
           TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
           TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
 
-      - name: Output Infrastructure to JSON
+      - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: terraform output -json > ../src/homeauto/core/infra/config.json
 
