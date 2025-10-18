@@ -62,3 +62,5 @@ jobs:
           git add terraform/tf-outputs.json
           git commit -am "Update Terraform Outputs"
           git push
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
