@@ -47,5 +47,5 @@ jobs:
           TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
           TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
           TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
-          TF_VAR_steam_id: ${{ secrets.TF_VAR_STEAM_ID }}
-          TF_VAR_steam_key: ${{ secrets.TF_VAR_STEAM_KEY }}
+          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
+          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}

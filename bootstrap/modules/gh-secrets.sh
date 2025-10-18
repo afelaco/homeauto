@@ -15,12 +15,12 @@ secrets=(
     DH_USERNAME
     DH_PASSWORD
     # Terraform
-    TF_VAR_AZ_TENANT_ID
-    TF_VAR_AZ_SUBSCRIPTION_ID
-    TF_VAR_AZ_ADMIN_OBJECT_ID
-    TF_VAR_AZ_SP_TF_OBJECT_ID
-    TF_VAR_STEAM_ID
-    TF_VAR_STEAM_KEY
+    AZ_TENANT_ID
+    AZ_SUBSCRIPTION_ID
+    AZ_ADMIN_OBJECT_ID
+    AZ_SP_TF_OBJECT_ID
+    STEAM_ID
+    STEAM_KEY
 )
 
 for secret in "${secrets[@]}"; do
