@@ -42,6 +42,20 @@
       }
     }
   },
+  "keyvault": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "name": "string",
+        "uri": "string"
+      }
+    ],
+    "value": {
+      "name": "homeauto-kv",
+      "uri": "https://homeauto-kv.vault.azure.net/"
+    }
+  },
   "pypi": {
     "sensitive": false,
     "type": [
