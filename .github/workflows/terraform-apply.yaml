@@ -1,11 +1,11 @@
 name: Terraform Apply
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-    paths:
-      - 'terraform/**/*.tf'
+#    paths:
+#      - 'terraform/**/*.tf'
   workflow_dispatch:
 
 jobs:
@@ -42,16 +42,16 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
-      - name: Apply Terraform Changes
-        working-directory: ./terraform
-        run: terraform apply -auto-approve
-        env:
-          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
-          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
-          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
-          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
-          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
-          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
+#      - name: Apply Terraform Changes
+#        working-directory: ./terraform
+#        run: terraform apply -auto-approve
+#        env:
+#          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
+#          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+#          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
+#          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
+#          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
+#          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
 
       - name: Output Infrastructure to JSON
         working-directory: ./terraform
@@ -64,8 +64,8 @@ jobs:
         run: |
           PYPI_STORAGE_ACCOUNT=$(terraform output -raw pypi_storage_account)
           PYPI_CONTAINER_NAME=$(terraform output -raw pypi_container)
-          gh secret set PYPI_STORAGE_ACCOUNT --repo $GH_REPO --body "$PYPI_STORAGE_ACCOUNT"
-          gh secret set PYPI_CONTAINER_NAME --repo $GH_REPO --body "$PYPI_CONTAINER_NAME"
+          gh secret set PYPI_STORAGE_ACCOUNT --body "$PYPI_STORAGE_ACCOUNT"
+          gh secret set PYPI_CONTAINER_NAME --body "$PYPI_CONTAINER_NAME"
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
