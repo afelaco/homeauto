@@ -1,0 +1,28 @@
+{
+  "pypi_container_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "pypi"
+  },
+  "pypi_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "homeautopypi"
+  },
+  "sa_name": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "bronze": "string",
+        "gold": "string",
+        "silver": "string"
+      }
+    ],
+    "value": {
+      "bronze": "homeautobronzesa",
+      "gold": "homeautogoldsa",
+      "silver": "homeautosilversa"
+    }
+  }
+}
