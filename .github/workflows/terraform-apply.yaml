@@ -25,6 +25,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: $TF_VERSION
+          terraform_wrapper: false
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -54,7 +55,7 @@ jobs:
 
       - name: Terraform Output to JSON
         working-directory: ./terraform
-        run: echo "$(terraform output -json)" > tf-outputs.json
+        run: terraform output -json > tf-outputs.json
 
       - name: Create Pull Request for Terraform Outputs
         uses: peter-evans/create-pull-request@v7
