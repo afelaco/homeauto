@@ -1,18 +1,17 @@
 name: Terraform Apply
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-#    paths:
-#      - 'terraform/**/*.tf'
+    paths:
+      - 'terraform/**/*.tf'
   workflow_dispatch:
 
 jobs:
   terraform-apply:
     name: Apply Terraform Changes
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -42,16 +41,16 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
-#      - name: Apply Terraform Changes
-#        working-directory: ./terraform
-#        run: terraform apply -auto-approve
-#        env:
-#          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
-#          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
-#          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
-#          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
-#          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
-#          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
+      - name: Apply Terraform Changes
+        working-directory: ./terraform
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
+          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
+          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
+          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
+          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
 
       - name: Output Infrastructure to JSON
         working-directory: ./terraform
