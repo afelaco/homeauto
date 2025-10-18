@@ -47,7 +47,6 @@
     "type": [
       "object",
       {
-        "name": "string",
         "uri": "string"
       }
     ],
