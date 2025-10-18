@@ -12,7 +12,6 @@ jobs:
   terraform-apply:
     name: Apply Terraform Changes
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -53,7 +52,7 @@ jobs:
           TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
           TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
 
-      - name: Output Infrastructure to JSON
+      - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: terraform output -json > ../src/homeauto/core/infra/config.json
 
@@ -64,17 +63,17 @@ jobs:
         run: |
           PYPI_STORAGE_ACCOUNT=$(terraform output -raw pypi_storage_account)
           PYPI_CONTAINER_NAME=$(terraform output -raw pypi_container)
-          gh secret set PYPI_STORAGE_ACCOUNT --repo $GH_REPO --body "$PYPI_STORAGE_ACCOUNT"
-          gh secret set PYPI_CONTAINER_NAME --repo $GH_REPO --body "$PYPI_CONTAINER_NAME"
+          gh secret set PYPI_STORAGE_ACCOUNT --body "$PYPI_STORAGE_ACCOUNT"
+          gh secret set PYPI_CONTAINER_NAME --body "$PYPI_CONTAINER_NAME"
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_TOKEN }}
-          commit-message: Update Terraform Outputs
+          commit-message: Update Infrastructure Configuration
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-          branch: tf-outputs-update
+          branch: update-infra-config
           base: main
           delete-branch: true
-          title: Update Terraform Outputs
+          title: Update Infrastructure Configuration
