@@ -55,7 +55,7 @@ jobs:
 
       - name: Output Infrastructure to JSON
         working-directory: ./terraform
-        run: terraform output -json > ../src/core/infra.json
+        run: terraform output -json > ../src/homeauto/core/infra.json
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
