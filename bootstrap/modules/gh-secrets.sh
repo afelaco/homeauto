@@ -18,8 +18,8 @@ secrets=(
     DH_USERNAME
     DH_PASSWORD
     # Key Vault
-    STEAM_ID
-    STEAM_KEY
+    TF_VAR_STEAM_ID
+    TF_VAR_STEAM_KEY
 )
 
 for secret in "${secrets[@]}"; do

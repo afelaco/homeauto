@@ -32,7 +32,5 @@ variable "sp_object_id" {
   sensitive   = true
 }
 
-variable "secrets" {
-  description = "Secrets to sync to Key Vault"
-  type        = map(string)
-}
+variable "steam_id" { type = string }
+variable "steam_key" { type = string }
