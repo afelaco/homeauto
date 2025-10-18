@@ -20,10 +20,6 @@ create_sp() {
         echo "  ✅  Azure Service Principal '$SP_NAME' created!"
     fi
 
-    local AZ_TENANT_ID
-    AZ_TENANT_ID=$(echo "$AZ_CREDENTIAL" | jq -r .tenant)
-    export AZ_TENANT_ID
-
     # normalize SP_NAME: replace hyphens with underscores and uppercase
     SP_NAME_VAR=$(echo "$SP_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
 
