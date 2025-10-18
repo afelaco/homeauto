@@ -55,7 +55,7 @@ jobs:
         working-directory: ./terraform
         run: terraform output -json > tf-outputs.json
 
-      - name: Commit & Push Terraform Output
+      - name: Create Pull Request for Terraform Outputs
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_TOKEN }}
