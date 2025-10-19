@@ -38,7 +38,7 @@ module "pypi" {
 }
 
 module "datalake" {
-  source = "modules/storage_account"
+  source = "./modules/storage_account"
 
   for_each                 = toset(["bronze", "silver", "gold"])
   storage_account_name     = "${var.project_name}${each.key}sa"
