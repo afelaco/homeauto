@@ -1,4 +1,4 @@
-name: Terraform Plan
+name: Terraform Apply
 
 on:
   push:
@@ -49,6 +49,8 @@ jobs:
 
       - name: Set GitHub Secrets for PyPI
         working-directory: ./terraform
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           PYPI_STORAGE_ACCOUNT=$(terraform output -raw pypi_storage_account)
           PYPI_CONTAINER_NAME=$(terraform output -raw pypi_container)
