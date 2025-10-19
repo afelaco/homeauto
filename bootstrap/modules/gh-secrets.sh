@@ -2,14 +2,12 @@
 # Set GitHub Actions secrets
 # -----------------------------
 echo "  ➡️ Uploading secrets to GitHub Actions..."
-
 secrets=(
     AZ_SUBSCRIPTION_ID
     DH_USERNAME
     DH_PASSWORD
     GH_TOKEN
 )
-
 for secret in "${secrets[@]}"; do
     if [ -z "${!secret}" ]; then
         echo "    ⚠️ Warning: $secret is empty or not set."
@@ -18,7 +16,7 @@ for secret in "${secrets[@]}"; do
 done
 
 # -----------------------------
-# Set external secrets in GitHub Actions
+# Set Key Vault secrets in GitHub Actions
 # -----------------------------
 echo "  ➡️ Uploading Key Vault secrets to GitHub Actions..."
 gh secret set "AZ_KV_SECRETS" --repo "$GH_REPO" --body "$(cat "$AZ_KV_SECRETS_FILE")"

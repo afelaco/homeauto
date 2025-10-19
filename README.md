@@ -17,6 +17,7 @@ graph LR
 %% ────────────────
     subgraph github[GitHub]
         subgraph github_secrets[GitHub Secrets]
+            az_subscription_id[AZ_SUBSCRIPTION_ID]
             gh_token[GH_TOKEN]
             kv_secrets[Key Vault Secrets]
 
@@ -50,7 +51,6 @@ graph LR
             terraform_apply[terraform-apply.yml]
             upload_wheel[upload-wheel.yml]
             build_image[build-image.yml]
-            infra_config[infra/config.json]
         end
 
     %% Dependencies
@@ -58,12 +58,14 @@ graph LR
         bootstrap --> az_sp_af_creds
         bootstrap --> docker_hub_creds
         bootstrap --> kv_secrets
+        bootstrap --> az_sp_tf_creds
+        bootstrap --> az_subscription_id
+        az_subscription_id --> terraform_apply
         gh_token --> terraform_apply
         kv_secrets --> terraform_apply
-        terraform_sp_creds --> terraform_apply
+        az_sp_tf_creds --> terraform_apply
         terraform_apply --> pypi_creds
         terraform_apply --> az_sp_af_creds
-        terraform_apply --> infra_config
         az_sp_af_creds --> upload_wheel
         docker_hub_creds --> build_image
         pypi_creds --> upload_wheel
@@ -103,7 +105,6 @@ graph LR
         terraform_apply --> datalake
         terraform_apply --> keyvault
         upload_wheel --> wheel
-        infra_config --> wheel
     end
     classDef azure fill: #bbdefb, stroke: #1976d2, stroke-width: 2px, color: #000
     class azure azure

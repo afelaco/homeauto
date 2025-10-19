@@ -33,6 +33,7 @@ source bootstrap/modules/gh-login.sh
 # -----------------------------
 # Set Git identity if not already set
 # -----------------------------
+echo "➡️ Setting Git identity on repo level..."
 source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
@@ -40,13 +41,8 @@ echo "✅ Git bootstrap complete!"
 # Create/update Azure Service Principals
 # -----------------------------
 echo "➡️ Creating Azure Service Principal..."
-AZ_SP_TF_ID=$(az ad sp list --display-name "$AZ_SP_TF_NAME" --query '[0].appId' -o tsv)
-if [ -n "$AZ_SP_TF_ID" ]; then
-    echo "⚠️ Service Principal '$AZ_SP_TF_NAME' already exists!"
-else
-    source bootstrap/modules/az-sp.sh
-    echo "✅ Azure bootstrap complete!"
-fi
+source bootstrap/modules/az-sp.sh
+echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
 # Terraform bootstrap: create backend if not exists

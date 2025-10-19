@@ -38,5 +38,5 @@ jobs:
         working-directory: ./terraform
         run: terraform plan -input=false
         env:
-          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+          TF_VAR_subscription_id: ${{ fromJSON(secrets.AZURE_CREDENTIALS).subscriptionId }}
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
