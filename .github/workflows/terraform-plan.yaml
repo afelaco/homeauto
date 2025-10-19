@@ -39,9 +39,6 @@ jobs:
         run: terraform init
       - name: Plan Terraform Changes
         working-directory: ./terraform
-        run: |
-          SECRETS=${{ secrets.AZ_KV_SECRETS }}
-          echo $SECRETS
-          terraform plan -input=false
+        run: terraform plan -input=false
         env:
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
