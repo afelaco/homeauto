@@ -26,5 +26,5 @@ done
 # Set external secrets in GitHub Actions
 # -----------------------------
 echo "  ➡️ Uploading Key Vault secrets to GitHub Actions..."
-gh secret set "AZ_KV_SECRETS" --repo "$GH_REPO" --body "$(cat "$AZ_KV_SECRETS_FILE"))"
+gh secret set "AZ_KV_SECRETS" --repo "$GH_REPO" --body "$(cat "$AZ_KV_SECRETS_FILE")"
 echo "    ✅ Key Vault secrets uploaded!"
