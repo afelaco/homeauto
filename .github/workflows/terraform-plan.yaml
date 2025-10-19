@@ -18,7 +18,7 @@ jobs:
 
       - name: Plan Terraform Changes
         run: |
-          SECRETS=${{ secrets.AZ_KV_SECRETS }}
+          SECRETS="${{ secrets.AZ_KV_SECRETS }}"
           echo $SECRETS
 
       - name: Load Configuration
