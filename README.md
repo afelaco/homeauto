@@ -17,7 +17,6 @@ graph LR
 %% ────────────────
     subgraph github[GitHub]
         subgraph github_secrets[GitHub Secrets]
-            az_subscription_id[AZ_SUBSCRIPTION_ID]
             gh_token[GH_TOKEN]
             kv_secrets[Key Vault Secrets]
 
@@ -59,8 +58,6 @@ graph LR
         bootstrap --> docker_hub_creds
         bootstrap --> kv_secrets
         bootstrap --> az_sp_tf_creds
-        bootstrap --> az_subscription_id
-        az_subscription_id --> terraform_apply
         gh_token --> terraform_apply
         kv_secrets --> terraform_apply
         az_sp_tf_creds --> terraform_apply
