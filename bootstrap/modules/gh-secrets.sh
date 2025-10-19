@@ -1,16 +1,10 @@
 # -----------------------------
-# Authenticate GitHub CLI using token
-# -----------------------------
-echo "$GH_TOKEN" | gh auth login --with-token
-
-# -----------------------------
 # Set GitHub Actions secrets
 # -----------------------------
 echo "  ➡️ Uploading secrets to GitHub Actions..."
 
 secrets=(
     AZ_SUBSCRIPTION_ID
-    AZ_SP_TF_CREDENTIALS
     DH_USERNAME
     DH_PASSWORD
     GH_TOKEN
