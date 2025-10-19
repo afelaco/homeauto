@@ -35,5 +35,5 @@ jobs:
       - name: Plan Terraform Changes
         working-directory: ./terraform
         run: |
-          echo ${{ secrets.AZ_KV_SECRETS }} > secrets.tfvars
+          echo "${{ secrets.AZ_KV_SECRETS }}" > secrets.tfvars
           terraform plan -input=false -var-file="secrets.tfvars"
