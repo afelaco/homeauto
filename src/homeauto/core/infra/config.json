@@ -1,3 +1,4 @@
+[command]/home/runner/work/_temp/26c18768-9380-4f0d-8139-06e100d1eefe/terraform-bin output -json
 {
   "datalake": {
     "sensitive": false,
@@ -65,3 +66,7 @@
     "value": "homeautopypi"
   }
 }
+::debug::Terraform exited with code 0.
+::debug::stdout: {%0A  "datalake": {%0A    "sensitive": false,%0A    "type": [%0A      "object",%0A      {%0A        "bronze": [%0A          "object",%0A          {%0A            "name": "string",%0A            "secret": "string"%0A          }%0A        ],%0A        "gold": [%0A          "object",%0A          {%0A            "name": "string",%0A            "secret": "string"%0A          }%0A        ],%0A        "silver": [%0A          "object",%0A          {%0A            "name": "string",%0A            "secret": "string"%0A          }%0A        ]%0A      }%0A    ],%0A    "value": {%0A      "bronze": {%0A        "name": "homeautobronzesa",%0A        "secret": "HOMEAUTOBRONZESA-KEY"%0A      },%0A      "gold": {%0A        "name": "homeautogoldsa",%0A        "secret": "HOMEAUTOGOLDSA-KEY"%0A      },%0A      "silver": {%0A        "name": "homeautosilversa",%0A        "secret": "HOMEAUTOSILVERSA-KEY"%0A      }%0A    }%0A  },%0A  "keyvault": {%0A    "sensitive": false,%0A    "type": [%0A      "object",%0A      {%0A        "uri": "string"%0A      }%0A    ],%0A    "value": {%0A      "uri": "https://homeauto-kv.vault.azure.net/"%0A    }%0A  },%0A  "pypi_container": {%0A    "sensitive": false,%0A    "type": "string",%0A    "value": "pypi"%0A  },%0A  "pypi_storage_account": {%0A    "sensitive": false,%0A    "type": "string",%0A    "value": "homeautopypi"%0A  }%0A}%0A
+::debug::stderr: 
+::debug::exitcode: 0
