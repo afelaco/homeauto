@@ -34,9 +34,12 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
+      - name: Read Subscription ID from Credentials
+        run: echo "AZ_SUBSCRIPTION_ID=$(echo $AZURE_CREDENTIALS | jq -r '.subscriptionId')" >> "$GITHUB_ENV"
+
       - name: Plan Terraform Changes
         working-directory: ./terraform
         run: terraform plan -input=false
         env:
-          TF_VAR_subscription_id: ${{ fromJSON(secrets.AZURE_CREDENTIALS).subscriptionId }}
+          TF_VAR_subscription_id: $AZ_SUBSCRIPTION_ID
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
