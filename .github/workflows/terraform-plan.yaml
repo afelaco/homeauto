@@ -35,7 +35,7 @@ jobs:
 
       - name: Check secrets
         run: |
-          CHECK=${{ secrets.AZ_KV_SECRETS }}
+          CHECK="${{ secrets.AZ_KV_SECRETS }}"
           echo $CHECK
 
       - name: Plan Terraform Changes
