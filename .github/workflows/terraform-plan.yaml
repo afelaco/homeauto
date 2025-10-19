@@ -18,14 +18,15 @@ jobs:
 
       - name: Load Environment Variables
         working-directory: ./vars
-        run: |
-          source .env.prd && \
-          echo "AZ_SUBSCRIPTION_ID=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
+        run: source .env.prd
 
       - name: Login to Azure
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZ_SP_TF_CREDENTIALS }}
+
+      - name: Read Azure Subscription ID from Azure CLI
+        run: echo "AZ_SUBSCRIPTION_ID=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
