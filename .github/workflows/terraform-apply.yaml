@@ -25,9 +25,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Load Configuration
-        working-directory: ./config
-        run: source .env.shared
+      - name: Load Environment Variables
+        working-directory: ./vars
+        run: source .env.prd
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
