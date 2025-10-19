@@ -1,5 +1,3 @@
-data "azurerm_client_config" "this" {}
-
 module "rg" {
   source = "./modules/resource_group"
 
