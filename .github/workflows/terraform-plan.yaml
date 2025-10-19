@@ -16,36 +16,29 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Load Configuration
-        run: source config/.env.shared
+      - name: Load Environment Variables
+        working-directory: ./vars
+        run: source .env.prd
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZ_SP_TF_CREDENTIALS }}
+
+      - name: Set Azure Subscription ID as Environment Variable for Terraform
+        run: echo "TF_VAR_subscription_id=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: $TF_VERSION
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          creds: >-
-            {
-              "tenantId": "${{ secrets.AZ_TENANT_ID }}",
-              "subscriptionId": "${{ secrets.AZ_SUBSCRIPTION_ID }}",
-              "clientId": "${{ secrets.AZ_SP_TF_CLIENT_ID }}",
-              "clientSecret": "${{ secrets.AZ_SP_TF_CLIENT_SECRET }}"
-            }
-
       - name: Initialize Terraform
         working-directory: ./terraform
         run: terraform init
 
-      - name: Plan Terraform Changes
+      - name: Plan Terraform
         working-directory: ./terraform
         run: terraform plan -input=false
         env:
-          TF_VAR_tenant_id: ${{ secrets.AZ_TENANT_ID }}
-          TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
-          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
-          TF_VAR_sp_object_id: ${{ secrets.AZ_SP_TF_OBJECT_ID }}
-          TF_VAR_steam_id: ${{ secrets.STEAM_ID }}
-          TF_VAR_steam_key: ${{ secrets.STEAM_KEY }}
+          TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}

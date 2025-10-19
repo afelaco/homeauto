@@ -1,40 +1,26 @@
 resource "azurerm_key_vault" "this" {
   name                = var.key_vault_name
   location            = var.key_vault_location
-  resource_group_name = var.resource_group_name
   tenant_id           = var.tenant_id
+  resource_group_name = var.resource_group_name
 
   sku_name                  = "standard"
   enable_rbac_authorization = true
 }
 
-# Set roles for the Key Vault.
-resource "azurerm_role_assignment" "admin" {
-  scope                = azurerm_key_vault.this.id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = var.admin_object_id
-}
-
-resource "azurerm_role_assignment" "sp" {
-  scope                = azurerm_key_vault.this.id
-  role_definition_name = "Key Vault Secrets Officer"
+resource "azurerm_role_assignment" "this" {
   principal_id         = var.sp_object_id
   principal_type       = "ServicePrincipal"
+  role_definition_name = "Key Vault Secrets Officer"
+  scope                = azurerm_key_vault.this.id
 }
 
-# Set external secrets.
 resource "azurerm_key_vault_secret" "steam_id" {
-  depends_on = [azurerm_role_assignment.sp]
+  depends_on = [azurerm_role_assignment.this]
 
-  name         = "STEAM-ID"
-  value        = var.steam_id
-  key_vault_id = azurerm_key_vault.this.id
-}
+  for_each = nonsensitive(var.secrets)
 
-resource "azurerm_key_vault_secret" "steam_key" {
-  depends_on = [azurerm_role_assignment.sp]
-
-  name         = "STEAM-KEY"
-  value        = var.steam_key
+  name         = each.key
+  value        = each.value
   key_vault_id = azurerm_key_vault.this.id
 }

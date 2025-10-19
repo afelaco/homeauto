@@ -29,4 +29,4 @@ class ExtractSteamOwnedGames(ExtractSteam):
 
 
 if __name__ == "__main__":
-    ExtractSteamOwnedGames().run()
+    data = ExtractSteamOwnedGames().get_data().to_pandas()
