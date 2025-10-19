@@ -17,20 +17,21 @@ graph LR
 %% ────────────────
     subgraph github[GitHub]
         subgraph github_secrets[GitHub Secrets]
-            az_tenant_id[AZ_TENANT_ID]
-            az_subscription_id[AZ_SUBSCRIPTION_ID]
             gh_token[GH_TOKEN]
-            az_admin_object_id[AZ_ADMIN_OBJECT_ID]
-            az_sp_tf_object_id[AZ_SP_TF_OBJECT_ID]
+            kv_secrets[Key Vault Secrets]
 
-            subgraph terraform_sp_creds[terraform-sp Credentials]
-                az_tf_sp_client_id[AZ_TF_SP_CLIENT_ID]
-                az_tf_sp_client_secret[AZ_TF_SP_CLIENT_SECRET]
+            subgraph az_sp_tf_creds[terraform-sp Credentials]
+                az_tenant_id_tf[AZ_TENANT_ID]
+                az_subscription_id_tf[AZ_SUBSCRIPTION_ID]
+                az_sp_tf_client_id[AZ_TF_SP_CLIENT_ID]
+                az_sp_tf_client_secret[AZ_TF_SP_CLIENT_SECRET]
             end
 
-            subgraph af_sp_creds[airflow-sp Credentials]
-                az_af_sp_client_id[AZ_AF_SP_CLIENT_ID]
-                az_af_sp_client_secret[AZ_AF_SP_CLIENT_SECRET]
+            subgraph az_sp_af_creds[airflow-sp Credentials]
+                az_tenant_id_af[AZ_TENANT_ID]
+                az_subscription_id_af[AZ_SUBSCRIPTION_ID]
+                az_sp_af_client_id[AZ_AF_SP_CLIENT_ID]
+                az_sp_af_client_secret[AZ_AF_SP_CLIENT_SECRET]
             end
 
             subgraph docker_hub_creds[Docker Hub Credentials]
@@ -43,10 +44,6 @@ graph LR
                 pypi_container[PYPI_CONTAINER]
             end
 
-            subgraph external_secrets[External Secrets]
-                steam_id[STEAM-ID]
-                steam_api_key[STEAM-API-KEY]
-            end
         end
 
         subgraph github_actions[GitHub Actions]
@@ -57,27 +54,17 @@ graph LR
         end
 
     %% Dependencies
-        bootstrap --> az_tenant_id
-        bootstrap --> az_subscription_id
-        bootstrap --> az_admin_object_id
-        bootstrap --> az_sp_tf_object_id
         bootstrap --> gh_token
-        bootstrap --> terraform_sp_creds
+        bootstrap --> az_sp_af_creds
         bootstrap --> docker_hub_creds
-        bootstrap --> external_secrets
+        bootstrap --> kv_secrets
         gh_token --> terraform_apply
-        az_tenant_id --> terraform_apply
-        az_tenant_id --> upload_wheel
-        az_subscription_id --> terraform_apply
-        az_subscription_id --> upload_wheel
-        az_admin_object_id --> terraform_apply
-        az_sp_tf_object_id --> terraform_apply
-        external_secrets --> terraform_apply
+        kv_secrets --> terraform_apply
         terraform_sp_creds --> terraform_apply
         terraform_apply --> pypi_creds
-        terraform_apply --> af_sp_creds
+        terraform_apply --> az_sp_af_creds
         terraform_apply --> infra_config
-        af_sp_creds --> upload_wheel
+        az_sp_af_creds --> upload_wheel
         docker_hub_creds --> build_image
         pypi_creds --> upload_wheel
     end
@@ -132,22 +119,33 @@ graph LR
 %% MicroK8s Cluster
 %% ────────────────
     subgraph MicroK8s[MicroK8s Cluster]
+        airflow_container[Airflow Container]
+
         subgraph microk8s_secrets[MicroK8s Secrets]
-        az_tenant_id_prod[AZ_TENANT_ID]
-        az_subscription_id_prod[AZ_SUBSCRIPTION_ID]
-            subgraph af_sp_creds_prod[airflow-sp Credentials]
-                az_af_sp_client_id_prod[AZ_AF_SP_CLIENT_ID]
-                az_af_sp_client_secret_prod[AZ_AF_SP_CLIENT_SECRET]
+
+            subgraph az_sp_af_creds_prod[airflow-sp Credentials]
+                az_tenant_id_af_prod[AZ_TENANT_ID]
+                az_subscription_id_af_prod[AZ_SUBSCRIPTION_ID]
+                az_sp_af_client_id_prod[AZ_AF_SP_CLIENT_ID]
+                az_sp_af_client_secret_prod[AZ_AF_SP_CLIENT_SECRET]
             end
+
+            subgraph docker_hub_creds_prod[Docker Hub Credentials]
+                dh_username_prod[DH_USERNAME]
+                dh_password_prod[DH_PASSWORD]
+            end
+
         end
 
-        airflow_container[Airflow Container]
-        terraform_apply --> microk8s_secrets
+        terraform_apply --> az_sp_af_creds_prod
+        terraform_apply --> docker_hub_creds_prod
         microk8s_secrets --> airflow_container
-        afelaco_airflow --> airflow_container
         datalake <--> airflow_container
         keyvault --> airflow_container
         wheel --> airflow_container
+        afelaco_airflow <--> airflow_container
+
+
     end
     classDef microk8s fill: #ffe0b2, stroke: #ef6c00, stroke-width: 2px, color: #000
     class MicroK8s microk8s

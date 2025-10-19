@@ -5,7 +5,7 @@
 
 # Config
 /config/.env.secret
-/config/.az-kv-secrets.json
+/config/.secrets.auto.tf
 
 # Terraform
 /terraform/.terraform/
