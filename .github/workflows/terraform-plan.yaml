@@ -25,8 +25,8 @@ jobs:
         with:
           creds: ${{ secrets.AZ_SP_TF_CREDENTIALS }}
 
-      - name: Read Azure Subscription ID from Azure CLI
-        run: echo "AZ_SUBSCRIPTION_ID=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
+      - name: Set Azure Subscription ID as Environment Variable for Terraform
+        run: echo "TF_VAR_subscription_id=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -41,5 +41,4 @@ jobs:
         working-directory: ./terraform
         run: terraform plan -input=false
         env:
-          TF_VAR_subscription_id: $AZ_SUBSCRIPTION_ID
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
