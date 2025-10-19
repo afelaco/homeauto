@@ -12,3 +12,7 @@ variable "external_secrets" {
   type      = map(string)
   sensitive = true
 }
+
+locals {
+  external_secrets = jsondecode(var.external_secrets)
+}

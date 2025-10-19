@@ -9,19 +9,10 @@ echo "$GH_TOKEN" | gh auth login --with-token
 echo "  ➡️ Uploading secrets to GitHub Actions..."
 
 secrets=(
-    # GitHub Actions
-    AZ_SP_TF_CLIENT_ID
-    AZ_SP_TF_CLIENT_SECRET
+    AZ_SP_TF_CREDENTIALS
     DH_USERNAME
     DH_PASSWORD
     GH_TOKEN
-    # Terraform
-    AZ_TENANT_ID
-    AZ_SUBSCRIPTION_ID
-    AZ_ADMIN_OBJECT_ID
-    AZ_SP_TF_OBJECT_ID
-    STEAM_ID
-    STEAM_KEY
 )
 
 for secret in "${secrets[@]}"; do
@@ -30,3 +21,10 @@ for secret in "${secrets[@]}"; do
     fi
     gh secret set "$secret" --repo "$GH_REPO" --body "${!secret}"
 done
+
+# -----------------------------
+# Set external secrets in GitHub Actions
+# -----------------------------
+echo "  ➡️ Uploading Key Vault secrets to GitHub Actions..."
+gh secret set "AZ_KV_SECRETS" --repo "$GH_REPO" --body "$(cat "$AZ_KV_SECRETS_FILE"))"
+echo "    ✅ Key Vault secrets uploaded!"
