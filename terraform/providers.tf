@@ -1,5 +1,3 @@
-data "azurerm_client_config" "this" {}
-
 terraform {
   required_providers {
     azurerm = {
@@ -8,6 +6,8 @@ terraform {
     }
   }
 }
+
+data "azurerm_client_config" "this" {}
 
 provider "azurerm" {
   subscription_id = data.azurerm_client_config.this.subscription_id
