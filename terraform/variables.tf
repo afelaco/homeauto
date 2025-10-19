@@ -8,7 +8,7 @@ variable "location" {
   type    = string
 }
 
-variable "kv_secrets" {
+variable "secrets" {
   type      = map(string)
   sensitive = true
 }

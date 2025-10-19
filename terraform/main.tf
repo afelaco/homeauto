@@ -26,7 +26,7 @@ module "kv" {
 
   sp_object_id = data.azurerm_client_config.this.object_id
 
-  kv_secrets = var.kv_secrets
+  secrets = var.secrets
 }
 
 module "pypi" {

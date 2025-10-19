@@ -18,7 +18,7 @@ resource "azurerm_role_assignment" "this" {
 resource "azurerm_key_vault_secret" "steam_id" {
   depends_on = [azurerm_role_assignment.this]
 
-  for_each = toset(var.kv_secrets)
+  for_each = toset(var.secrets)
 
   name         = each.key
   value        = each.value
