@@ -40,12 +40,14 @@ module "pypi" {
 module "datalake" {
   source = "./modules/storage_account"
 
-  for_each                 = toset(["bronze", "silver", "gold"])
+  for_each = toset(["bronze", "silver", "gold"])
+
   storage_account_name     = "${var.project_name}${each.key}sa"
   storage_account_location = module.rg.location
   resource_group_name      = module.rg.name
 
   container_name = ["steam"]
 
-  key_vault_id = module.kv.id
+  key_vault_id       = module.kv.id
+  role_assignment_id = module.kv.role_assignment_id
 }

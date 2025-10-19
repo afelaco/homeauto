@@ -15,6 +15,8 @@ resource "azurerm_storage_container" "this" {
 }
 
 resource "azurerm_key_vault_secret" "this" {
+  depends_on = [var.role_assignment_id]
+
   name         = "${upper(azurerm_storage_account.this.name)}-KEY"
   value        = azurerm_storage_account.this.primary_access_key
   key_vault_id = var.key_vault_id
