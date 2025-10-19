@@ -5,7 +5,7 @@
 
 # Config
 /config/.env.secret
-/config/.secrets.tfvars
+/config/.secrets.json
 
 # Terraform
 /terraform/.terraform/
