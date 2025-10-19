@@ -1,14 +1,5 @@
 data "azurerm_client_config" "this" {}
 
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "tfstate-rg"
-    storage_account_name = "homeautobackend"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
-}
-
 module "rg" {
   source = "./modules/resource_group"
 
