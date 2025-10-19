@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/airflow
+  DH_USERNAME: ${{ secrets.DH_USERNAME }}
+  DH_PASSWORD: ${{ secrets.DH_PASSWORD }}
 
 jobs:
   build-image:
@@ -23,14 +24,14 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: $DH_USERNAME
+          password: $DH_PASSWORD
 
       - name: Extract Docker Metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.IMAGE_NAME }}
+          images: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/airflow
 
       - name: Build & Push Docker Image
         uses: docker/build-push-action@v5
@@ -39,7 +40,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
-            AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-            AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}

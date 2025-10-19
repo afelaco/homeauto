@@ -1,4 +1,3 @@
-# Set the Azure Provider source and version being used
 terraform {
   required_providers {
     azurerm = {
@@ -8,8 +7,9 @@ terraform {
   }
 }
 
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  subscription_id = var.subscription_id
-  features {}
+  features {
+    purge_soft_delete_on_destroy    = true
+    recover_soft_deleted_key_vaults = true
+  }
 }

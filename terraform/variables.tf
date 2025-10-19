@@ -1,24 +1,14 @@
-# Config
 variable "project_name" {
-  type    = string
   default = "homeauto"
+  type    = string
 }
 
 variable "location" {
-  type    = string
   default = "northeurope"
+  type    = string
 }
 
-# .env
-variable "tenant_id" { type = string }
-variable "subscription_id" { type = string }
-variable "admin_object_id" { type = string }
-variable "sp_object_id" { type = string }
-variable "steam_id" {
-  type      = string
-  sensitive = true
-}
-variable "steam_key" {
-  type      = string
+variable "external_secrets" {
+  type      = map(string)
   sensitive = true
 }
