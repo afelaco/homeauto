@@ -37,7 +37,7 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
-      - name: Apply Terraform Changes
+      - name: Apply Terraform
         working-directory: ./terraform
         run: terraform apply -auto-approve
         env:
