@@ -37,7 +37,7 @@ az storage container create \
 # -----------------------------
 # Write Terraform backend configuration to file
 # -----------------------------
-echo "  ➡️ Writing Terraform backend configuration to $TF_BE_CONFIG..."
+echo "  ➡️ Writing Terraform backend configuration to $TF_BE_CONFIG_FILE..."
 cat >"$TF_BE_CONFIG_FILE" <<-EOF
 	terraform {
 	  backend "azurerm" {

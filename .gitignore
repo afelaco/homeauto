@@ -4,8 +4,8 @@
 /dist/
 
 # Config
-/config/.env.secret
-/config/.secrets.json
+/vars/.env.dev
+/vars/.terraform.tfvars.json
 
 # Terraform
 /terraform/.terraform/

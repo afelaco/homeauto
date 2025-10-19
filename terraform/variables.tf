@@ -8,7 +8,4 @@ variable "location" {
   type    = string
 }
 
-variable "secrets" {
-  type      = map(string)
-  sensitive = true
-}
+variable "secrets" { type = map(string) }
