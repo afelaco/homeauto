@@ -3,6 +3,11 @@ variable "project_name" {
   type    = string
 }
 
+variable "subscription_id" {
+  type      = string
+  sensitive = true
+}
+
 variable "location" {
   default = "northeurope"
   type    = string

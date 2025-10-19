@@ -7,9 +7,7 @@ terraform {
   }
 }
 
-data "azurerm_client_config" "this" {}
-
 provider "azurerm" {
-  subscription_id = data.azurerm_client_config.this.subscription_id
+  subscription_id = var.subscription_id
   features {}
 }
