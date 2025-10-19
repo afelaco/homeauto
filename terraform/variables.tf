@@ -12,7 +12,3 @@ variable "kv_secrets" {
   type      = map(string)
   sensitive = true
 }
-
-locals {
-  kv_secrets = jsondecode(var.kv_secrets)
-}
