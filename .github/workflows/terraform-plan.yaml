@@ -36,3 +36,5 @@ jobs:
       - name: Plan Terraform Changes
         working-directory: ./terraform
         run: terraform plan -input=false
+        env:
+          TF_VAR_kv_secrets: ${{ secrets.AZ_KV_SECRETS }}

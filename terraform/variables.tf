@@ -8,11 +8,11 @@ variable "location" {
   type    = string
 }
 
-variable "external_secrets" {
+variable "kv_secrets" {
   type      = map(string)
   sensitive = true
 }
 
 locals {
-  external_secrets = jsondecode(var.external_secrets)
+  kv_secrets = jsondecode(var.kv_secrets)
 }
