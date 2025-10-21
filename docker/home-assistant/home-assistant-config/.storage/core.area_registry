@@ -14,8 +14,8 @@
         "name": "Living Room",
         "picture": null,
         "temperature_entity_id": null,
-        "created_at": "2025-10-21T14:06:11.426615+00:00",
-        "modified_at": "2025-10-21T14:06:11.426620+00:00"
+        "created_at": "2025-10-21T17:36:36.077563+00:00",
+        "modified_at": "2025-10-21T17:36:36.077572+00:00"
       },
       {
         "aliases": [],
@@ -27,8 +27,8 @@
         "name": "Kitchen",
         "picture": null,
         "temperature_entity_id": null,
-        "created_at": "2025-10-21T14:06:11.426801+00:00",
-        "modified_at": "2025-10-21T14:06:11.426805+00:00"
+        "created_at": "2025-10-21T17:36:36.077811+00:00",
+        "modified_at": "2025-10-21T17:36:36.077815+00:00"
       },
       {
         "aliases": [],
@@ -40,8 +40,8 @@
         "name": "Bedroom",
         "picture": null,
         "temperature_entity_id": null,
-        "created_at": "2025-10-21T14:06:11.426894+00:00",
-        "modified_at": "2025-10-21T14:06:11.426897+00:00"
+        "created_at": "2025-10-21T17:36:36.077906+00:00",
+        "modified_at": "2025-10-21T17:36:36.077910+00:00"
       }
     ]
   }
