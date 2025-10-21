@@ -1,0 +1,40 @@
+---
+- name: Run Portainer on Raspberry Pi
+  hosts: rpi4-1
+  become: true
+  tasks:
+
+    - name: Ensure Home Assistant config folder exists
+      ansible.builtin.file:
+        path: /home/admin/home-assistant-config
+        state: directory
+        owner: admin
+        group: admin
+        mode: '0755'
+
+    - name: Run Home Assistant container
+      community.docker.docker_container:
+        name: home-assistant
+        image: ghcr.io/home-assistant/home-assistant:stable
+        state: started
+        restart_policy: unless-stopped
+        network_mode: host
+        privileged: yes
+        volumes:
+          - "/home/admin/home-assistant-config:/config"
+          - "/etc/localtime:/etc/localtime:ro"
+          - "/run/dbus:/run/dbus:ro"
+        devices:
+          - "/dev/ttyAMA0:/dev/ttyAMA0"
+          - "/dev/serial/by-id:/dev/serial/by-id"
+          - "/dev/bus/usb:/dev/bus/usb"
+
+    - name: Clone only docker/home-assistant/config using sparse checkout
+      ansible.builtin.git:
+        repo: 'git@github.com:yourusername/homeauto.git'
+        dest: /home/admin/home-assistant-config
+        version: main
+        sparse: "docker/home-assistant/config"
+        update: yes
+        force: yes
+        accept_hostkey: yes
