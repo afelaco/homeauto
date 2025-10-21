@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_plants",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Moisture",
+                  "heading_style": "title",
+                  "icon": "mdi:water-percent"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plant_sensor_994a_moisture",
+                  "name": "Monstera",
+                  "severity": {
+                    "green": 15,
+                    "yellow": 0,
+                    "red": 0
+                  },
+                  "max": 60
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plant_sensor_c146_moisture",
+                  "name": "Big Sansevieria",
+                  "max": 50,
+                  "severity": {
+                    "green": 7,
+                    "yellow": 0,
+                    "red": 0
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plant_sensor_6a4d_moisture",
+                  "name": "Small Sansevieria",
+                  "max": 50,
+                  "severity": {
+                    "green": 7,
+                    "yellow": 0,
+                    "red": 0
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

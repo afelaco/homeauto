@@ -13,11 +13,11 @@ home-assistant.log.*
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+/docker/home-assistant/home-assistant-config/custom_components/hacs/
 
 # Temporary or dependency folders
 deps/
 tts/
-
 
 # Terraform
 /terraform/.terraform/
