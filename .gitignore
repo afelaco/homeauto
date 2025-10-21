@@ -22,3 +22,4 @@ tts/
 # Terraform
 /terraform/.terraform/
 /terraform/.terraform.lock.hcl
+/docker/home-assistant/home-assistant-config/.storage/core.config_entries
