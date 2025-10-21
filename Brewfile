@@ -1,3 +1,4 @@
+brew "ansible"
 brew "azure-cli"
 brew "gh"
 brew "git"
