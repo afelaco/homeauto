@@ -1,0 +1,27 @@
+---
+- name: Initial setup on Raspberry Pi
+  hosts: rpi
+  become: true
+  tasks:
+
+    - name: Ping the Pi
+      ansible.builtin.ping:
+
+    - name: Update apt package list
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Upgrade installed packages
+      ansible.builtin.apt:
+        upgrade: dist
+        autoremove: yes
+
+    - name: Ensure useful packages are installed
+      ansible.builtin.apt:
+        name:
+          - git
+          - curl
+          - vim
+          - htop
+          - python3-pip
+        state: present

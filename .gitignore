@@ -3,9 +3,21 @@
 /.venv/
 /dist/
 
-# Config
+# Vars
 /vars/.env.dev
 /vars/.terraform.tfvars.json
+
+# Home Assistant
+home-assistant.log
+home-assistant.log.*
+home-assistant_v2.db
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+
+# Temporary or dependency folders
+deps/
+tts/
+
 
 # Terraform
 /terraform/.terraform/
