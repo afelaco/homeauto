@@ -24,4 +24,5 @@
           - vim
           - htop
           - python3-pip
+          - chromium
         state: present
