@@ -61,83 +61,10 @@
         "entity_names": {},
         "entity_data": {
           "moisture___": 8,
-          "signal_strength___": -71,
-          "temperature___": 20.4,
+          "signal_strength___": -72,
+          "temperature___": 20.6,
           "conductivity___": 23,
-          "illuminance___": 462
-        }
-      }
-    },
-    "01K83H7E17C5YPKF9SNHF8GABZ": {
-      "binary_sensor": {
-        "devices": {
-          "": {
-            "name": "Plant Sensor 994A",
-            "manufacturer": "Xiaomi",
-            "model": "HHCCJCY01"
-          }
-        },
-        "entity_descriptions": {},
-        "entity_names": {},
-        "entity_data": {}
-      },
-      "sensor": {
-        "devices": {
-          "": {
-            "name": "Plant Sensor 994A",
-            "manufacturer": "Xiaomi",
-            "model": "HHCCJCY01"
-          }
-        },
-        "entity_descriptions": {
-          "moisture___": {
-            "key": "moisture_%",
-            "device_class": "moisture",
-            "native_unit_of_measurement": "%",
-            "state_class": "measurement"
-          },
-          "signal_strength___": {
-            "key": "signal_strength_dBm",
-            "device_class": "signal_strength",
-            "entity_category": "diagnostic",
-            "entity_registry_enabled_default": false,
-            "native_unit_of_measurement": "dBm",
-            "state_class": "measurement"
-          },
-          "conductivity___": {
-            "key": "µS/cm",
-            "device_class": "conductivity",
-            "native_unit_of_measurement": "μS/cm",
-            "state_class": "measurement"
-          },
-          "illuminance___": {
-            "key": "illuminance_lx",
-            "device_class": "illuminance",
-            "native_unit_of_measurement": "lx",
-            "state_class": "measurement"
-          },
-          "temperature___": {
-            "key": "temperature_°C",
-            "device_class": "temperature",
-            "native_unit_of_measurement": "°C",
-            "state_class": "measurement"
-          },
-          "battery___": {
-            "key": "battery_%",
-            "device_class": "battery",
-            "entity_category": "diagnostic",
-            "native_unit_of_measurement": "%",
-            "state_class": "measurement"
-          }
-        },
-        "entity_names": {},
-        "entity_data": {
-          "moisture___": 15,
-          "signal_strength___": -74,
-          "conductivity___": 169,
-          "illuminance___": 224,
-          "temperature___": 21.1,
-          "battery___": 77
+          "illuminance___": 400
         }
       }
     },
@@ -206,11 +133,84 @@
         "entity_names": {},
         "entity_data": {
           "conductivity___": 0,
-          "signal_strength___": -53,
-          "battery___": 29,
+          "signal_strength___": -54,
+          "battery___": 27,
           "illuminance___": 136,
-          "temperature___": 22.3,
+          "temperature___": 22.2,
           "moisture___": 0
+        }
+      }
+    },
+    "01K83H7E17C5YPKF9SNHF8GABZ": {
+      "binary_sensor": {
+        "devices": {
+          "": {
+            "name": "Plant Sensor 994A",
+            "manufacturer": "Xiaomi",
+            "model": "HHCCJCY01"
+          }
+        },
+        "entity_descriptions": {},
+        "entity_names": {},
+        "entity_data": {}
+      },
+      "sensor": {
+        "devices": {
+          "": {
+            "name": "Plant Sensor 994A",
+            "manufacturer": "Xiaomi",
+            "model": "HHCCJCY01"
+          }
+        },
+        "entity_descriptions": {
+          "moisture___": {
+            "key": "moisture_%",
+            "device_class": "moisture",
+            "native_unit_of_measurement": "%",
+            "state_class": "measurement"
+          },
+          "signal_strength___": {
+            "key": "signal_strength_dBm",
+            "device_class": "signal_strength",
+            "entity_category": "diagnostic",
+            "entity_registry_enabled_default": false,
+            "native_unit_of_measurement": "dBm",
+            "state_class": "measurement"
+          },
+          "conductivity___": {
+            "key": "µS/cm",
+            "device_class": "conductivity",
+            "native_unit_of_measurement": "μS/cm",
+            "state_class": "measurement"
+          },
+          "illuminance___": {
+            "key": "illuminance_lx",
+            "device_class": "illuminance",
+            "native_unit_of_measurement": "lx",
+            "state_class": "measurement"
+          },
+          "temperature___": {
+            "key": "temperature_°C",
+            "device_class": "temperature",
+            "native_unit_of_measurement": "°C",
+            "state_class": "measurement"
+          },
+          "battery___": {
+            "key": "battery_%",
+            "device_class": "battery",
+            "entity_category": "diagnostic",
+            "native_unit_of_measurement": "%",
+            "state_class": "measurement"
+          }
+        },
+        "entity_names": {},
+        "entity_data": {
+          "moisture___": 15,
+          "signal_strength___": -71,
+          "conductivity___": 170,
+          "illuminance___": 168,
+          "temperature___": 21.3,
+          "battery___": 72
         }
       }
     }

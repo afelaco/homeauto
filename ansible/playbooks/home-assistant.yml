@@ -29,12 +29,18 @@
           - "/dev/serial/by-id:/dev/serial/by-id"
           - "/dev/bus/usb:/dev/bus/usb"
 
-    - name: Clone only docker/home-assistant/config using sparse checkout
-      ansible.builtin.git:
-        repo: 'git@github.com:yourusername/homeauto.git'
-        dest: /home/admin/home-assistant-config
-        version: main
-        sparse: "docker/home-assistant/config"
-        update: yes
-        force: yes
-        accept_hostkey: yes
+    - name: Check if HACS folder exists
+      ansible.builtin.stat:
+        path: /home/admin/home-assistant-config/custom_components/hacs
+      register: hacs_folder
+
+    - name: Install HACS in Home Assistant container if missing
+      ansible.builtin.command: >
+        docker exec home-assistant /bin/bash -c "wget -O - https://get.hacs.xyz | bash"
+      when: not hacs_folder.stat.exists
+
+    - name: Restart Home Assistant container
+      community.docker.docker_container:
+        name: home-assistant
+        state: started
+        restart: true
