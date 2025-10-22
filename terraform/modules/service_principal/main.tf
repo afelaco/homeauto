@@ -20,5 +20,5 @@ resource "azurerm_role_assignment" "this" {
 
   scope                = each.key
   role_definition_name = each.value
-  principal_id         = azuread_service_principal.this.object_id
+  principal_id         = azuread_service_principal.this.id
 }
