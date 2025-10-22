@@ -42,3 +42,10 @@ module "datalake" {
   role_assignment_id = module.kv.role_assignment_id
   key_vault_id       = module.kv.id
 }
+
+module "airflow_sp" {
+  source = "./modules/service_principal"
+
+  display_name = "airflow-sp"
+  scope        = { (module.pypi.id) = "Storage Blob Data Contributor" }
+}
