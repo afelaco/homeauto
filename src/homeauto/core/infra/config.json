@@ -1,67 +1,19 @@
 {
   "datalake": {
-    "sensitive": false,
-    "type": [
-      "object",
-      {
-        "bronze": [
-          "object",
-          {
-            "name": "string",
-            "secret": "string"
-          }
-        ],
-        "gold": [
-          "object",
-          {
-            "name": "string",
-            "secret": "string"
-          }
-        ],
-        "silver": [
-          "object",
-          {
-            "name": "string",
-            "secret": "string"
-          }
-        ]
-      }
-    ],
-    "value": {
-      "bronze": {
-        "name": "homeautobronzesa",
-        "secret": "HOMEAUTOBRONZESA-KEY"
-      },
-      "gold": {
-        "name": "homeautogoldsa",
-        "secret": "HOMEAUTOGOLDSA-KEY"
-      },
-      "silver": {
-        "name": "homeautosilversa",
-        "secret": "HOMEAUTOSILVERSA-KEY"
-      }
+    "bronze": {
+      "name": "homeautobronzesa",
+      "secret": "HOMEAUTOBRONZESA-KEY"
+    },
+    "gold": {
+      "name": "homeautogoldsa",
+      "secret": "HOMEAUTOGOLDSA-KEY"
+    },
+    "silver": {
+      "name": "homeautosilversa",
+      "secret": "HOMEAUTOSILVERSA-KEY"
     }
   },
   "keyvault": {
-    "sensitive": false,
-    "type": [
-      "object",
-      {
-        "uri": "string"
-      }
-    ],
-    "value": {
-      "uri": "https://homeauto-kv.vault.azure.net/"
-    }
-  },
-  "pypi_container": {
-    "sensitive": false,
-    "type": "string",
-    "value": "pypi"
-  },
-  "pypi_storage_account": {
-    "sensitive": false,
-    "type": "string",
-    "value": "homeautopypi"
+    "uri": "https://homeauto-kv.vault.azure.net/"
   }
 }
