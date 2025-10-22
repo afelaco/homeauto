@@ -57,14 +57,14 @@ jobs:
       - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: |
-          terraform output -raw infrastructure > ../src/homeauto/core/infra/config.json
+          "$(terraform output -raw infrastructure)" > ../src/homeauto/core/infra/config.json
 
       - name: Set GitHub Secrets for PyPI
         working-directory: ./terraform
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh secret set PYPI --body $(terraform output -raw pypi)
+          gh secret set PYPI --body "$(terraform output -raw pypi)"
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
