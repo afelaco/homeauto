@@ -41,18 +41,18 @@ jobs:
         run: |
           terraform init
 
-      - name: Apply Terraform
-        working-directory: ./terraform
-        run: |
-          terraform apply -auto-approve
-        env:
-          TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
+#      - name: Apply Terraform
+#        working-directory: ./terraform
+#        run: |
+#          terraform apply -auto-approve
+#        env:
+#          TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
 
       - name: Set airflow-sp Credentials as GitHub Secret
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          echo "$(terraform output -raw airflow_sp_creds | jq .)"
+          echo "$(terraform output -raw airflow_sp_creds)"
 #          gh secret set AZ_SP_AF_CREDENTIALS --body "$(terraform output -raw airflow_sp_creds | jq .)"
 
       - name: Set PyPI as GitHub Secret
