@@ -18,7 +18,8 @@ resource "azuread_service_principal_password" "this" {
 resource "azurerm_role_assignment" "this" {
   for_each = var.scope
 
+  principal_id         = azuread_service_principal.this.object_id
+  principal_type       = "ServicePrincipal"
   scope                = each.key
   role_definition_name = each.value
-  principal_id         = azuread_service_principal.this.id
 }
