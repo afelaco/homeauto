@@ -1,7 +1,7 @@
 name: Terraform Apply
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -52,7 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh secret set AIRFLOW_SP_CREDS --body "$(terraform output -raw airflow_sp_creds)"
+          gh secret set AZ_SP_AF_CREDENTIALS --body "$(terraform output -raw airflow_sp_creds)"
 
       - name: Set PyPI as GitHub Secret
         working-directory: ./terraform
