@@ -54,17 +54,17 @@ jobs:
         run: |
           gh secret set AIRFLOW_SP_CREDS --body "$(terraform output -raw airflow_sp_creds)"
 
-      - name: Output Infrastructure Configuration to JSON
-        working-directory: ./terraform
-        run: |
-          "$(terraform output -raw infrastructure)" > ../src/homeauto/core/infra/config.json
-
-      - name: Set GitHub Secrets for PyPI
+      - name: Set PyPI as GitHub Secret
         working-directory: ./terraform
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh secret set PYPI --body "$(terraform output -raw pypi)"
+
+      - name: Output Infrastructure Configuration to JSON
+        working-directory: ./terraform
+        run: |
+          echo "$(terraform output -raw infrastructure)" > ../src/homeauto/core/infra/config.json
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
