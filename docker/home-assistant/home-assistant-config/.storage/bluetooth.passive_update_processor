@@ -60,11 +60,11 @@
         },
         "entity_names": {},
         "entity_data": {
-          "temperature___": 21.2,
-          "signal_strength___": -73,
-          "illuminance___": 168,
-          "conductivity___": 169,
-          "moisture___": 15
+          "temperature___": 21.1,
+          "signal_strength___": -76,
+          "illuminance___": 132,
+          "conductivity___": 163,
+          "moisture___": 17
         }
       }
     },
@@ -138,10 +138,10 @@
         "entity_names": {},
         "entity_data": {
           "conductivity___": 0,
-          "signal_strength___": -54,
+          "signal_strength___": -56,
           "moisture___": 0,
-          "temperature___": 22.5,
-          "illuminance___": 136,
+          "temperature___": 22.2,
+          "illuminance___": 141,
           "battery___": 27
         }
       }
@@ -219,8 +219,73 @@
           "signal_strength___": -72,
           "moisture___": 8,
           "battery___": 0,
-          "conductivity___": 23,
-          "illuminance___": 338
+          "conductivity___": 21,
+          "illuminance___": 502
+        }
+      }
+    },
+    "01K86AYXQ375B9GJBRR1M2RW2Z": {
+      "binary_sensor": {
+        "devices": {
+          "": {
+            "name": "Plant Sensor C19D",
+            "manufacturer": "Xiaomi",
+            "model": "HHCCJCY01"
+          }
+        },
+        "entity_descriptions": {},
+        "entity_names": {},
+        "entity_data": {}
+      },
+      "sensor": {
+        "devices": {
+          "": {
+            "name": "Plant Sensor C19D",
+            "manufacturer": "Xiaomi",
+            "model": "HHCCJCY01"
+          }
+        },
+        "entity_descriptions": {
+          "conductivity___": {
+            "key": "µS/cm",
+            "device_class": "conductivity",
+            "native_unit_of_measurement": "μS/cm",
+            "state_class": "measurement"
+          },
+          "signal_strength___": {
+            "key": "signal_strength_dBm",
+            "device_class": "signal_strength",
+            "entity_category": "diagnostic",
+            "entity_registry_enabled_default": false,
+            "native_unit_of_measurement": "dBm",
+            "state_class": "measurement"
+          },
+          "moisture___": {
+            "key": "moisture_%",
+            "device_class": "moisture",
+            "native_unit_of_measurement": "%",
+            "state_class": "measurement"
+          },
+          "temperature___": {
+            "key": "temperature_°C",
+            "device_class": "temperature",
+            "native_unit_of_measurement": "°C",
+            "state_class": "measurement"
+          },
+          "illuminance___": {
+            "key": "illuminance_lx",
+            "device_class": "illuminance",
+            "native_unit_of_measurement": "lx",
+            "state_class": "measurement"
+          }
+        },
+        "entity_names": {},
+        "entity_data": {
+          "conductivity___": 33,
+          "signal_strength___": -85,
+          "moisture___": 8,
+          "temperature___": 21.1,
+          "illuminance___": 187
         }
       }
     }

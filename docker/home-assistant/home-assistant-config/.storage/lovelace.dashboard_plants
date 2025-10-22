@@ -12,12 +12,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "Moisture",
-                  "heading_style": "title",
-                  "icon": "mdi:water-percent"
-                },
-                {
                   "type": "gauge",
                   "entity": "sensor.plant_sensor_994a_moisture",
                   "name": "Monstera",
@@ -45,7 +39,7 @@
                 },
                 {
                   "type": "gauge",
-                  "entity": "sensor.plant_sensor_6a4d_moisture",
+                  "entity": "sensor.plant_sensor_c19d_moisture",
                   "name": "Small Sansevieria",
                   "max": 50,
                   "severity": {
