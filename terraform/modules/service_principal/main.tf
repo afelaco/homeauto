@@ -11,14 +11,15 @@ resource "time_rotating" "month" {
 }
 
 resource "azuread_service_principal_password" "this" {
-  service_principal_id = azuread_service_principal.this.object_id
+  service_principal_id = azuread_service_principal.this.id
   rotate_when_changed  = { rotation = time_rotating.month.id }
 }
 
 resource "azurerm_role_assignment" "this" {
   for_each = var.scope
 
+  principal_id         = azuread_service_principal.this.object_id
+  principal_type       = "ServicePrincipal"
   scope                = each.key
   role_definition_name = each.value
-  principal_id         = azuread_service_principal.this.object_id
 }
