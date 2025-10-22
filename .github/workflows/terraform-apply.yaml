@@ -1,9 +1,11 @@
 name: Terraform Apply
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+    paths:
+      - 'terraform/**/*.tf'
   workflow_dispatch:
 
 jobs:
@@ -62,7 +64,7 @@ jobs:
       - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: |
-          terraform output -raw infrastructure > ../src/homeauto/core/infra/config.json
+          terraform output -raw infrastructure | jq . > ../src/homeauto/core/infra/config.json
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7
