@@ -48,7 +48,4 @@ module "airflow_sp" {
 
   display_name = "airflow-sp"
   scope        = { (module.pypi.id) = "Storage Blob Data Contributor" }
-
-  tenant_id       = data.azurerm_client_config.this.tenant_id
-  subscription_id = data.azurerm_client_config.this.subscription_id
 }
