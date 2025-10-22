@@ -43,12 +43,13 @@ jobs:
 
       - name: Apply Terraform
         working-directory: ./terraform
-        run: |
-          terraform apply -auto-approve
         env:
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
+        run: |
+          terraform apply -auto-approve
 
       - name: Set airflow-sp Credentials as GitHub Secret
+        working-directory: ./terraform
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
