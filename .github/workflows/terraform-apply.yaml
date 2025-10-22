@@ -18,7 +18,8 @@ jobs:
 
       - name: Load Environment Variables
         working-directory: ./vars
-        run: source .env.prd
+        run: |
+          source .env.prd
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -26,7 +27,8 @@ jobs:
           creds: ${{ secrets.AZ_SP_TF_CREDENTIALS }}
 
       - name: Set Azure Subscription ID as Environment Variable for Terraform
-        run: echo "TF_VAR_subscription_id=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
+        run: |
+          echo "TF_VAR_subscription_id=$(az account show --query 'id' -o tsv)" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -36,37 +38,33 @@ jobs:
 
       - name: Initialize Terraform
         working-directory: ./terraform
-        run: terraform init
+        run: |
+          terraform init
 
       - name: Apply Terraform
         working-directory: ./terraform
-        run: terraform apply -auto-approve
+        run: |
+          terraform apply -auto-approve
         env:
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
-
-      - name: Output airflow-sp Credentials to JSON
-        working-directory: ./terraform
-        run: echo AIRFLOW_SP_CREDS=$(terraform output -raw airflow_sp_creds) > $GITHUB_ENV
 
       - name: Set airflow-sp Credentials as GitHub Secret
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh secret set AIRFLOW_SP_CREDS --body "$AIRFLOW_SP_CREDS"
+          gh secret set AIRFLOW_SP_CREDS --body "$(terraform output -raw airflow_sp_creds)"
 
       - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
-        run: terraform output -json > ../src/homeauto/core/infra/config.json
+        run: |
+          terraform output -raw infrastructure > ../src/homeauto/core/infra/config.json
 
       - name: Set GitHub Secrets for PyPI
         working-directory: ./terraform
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          PYPI_STORAGE_ACCOUNT=$(terraform output -raw pypi_storage_account)
-          PYPI_CONTAINER_NAME=$(terraform output -raw pypi_container)
-          gh secret set PYPI_STORAGE_ACCOUNT --body "$PYPI_STORAGE_ACCOUNT"
-          gh secret set PYPI_CONTAINER_NAME --body "$PYPI_CONTAINER_NAME"
+          gh secret set PYPI --body $(terraform output -raw pypi)
 
       - name: Commit and Create Pull Request for Infrastructure Update
         uses: peter-evans/create-pull-request@v7

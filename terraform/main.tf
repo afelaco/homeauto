@@ -43,7 +43,7 @@ module "datalake" {
   key_vault_id       = module.kv.id
 }
 
-module "airflow-sp" {
+module "airflow_sp" {
   source = "./modules/service_principal"
 
   display_name = "airflow-sp"

@@ -1,9 +1,5 @@
-output "credentials" {
-  value = jsonencode({
-    subscriptionId = var.tenant_id,
-    tenantId       = var.subscription_id,
-    clientId       = azuread_service_principal.this.client_id,
-    clientSecret   = azuread_service_principal_password.this.value
-  })
+output "client_id" { value = azuread_service_principal.this.client_id }
+output "client_secret" {
+  value     = azuread_service_principal_password.this.value
   sensitive = true
 }

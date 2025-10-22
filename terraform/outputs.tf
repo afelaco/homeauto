@@ -30,6 +30,11 @@ output "infrastructure" {
 }
 
 output "airflow_sp_creds" {
-  value     = module.airflow-sp.credentials
+  value = jsonencode({
+    tenantId       = data.azurerm_client_config.this.tenant_id
+    subscriptionId = data.azurerm_client_config.this.subscription_id
+    clientId       = module.airflow_sp.client_id
+    clientSecret   = module.airflow_sp.client_secret
+  })
   sensitive = true
 }
