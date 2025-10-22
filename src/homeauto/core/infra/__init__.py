@@ -51,6 +51,6 @@ BASE_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = BASE_DIR / "config.json"
 
 with open(CONFIG_PATH) as f:
-    infra_json = {k: v["value"] for k, v in json.load(f).items()}
+    infra_json = json.load(f)
 
 infra = Infrastructure.model_validate(infra_json)
