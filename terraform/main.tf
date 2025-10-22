@@ -43,9 +43,12 @@ module "datalake" {
   key_vault_id       = module.kv.id
 }
 
-module "service_principal" {
+module "airflow-sp" {
   source = "./modules/service_principal"
 
   display_name = "airflow-sp"
   scope        = { (module.pypi.id) = "Storage Blob Data Contributor" }
+
+  tenant_id       = data.azurerm_client_config.this.tenant_id
+  subscription_id = data.azurerm_client_config.this.subscription_id
 }

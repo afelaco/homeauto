@@ -44,6 +44,16 @@ jobs:
         env:
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
 
+      - name: Output airflow-sp Credentials to JSON
+        working-directory: ./terraform
+        run: echo AIRFLOW_SP_CREDS=$(terraform output -raw airflow_sp_creds) > $GITHUB_ENV
+
+      - name: Set airflow-sp Credentials as GitHub Secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          gh secret set AIRFLOW_SP_CREDS --body "$AIRFLOW_SP_CREDS"
+
       - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: terraform output -json > ../src/homeauto/core/infra/config.json

@@ -15,3 +15,5 @@ output "datalake" {
     }
   }
 }
+
+output "airflow_sp_creds" { value = module.airflow-sp.credentials }
