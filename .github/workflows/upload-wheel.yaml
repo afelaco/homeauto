@@ -8,12 +8,6 @@ on:
       - 'src/**'
   workflow_dispatch:
 
-env:
-  AZ_TENANT_ID: ${{ secrets.AZ_TENANT_ID }}
-  AZ_SUBSCRIPTION_ID: ${{ secrets.AZ_SUBSCRIPTION_ID }}
-  AZ_CLIENT_ID: ${{ secrets.AZ_SP_AF_CLIENT_ID }}
-  AZ_CLIENT_SECRET: ${{ secrets.AZ_SP_AF_CLIENT_SECRET }}
-
 jobs:
   upload-wheel:
     name: Build & Upload Python Wheel
@@ -41,13 +35,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          creds: >-
-            {
-              "tenantId": "$AZ_TENANT_ID",
-              "subscriptionId": "$AZ_SUBSCRIPTION_ID",
-              "clientId": "$AZ_CLIENT_ID",
-              "clientSecret": "$AZ_CLIENT_SECRET"
-            }
+          creds: ${{ secrets.AZ_SP_AF_CREDENTIALS }}
 
       - name: Upload Latest Wheel to PyPI
         run: |
