@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "bluetooth.remote_scanners",
+  "data": {
+    "D8:3A:DD:66:3C:31": {
+      "connectable": true,
+      "expire_seconds": 195.0,
+      "discovered_device_advertisement_datas": {
+        "5C:85:7E:13:C1:46": {
+          "device": {
+            "address": "5C:85:7E:13:C1:46",
+            "name": "Flower care",
+            "rssi": -71,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_5C_85_7E_13_C1_46",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "Flower care",
+            "manufacturer_data": {},
+            "service_data": {
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800a146c1137e855c0d08100108"
+            },
+            "service_uuids": [
+              "0000fe95-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -71,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "74:A6:59:C2:3C:C1": {
+          "device": {
+            "address": "74:A6:59:C2:3C:C1",
+            "name": null,
+            "rssi": -77,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_74_A6_59_C2_3C_C1",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": null,
+            "manufacturer_data": {
+              "76": "1608004858d6e54fc993"
+            },
+            "service_data": {},
+            "service_uuids": [],
+            "rssi": -77,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "45:C5:C5:B1:C8:17": {
+          "device": {
+            "address": "45:C5:C5:B1:C8:17",
+            "name": null,
+            "rssi": -50,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_45_C5_C5_B1_C8_17",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": null,
+            "manufacturer_data": {
+              "224": "00f3ca575116"
+            },
+            "service_data": {
+              "0000fe9f-0000-1000-8000-00805f9b34fb": "0000000000000000000000000000000000000000"
+            },
+            "service_uuids": [
+              "0000fe9f-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -50,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "54:44:A3:00:E1:25": {
+          "device": {
+            "address": "54:44:A3:00:E1:25",
+            "name": "[TV] TV",
+            "rssi": -58,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_54_44_A3_00_E1_25",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "[TV] TV",
+            "manufacturer_data": {
+              "117": "42040101765444a300e1255644a300e12430dd4c82000000"
+            },
+            "service_data": {},
+            "service_uuids": [],
+            "rssi": -58,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "07:2A:30:48:33:31": {
+          "device": {
+            "address": "07:2A:30:48:33:31",
+            "name": "O_R18 Pro",
+            "rssi": -72,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_07_2A_30_48_33_31",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "O_R18 Pro",
+            "manufacturer_data": {
+              "4660": "fee7072a30483331"
+            },
+            "service_data": {},
+            "service_uuids": [
+              "0000fee7-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -72,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "5C:85:7E:13:6A:4D": {
+          "device": {
+            "address": "5C:85:7E:13:6A:4D",
+            "name": "Flower care",
+            "rssi": -54,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_5C_85_7E_13_6A_4D",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "Flower care",
+            "manufacturer_data": {},
+            "service_data": {
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800a74d6a137e855c0d071003880000"
+            },
+            "service_uuids": [
+              "0000fe95-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -54,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "5C:85:7E:13:99:4A": {
+          "device": {
+            "address": "5C:85:7E:13:99:4A",
+            "name": "Flower care",
+            "rssi": -77,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_5C_85_7E_13_99_4A",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "Flower care",
+            "manufacturer_data": {},
+            "service_data": {
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800864a99137e855c0d091002a800"
+            },
+            "service_uuids": [
+              "0000fe95-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -77,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "C1:0B:AF:D7:AB:7E": {
+          "device": {
+            "address": "C1:0B:AF:D7:AB:7E",
+            "name": "Razer ARGB",
+            "rssi": -90,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_C1_0B_AF_D7_AB_7E",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": "Razer ARGB",
+            "manufacturer_data": {
+              "1678": "0f2d00c10bafd7ab7e"
+            },
+            "service_data": {},
+            "service_uuids": [
+              "00001812-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -90,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "08:D1:C8:E1:54:85": {
+          "device": {
+            "address": "08:D1:C8:E1:54:85",
+            "name": null,
+            "rssi": -79,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_08_D1_C8_E1_54_85",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": null,
+            "manufacturer_data": {},
+            "service_data": {
+              "0000fef3-0000-1000-8000-00805f9b34fb": "4a1723513753521132bad6a38e30b6a2e4387742fe4672d6d9c7f4"
+            },
+            "service_uuids": [],
+            "rssi": -79,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "5C:85:7E:13:C1:9D": {
+          "device": {
+            "address": "5C:85:7E:13:C1:9D",
+            "name": null,
+            "rssi": -84,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_5C_85_7E_13_C1_9D",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": null,
+            "manufacturer_data": {},
+            "service_data": {
+              "0000fe95-0000-1000-8000-00805f9b34fb": "712098002b9dc1137e855c0d08100108"
+            },
+            "service_uuids": [
+              "0000fe95-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -84,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        }
+      },
+      "discovered_device_timestamps": {
+        "5C:85:7E:13:C1:46": 1761068775.8687801,
+        "74:A6:59:C2:3C:C1": 1761068779.9167175,
+        "45:C5:C5:B1:C8:17": 1761068780.4567091,
+        "54:44:A3:00:E1:25": 1761068779.8487186,
+        "07:2A:30:48:33:31": 1761068777.8047502,
+        "5C:85:7E:13:6A:4D": 1761068779.9607167,
+        "5C:85:7E:13:99:4A": 1761068778.8327343,
+        "C1:0B:AF:D7:AB:7E": 1761068688.1221728,
+        "08:D1:C8:E1:54:85": 1761068678.318333,
+        "5C:85:7E:13:C1:9D": 1761068693.954078
+      },
+      "discovered_device_raw": {
+        "5C:85:7E:13:C1:46": "020106030295fe131695fe71209800a146c1137e855c0d081001080c09466c6f7765722063617265",
+        "74:A6:59:C2:3C:C1": "02011a0dff4c001608004858d6e54fc993",
+        "45:C5:C5:B1:C8:17": "03039ffe17169ffe000000000000000000000000000000000000000009ffe00000f3ca575116",
+        "54:44:A3:00:E1:25": "0201181bff750042040101765444a300e1255644a300e12430dd4c8200000008085b54565d205456",
+        "07:2A:30:48:33:31": "0201060a094f5f5231382050726f0303e7fe0bff3412fee7072a30483331",
+        "5C:85:7E:13:6A:4D": "020106030295fe151695fe71209800a74d6a137e855c0d0710038800000c09466c6f7765722063617265",
+        "5C:85:7E:13:99:4A": "020106030295fe141695fe71209800864a99137e855c0d091002a800",
+        "C1:0B:AF:D7:AB:7E": "020106030312180cff8e060f2d00c10bafd7ab7e",
+        "08:D1:C8:E1:54:85": "1e16f3fe4a1723513753521132bad6a38e30b6a2e4387742fe4672d6d9c7f4",
+        "5C:85:7E:13:C1:9D": "020106030295fe131695fe712098002b9dc1137e855c0d08100108"
+      }
+    }
+  }
+}

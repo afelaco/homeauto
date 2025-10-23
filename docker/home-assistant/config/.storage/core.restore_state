@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "core.restore_state",
+  "data": [
+    {
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-10-23T08:18:30.714778+00:00","last_reported":"2025-10-23T08:18:30.714778+00:00","last_updated":"2025-10-23T08:18:30.714778+00:00","context":{"id":"01K882BSNTF5E8N18HT0DCTVQ5","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"event.backup_automatic_backup","state":"unknown","attributes":{"event_types":["completed","failed","in_progress"],"event_type":null,"friendly_name":"Backup Automatic backup"},"last_changed":"2025-10-23T08:18:30.795620+00:00","last_reported":"2025-10-23T08:18:30.795620+00:00","last_updated":"2025-10-23T08:18:30.795620+00:00","context":{"id":"01K882BSRBGPXMVF9NPRFQ3DPV","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "last_event_type": null,
+        "last_event_attributes": null
+      },
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"person.admin","state":"unknown","attributes":{"editable":true,"id":"admin","device_trackers":["device_tracker.s25"],"source":"person.admin","user_id":"5ecc2ca0b2554e0cae6c3b47c95d0935","friendly_name":"admin"},"last_changed":"2025-10-23T08:18:31.992449+00:00","last_reported":"2025-10-23T08:18:31.992449+00:00","last_updated":"2025-10-23T08:18:31.992449+00:00","context":{"id":"01K882BTXR44F8RM7V7B65FXTR","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"device_tracker.s25","state":"unknown","attributes":{"source_type":"gps","friendly_name":"S25"},"last_changed":"2025-10-23T08:18:35.420389+00:00","last_reported":"2025-10-23T08:18:35.420389+00:00","last_updated":"2025-10-23T08:18:35.420389+00:00","context":{"id":"01K882BY8WR21VJTV6AQN77AJ7","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s25_battery_level","state":"91","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"battery","icon":"mdi:battery-90","friendly_name":"S25 Battery level"},"last_changed":"2025-10-23T08:18:35.421970+00:00","last_reported":"2025-10-23T08:18:35.421970+00:00","last_updated":"2025-10-23T08:18:35.421970+00:00","context":{"id":"01K882BY8XSBH3MYV3NX23HRE4","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 91,
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s25_battery_state","state":"discharging","attributes":{"options":["charging","discharging","full","not_charging"],"device_class":"enum","icon":"mdi:battery-minus","friendly_name":"S25 Battery state"},"last_changed":"2025-10-23T08:18:35.422491+00:00","last_reported":"2025-10-23T08:18:35.422491+00:00","last_updated":"2025-10-23T08:18:35.422491+00:00","context":{"id":"01K882BY8Y49SEM0ZJ9CARSN16","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "discharging",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.s25_charger_type","state":"none","attributes":{"options":["ac","usb","wireless","dock","none"],"device_class":"enum","icon":"mdi:battery","friendly_name":"S25 Charger type"},"last_changed":"2025-10-23T08:18:35.422940+00:00","last_reported":"2025-10-23T08:18:35.422940+00:00","last_updated":"2025-10-23T08:18:35.422940+00:00","context":{"id":"01K882BY8Y53V4AV4Y9SH7BK3A","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "none",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.google_translate_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2025-10-23T08:18:35.696092+00:00","last_reported":"2025-10-23T08:18:35.696092+00:00","last_updated":"2025-10-23T08:18:35.696092+00:00","context":{"id":"01K882BYHG4T9N4495D8WYVQE0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"button.p1_meter_identify","state":"unknown","attributes":{"device_class":"identify","friendly_name":"P1 Meter Identify"},"last_changed":"2025-10-23T08:18:36.547235+00:00","last_reported":"2025-10-23T08:18:36.547235+00:00","last_updated":"2025-10-23T08:18:36.547235+00:00","context":{"id":"01K882BZC3YZF3E8CDN5ENMMC2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:18:36.610055+00:00"
+    },
+    {
+      "state": {"entity_id":"update.hacs_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"2.0.5","in_progress":false,"latest_version":"2.0.5","release_summary":null,"release_url":"https://github.com/hacs/integration/releases/2.0.5","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/hacs/icon.png","friendly_name":"HACS update","supported_features":23},"last_changed":"2025-10-21T17:47:43.231835+00:00","last_reported":"2025-10-21T17:47:43.232243+00:00","last_updated":"2025-10-21T17:47:43.231835+00:00","context":{"id":"01K83Y4KQZPNKF6F5687KXNT2S","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-10-23T08:01:42.453002+00:00"
+    }
+  ]
+}
