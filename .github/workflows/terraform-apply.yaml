@@ -55,13 +55,6 @@ jobs:
         run: |
           gh secret set AZ_SP_AF_CREDENTIALS --body "$(terraform output -raw airflow_sp_creds | jq .)"
 
-      - name: Set PyPI as GitHub Secret
-        working-directory: ./terraform
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          gh secret set PYPI --body "$(terraform output -raw pypi | jq .)"
-
       - name: Output Infrastructure Configuration to JSON
         working-directory: ./terraform
         run: |
