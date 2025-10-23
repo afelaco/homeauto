@@ -13,8 +13,8 @@ home-assistant.log.*
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
-/docker/home-assistant/home-assistant-config/custom_components/hacs/
-/docker/home-assistant/home-assistant-config/.storage/core.config_entries
+/docker/home-assistant/config/custom_components/hacs/
+/docker/home-assistant/config/.storage/core.config_entries
 
 # Temporary or dependency folders
 deps/
