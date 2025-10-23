@@ -1,6 +1,4 @@
 {
-  "domain": "dahua",
-  "name": "Dahua",
   "after_dependencies": [
     "tag"
   ],
@@ -9,7 +7,9 @@
   ],
   "config_flow": true,
   "documentation": "https://github.com/rroller/dahua",
+  "domain": "dahua",
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/rroller/dahua/issues",
+  "name": "Dahua",
   "version": "0.9.76"
 }
