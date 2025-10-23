@@ -1,25 +1,29 @@
 # Root
-/.idea/
-/.venv/
-/dist/
+.idea/
+.venv/
+dist/
 
 # Vars
-/vars/.env.dev
-/vars/.terraform.tfvars.json
+.env.dev
+.terraform.tfvars.json
 
 # Home Assistant
+deps/
+hacs/
+tts/
+core.config_entries
+hacs.repositories
 home-assistant.log
 home-assistant.log.*
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
-/docker/home-assistant/home-assistant-config/custom_components/hacs/
-/docker/home-assistant/home-assistant-config/.storage/core.config_entries
 
-# Temporary or dependency folders
-deps/
-tts/
+# Portainer
+key.pem
+portainer.key
+private-key.pem
 
 # Terraform
-/terraform/.terraform/
-/terraform/.terraform.lock.hcl
+.terraform/
+.terraform.lock.hcl

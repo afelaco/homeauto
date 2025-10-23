@@ -4,9 +4,6 @@
   become: true
   tasks:
 
-    - name: Ping the Pi
-      ansible.builtin.ping:
-
     - name: Update apt package list
       ansible.builtin.apt:
         update_cache: yes

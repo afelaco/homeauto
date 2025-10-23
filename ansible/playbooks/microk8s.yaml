@@ -1,6 +1,0 @@
----
-- name: Install MicroK8s on Raspberry Pi
-  hosts: raspberrypi
-  become: true
-  roles:
-    - microk8s
