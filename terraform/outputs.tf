@@ -1,10 +1,3 @@
-output "pypi" {
-  value = jsonencode({
-    name      = module.pypi.storage_account_name
-    container = module.pypi.container_name
-  })
-}
-
 output "infrastructure" {
   value = jsonencode(
     {

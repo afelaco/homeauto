@@ -20,14 +20,6 @@ module "kv" {
   secrets = var.secrets
 }
 
-module "pypi" {
-  source = "./modules/pypi"
-
-  storage_account_name     = "${var.project_name}pypi"
-  storage_account_location = module.rg.location
-  resource_group_name      = module.rg.name
-}
-
 module "datalake" {
   source = "./modules/storage_account"
 
@@ -47,5 +39,9 @@ module "airflow_sp" {
   source = "./modules/service_principal"
 
   display_name = "airflow-sp"
-  scope        = { (module.pypi.id) = "Storage Blob Data Contributor" }
+  scope = {
+    (module.datalake["bronze"].id) = "Storage Blob Data Contributor"
+    (module.datalake["silver"].id) = "Storage Blob Data Contributor"
+    (module.datalake["gold"].id)   = "Storage Blob Data Contributor"
+  }
 }
