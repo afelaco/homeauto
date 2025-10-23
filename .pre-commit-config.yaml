@@ -1,4 +1,4 @@
-exclude: ^docker/home-assistant/config/custom_components
+exclude: docker/home-assistant/config/custom_components
 repos:
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -7,7 +7,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
-        exclude: ^docker/home-assistant/config
+        exclude: docker/home-assistant/config
       - id: check-toml
       - id: check-json
       - id: pretty-format-json
