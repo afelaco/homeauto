@@ -4,7 +4,9 @@
   "key": "http",
   "data": {
     "ip_ban_enabled": true,
+    "ssl_profile": "modern",
     "server_port": 8123,
+    "use_x_frame_options": true,
     "server_host": [
       "0.0.0.0",
       "::"
@@ -12,8 +14,6 @@
     "cors_allowed_origins": [
       "https://cast.home-assistant.io"
     ],
-    "login_attempts_threshold": -1,
-    "use_x_frame_options": true,
-    "ssl_profile": "modern"
+    "login_attempts_threshold": -1
   }
 }
