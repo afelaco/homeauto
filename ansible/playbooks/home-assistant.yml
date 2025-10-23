@@ -1,44 +1,44 @@
 ---
-- name: Run Home Assistant container on Raspberry Pi
+- name: Run Home Assistant container
   hosts: rpi4-1
   become: true
 
   vars:
-    docker_compose_path: /home/admin/docker/home-assistant
+    project_src: /home/admin/docker/home-assistant
 
   tasks:
-    - name: Ensure compose project directory exists
+    - name: Ensure project source directory exists
       ansible.builtin.file:
-        path: "{{ docker_compose_path }}"
+        path: "{{ project_src }}"
         state: directory
         owner: admin
         group: admin
         mode: '0755'
 
-    - name: Copy docker-compose.yml to Pi
+    - name: Copy docker-compose.yml to project source directory
       ansible.builtin.copy:
         src: ../../docker/home-assistant/docker-compose.yml
-        dest: "{{ docker_compose_path }}/docker-compose.yml"
+        dest: "{{ project_src }}/docker-compose.yml"
         owner: admin
         group: admin
         mode: '0644'
 
-    - name: Pull latest images
+    - name: Pull latest image
       community.docker.docker_compose_v2:
-        project_src: "{{ docker_compose_path }}"
+        project_src: "{{ project_src }}"
         pull: missing
 
-    - name: Start containers using docker-compose
+    - name: Start container
       community.docker.docker_compose_v2:
-        project_src: "{{ docker_compose_path }}"
+        project_src: "{{ project_src }}"
         state: present
 
-    - name: Check if HACS folder exists
+    - name: Check if HACS is installed
       ansible.builtin.stat:
-        path: /home/admin/home-assistant-config/custom_components/hacs
+        path: "{{ project_src }}/config/custom_components/hacs"
       register: hacs_folder
 
-    - name: Install HACS in Home Assistant container if missing
+    - name: Install HACS
       ansible.builtin.command: >
         docker exec home-assistant /bin/bash -c "wget -O - https://get.hacs.xyz | bash"
       when: not hacs_folder.stat.exists
