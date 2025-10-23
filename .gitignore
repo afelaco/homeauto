@@ -24,3 +24,6 @@ tts/
 # Terraform
 /terraform/.terraform/
 /terraform/.terraform.lock.hcl
+/docker/portainer/data/certs/key.pem
+/docker/portainer/data/portainer.key
+/docker/portainer/data/chisel/private-key.pem
