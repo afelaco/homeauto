@@ -8,7 +8,9 @@ dist/
 .terraform.tfvars.json
 
 # Home Assistant
+deps/
 hacs/
+tts/
 core.config_entries
 hacs.repositories
 home-assistant.log
@@ -21,10 +23,6 @@ home-assistant_v2.db-wal
 key.pem
 portainer.key
 private-key.pem
-
-# Temporary or dependency folders
-deps/
-tts/
 
 # Terraform
 .terraform/
