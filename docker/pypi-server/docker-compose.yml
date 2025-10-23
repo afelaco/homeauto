@@ -1,0 +1,11 @@
+services:
+  pypiserver:
+    container_name: pypi-server
+    image: pypiserver/pypiserver:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/admin/docker/pypi-server/data/packages:/data/packages
+    environment:
+      - PYPISERVER_PASSWORDS=/data/packages/.htpasswd

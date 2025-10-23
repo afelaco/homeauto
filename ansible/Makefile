@@ -4,5 +4,8 @@ ssh:
 portainer:
 	ansible-playbook -i inventory.ini playbooks/portainer.yml
 
+pypi-server:
+	ansible-playbook -i inventory.ini playbooks/pypi-server.yml
+
 home-assistant:
 	ansible-playbook -i inventory.ini playbooks/home-assistant.yml
