@@ -15,6 +15,7 @@ home-assistant_v2.db-shm
 home-assistant_v2.db-wal
 /docker/home-assistant/config/custom_components/hacs/
 /docker/home-assistant/config/.storage/core.config_entries
+/docker/home-assistant/config/.storage/hacs.repositories
 
 # Temporary or dependency folders
 deps/
@@ -23,4 +24,3 @@ tts/
 # Terraform
 /terraform/.terraform/
 /terraform/.terraform.lock.hcl
-/docker/home-assistant/config/.storage/hacs.repositories
