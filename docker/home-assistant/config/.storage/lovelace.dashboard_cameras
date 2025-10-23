@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_cameras",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "alarm-panel",
+                  "entity": "alarm_control_panel.2410_000_zone_1_alarm",
+                  "grid_options": {
+                    "columns": 24,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "show_state": true,
+                  "show_name": true,
+                  "camera_view": "auto",
+                  "fit_mode": "cover",
+                  "type": "picture-entity",
+                  "entity": "camera.front_camera_main"
+                },
+                {
+                  "show_state": true,
+                  "show_name": true,
+                  "camera_view": "auto",
+                  "fit_mode": "cover",
+                  "type": "picture-entity",
+                  "entity": "camera.back_camera_main"
+                },
+                {
+                  "type": "logbook",
+                  "grid_options": {
+                    "columns": 24,
+                    "rows": "auto"
+                  },
+                  "target": {
+                    "entity_id": [
+                      "binary_sensor.front_camera_motion_alarm",
+                      "binary_sensor.back_camera_motion_alarm"
+                    ]
+                  }
+                }
+              ],
+              "column_span": 2
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

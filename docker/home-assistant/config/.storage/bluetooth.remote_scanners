@@ -11,7 +11,7 @@
           "device": {
             "address": "5C:85:7E:13:99:4A",
             "name": "Flower care",
-            "rssi": -78,
+            "rssi": -77,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
               "path": "/org/bluez/hci0/dev_5C_85_7E_13_99_4A",
@@ -24,12 +24,12 @@
             "local_name": "Flower care",
             "manufacturer_data": {},
             "service_data": {
-              "0000fe95-0000-1000-8000-00805f9b34fb": "712098007e4a99137e855c0d041002d300"
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800cb4a99137e855c0d0810010f"
             },
             "service_uuids": [
               "0000fe95-0000-1000-8000-00805f9b34fb"
             ],
-            "rssi": -78,
+            "rssi": -77,
             "tx_power": -127,
             "platform_data": []
           }
@@ -66,8 +66,8 @@
         "54:44:A3:00:E1:25": {
           "device": {
             "address": "54:44:A3:00:E1:25",
-            "name": null,
-            "rssi": -51,
+            "name": "[TV] TV",
+            "rssi": -54,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
               "path": "/org/bluez/hci0/dev_54_44_A3_00_E1_25",
@@ -77,13 +77,13 @@
             }
           },
           "advertisement_data": {
-            "local_name": null,
+            "local_name": "[TV] TV",
             "manufacturer_data": {
-              "117": "42040180665444a300e1255644a300e12401dd4c82000000"
+              "117": "4204012076210f002201370101000100000000000000000c"
             },
             "service_data": {},
             "service_uuids": [],
-            "rssi": -51,
+            "rssi": -54,
             "tx_power": -127,
             "platform_data": []
           }
@@ -92,7 +92,7 @@
           "device": {
             "address": "5C:85:7E:13:C1:46",
             "name": "Flower care",
-            "rssi": -76,
+            "rssi": -69,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
               "path": "/org/bluez/hci0/dev_5C_85_7E_13_C1_46",
@@ -105,12 +105,12 @@
             "local_name": "Flower care",
             "manufacturer_data": {},
             "service_data": {
-              "0000fe95-0000-1000-8000-00805f9b34fb": "712098009b46c1137e855c0d0910021500"
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800e846c1137e855c0d071003770100"
             },
             "service_uuids": [
               "0000fe95-0000-1000-8000-00805f9b34fb"
             ],
-            "rssi": -76,
+            "rssi": -69,
             "tx_power": -127,
             "platform_data": []
           }
@@ -142,36 +142,11 @@
             "platform_data": []
           }
         },
-        "4C:7E:16:46:A3:CB": {
-          "device": {
-            "address": "4C:7E:16:46:A3:CB",
-            "name": null,
-            "rssi": -81,
-            "details": {
-              "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_4C_7E_16_46_A3_CB",
-              "props": {
-                "Adapter": "/org/bluez/hci0"
-              }
-            }
-          },
-          "advertisement_data": {
-            "local_name": null,
-            "manufacturer_data": {
-              "76": "16080018d55192f672d2"
-            },
-            "service_data": {},
-            "service_uuids": [],
-            "rssi": -81,
-            "tx_power": -127,
-            "platform_data": []
-          }
-        },
         "5C:85:7E:13:6A:4D": {
           "device": {
             "address": "5C:85:7E:13:6A:4D",
             "name": "Flower care",
-            "rssi": -60,
+            "rssi": -54,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
               "path": "/org/bluez/hci0/dev_5C_85_7E_13_6A_4D",
@@ -184,64 +159,12 @@
             "local_name": "Flower care",
             "manufacturer_data": {},
             "service_data": {
-              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800b94d6a137e855c0d0910020000"
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800594d6a137e855c0d041002df00"
             },
             "service_uuids": [
               "0000fe95-0000-1000-8000-00805f9b34fb"
             ],
-            "rssi": -60,
-            "tx_power": -127,
-            "platform_data": []
-          }
-        },
-        "E6:AC:A3:F0:F7:5A": {
-          "device": {
-            "address": "E6:AC:A3:F0:F7:5A",
-            "name": "MOBILE",
-            "rssi": -86,
-            "details": {
-              "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_E6_AC_A3_F0_F7_5A",
-              "props": {
-                "Adapter": "/org/bluez/hci0"
-              }
-            }
-          },
-          "advertisement_data": {
-            "local_name": "MOBILE",
-            "manufacturer_data": {
-              "76": "0215ecb0583ad71b43d2a4fdd5367063032d170c0123c8"
-            },
-            "service_data": {
-              "fd47416a-95fb-4206-88b5-b4a8045f75c0": "170c0123"
-            },
-            "service_uuids": [],
-            "rssi": -86,
-            "tx_power": -127,
-            "platform_data": []
-          }
-        },
-        "D0:D0:03:A0:5E:D3": {
-          "device": {
-            "address": "D0:D0:03:A0:5E:D3",
-            "name": null,
-            "rssi": -90,
-            "details": {
-              "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_D0_D0_03_A0_5E_D3",
-              "props": {
-                "Adapter": "/org/bluez/hci0"
-              }
-            }
-          },
-          "advertisement_data": {
-            "local_name": null,
-            "manufacturer_data": {
-              "117": "4204018060d0d003a05ed3d2d003a05ed201000000000000"
-            },
-            "service_data": {},
-            "service_uuids": [],
-            "rssi": -90,
+            "rssi": -54,
             "tx_power": -127,
             "platform_data": []
           }
@@ -263,7 +186,7 @@
             "local_name": "Flower care",
             "manufacturer_data": {},
             "service_data": {
-              "0000fe95-0000-1000-8000-00805f9b34fb": "712098002c9dc1137e855c0d041002d400"
+              "0000fe95-0000-1000-8000-00805f9b34fb": "71209800769dc1137e855c0d08100108"
             },
             "service_uuids": [
               "0000fe95-0000-1000-8000-00805f9b34fb"
@@ -273,64 +196,41 @@
             "platform_data": []
           }
         },
-        "57:C5:D6:83:96:8B": {
+        "07:2A:30:48:33:31": {
           "device": {
-            "address": "57:C5:D6:83:96:8B",
-            "name": null,
-            "rssi": -96,
+            "address": "07:2A:30:48:33:31",
+            "name": "O_R18 Pro",
+            "rssi": -80,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_57_C5_D6_83_96_8B",
+              "path": "/org/bluez/hci0/dev_07_2A_30_48_33_31",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
             }
           },
           "advertisement_data": {
-            "local_name": null,
+            "local_name": "O_R18 Pro",
             "manufacturer_data": {
-              "76": "1006131e71902a08"
+              "4660": "fee7072a30483331"
             },
             "service_data": {},
-            "service_uuids": [],
-            "rssi": -96,
-            "tx_power": 11,
-            "platform_data": []
-          }
-        },
-        "62:14:C0:30:0B:2F": {
-          "device": {
-            "address": "62:14:C0:30:0B:2F",
-            "name": null,
-            "rssi": -91,
-            "details": {
-              "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_62_14_C0_30_0B_2F",
-              "props": {
-                "Adapter": "/org/bluez/hci0"
-              }
-            }
-          },
-          "advertisement_data": {
-            "local_name": null,
-            "manufacturer_data": {
-              "76": "160800ecef1143ad7482"
-            },
-            "service_data": {},
-            "service_uuids": [],
-            "rssi": -91,
+            "service_uuids": [
+              "0000fee7-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -80,
             "tx_power": -127,
             "platform_data": []
           }
         },
-        "D6:1C:A2:86:0A:F0": {
+        "77:07:67:97:DD:83": {
           "device": {
-            "address": "D6:1C:A2:86:0A:F0",
+            "address": "77:07:67:97:DD:83",
             "name": null,
-            "rssi": -95,
+            "rssi": -85,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_D6_1C_A2_86_0A_F0",
+              "path": "/org/bluez/hci0/dev_77_07_67_97_DD_83",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
@@ -339,23 +239,23 @@
           "advertisement_data": {
             "local_name": null,
             "manufacturer_data": {
-              "76": "12029002"
+              "117": "461244e49778"
             },
             "service_data": {},
             "service_uuids": [],
-            "rssi": -95,
+            "rssi": -85,
             "tx_power": -127,
             "platform_data": []
           }
         },
-        "4C:B9:EA:3B:F9:19": {
+        "CD:24:A6:8A:11:AA": {
           "device": {
-            "address": "4C:B9:EA:3B:F9:19",
+            "address": "CD:24:A6:8A:11:AA",
             "name": null,
             "rssi": -93,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_4C_B9_EA_3B_F9_19",
+              "path": "/org/bluez/hci0/dev_CD_24_A6_8A_11_AA",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
@@ -363,54 +263,49 @@
           },
           "advertisement_data": {
             "local_name": null,
-            "manufacturer_data": {},
+            "manufacturer_data": {
+              "76": "12020001"
+            },
             "service_data": {},
-            "service_uuids": [
-              "c74edd21-763c-4e54-85a8-43bb75035d75"
-            ],
+            "service_uuids": [],
             "rssi": -93,
             "tx_power": -127,
             "platform_data": []
           }
         },
-        "CE:64:EC:72:43:83": {
+        "42:34:96:F9:7F:29": {
           "device": {
-            "address": "CE:64:EC:72:43:83",
-            "name": "JBL Tune 775NC-LE",
-            "rssi": -87,
+            "address": "42:34:96:F9:7F:29",
+            "name": null,
+            "rssi": -70,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_CE_64_EC_72_43_83",
+              "path": "/org/bluez/hci0/dev_42_34_96_F9_7F_29",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
             }
           },
           "advertisement_data": {
-            "local_name": "JBL Tune 775NC-LE",
+            "local_name": null,
             "manufacturer_data": {
-              "470": "e221f3dc738e"
+              "76": "1608005f896804423d70"
             },
-            "service_data": {
-              "0000fddf-0000-1000-8000-00805f9b34fb": "23210012d900003071"
-            },
-            "service_uuids": [
-              "5052494d-2dab-0341-6972-6f6861424c45",
-              "0000fddf-0000-1000-8000-00805f9b34fb"
-            ],
-            "rssi": -87,
+            "service_data": {},
+            "service_uuids": [],
+            "rssi": -70,
             "tx_power": -127,
             "platform_data": []
           }
         },
-        "4A:D8:6F:76:A6:40": {
+        "4D:FC:75:4A:B6:EB": {
           "device": {
-            "address": "4A:D8:6F:76:A6:40",
+            "address": "4D:FC:75:4A:B6:EB",
             "name": null,
-            "rssi": -89,
+            "rssi": -83,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_4A_D8_6F_76_A6_40",
+              "path": "/org/bluez/hci0/dev_4D_FC_75_4A_B6_EB",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
@@ -420,22 +315,24 @@
             "local_name": null,
             "manufacturer_data": {},
             "service_data": {
-              "0000fe2c-0000-1000-8000-00805f9b34fb": "1030000000212130145a"
+              "0000fef3-0000-1000-8000-00805f9b34fb": "4a1723434c45521132d26707517a1d0a967093dd745746851488e6"
             },
-            "service_uuids": [],
-            "rssi": -89,
-            "tx_power": -7,
+            "service_uuids": [
+              "0000fef3-0000-1000-8000-00805f9b34fb"
+            ],
+            "rssi": -83,
+            "tx_power": -127,
             "platform_data": []
           }
         },
-        "4B:23:72:62:A8:58": {
+        "D0:D0:03:A0:5E:D3": {
           "device": {
-            "address": "4B:23:72:62:A8:58",
+            "address": "D0:D0:03:A0:5E:D3",
             "name": null,
             "rssi": -94,
             "details": {
               "source": "D8:3A:DD:66:3C:31",
-              "path": "/org/bluez/hci0/dev_4B_23_72_62_A8_58",
+              "path": "/org/bluez/hci0/dev_D0_D0_03_A0_5E_D3",
               "props": {
                 "Adapter": "/org/bluez/hci0"
               }
@@ -443,54 +340,73 @@
           },
           "advertisement_data": {
             "local_name": null,
-            "manufacturer_data": {},
-            "service_data": {
-              "0000fe2c-0000-1000-8000-00805f9b34fb": "103000000021b175145a"
+            "manufacturer_data": {
+              "117": "4204018060d0d003a05ed3d2d003a05ed201000000000000"
             },
+            "service_data": {},
             "service_uuids": [],
             "rssi": -94,
-            "tx_power": -7,
+            "tx_power": -127,
+            "platform_data": []
+          }
+        },
+        "48:4F:F8:E3:C2:EE": {
+          "device": {
+            "address": "48:4F:F8:E3:C2:EE",
+            "name": null,
+            "rssi": -88,
+            "details": {
+              "source": "D8:3A:DD:66:3C:31",
+              "path": "/org/bluez/hci0/dev_48_4F_F8_E3_C2_EE",
+              "props": {
+                "Adapter": "/org/bluez/hci0"
+              }
+            }
+          },
+          "advertisement_data": {
+            "local_name": null,
+            "manufacturer_data": {
+              "117": "021841b1e6c0cfb3e4b9cd395543e1de30aaf6e250d1d00e"
+            },
+            "service_data": {},
+            "service_uuids": [],
+            "rssi": -88,
+            "tx_power": -127,
             "platform_data": []
           }
         }
       },
       "discovered_device_timestamps": {
-        "5C:85:7E:13:99:4A": 1761209459.8808098,
-        "54:D4:D4:D3:CB:1D": 1761209460.3008049,
-        "54:44:A3:00:E1:25": 1761209460.3688042,
-        "5C:85:7E:13:C1:46": 1761209459.9168093,
-        "C1:0B:AF:D7:AB:7E": 1761209460.108807,
-        "4C:7E:16:46:A3:CB": 1761209460.108807,
-        "5C:85:7E:13:6A:4D": 1761209454.4168718,
-        "E6:AC:A3:F0:F7:5A": 1761209459.2728167,
-        "D0:D0:03:A0:5E:D3": 1761209460.3728042,
-        "5C:85:7E:13:C1:9D": 1761209460.4248035,
-        "57:C5:D6:83:96:8B": 1761209457.6608348,
-        "62:14:C0:30:0B:2F": 1761209323.546348,
-        "D6:1C:A2:86:0A:F0": 1761209330.6542675,
-        "4C:B9:EA:3B:F9:19": 1761209339.1661713,
-        "CE:64:EC:72:43:83": 1761209413.6213346,
-        "4A:D8:6F:76:A6:40": 1761209352.5740194,
-        "4B:23:72:62:A8:58": 1761209416.2533047
+        "5C:85:7E:13:99:4A": 1761240922.2221076,
+        "54:D4:D4:D3:CB:1D": 1761240922.2621071,
+        "54:44:A3:00:E1:25": 1761240922.0101104,
+        "5C:85:7E:13:C1:46": 1761240922.04211,
+        "C1:0B:AF:D7:AB:7E": 1761240922.1581085,
+        "5C:85:7E:13:6A:4D": 1761240921.5381165,
+        "5C:85:7E:13:C1:9D": 1761240921.966111,
+        "07:2A:30:48:33:31": 1761240921.7501137,
+        "77:07:67:97:DD:83": 1761240885.670587,
+        "CD:24:A6:8A:11:AA": 1761240904.4823396,
+        "42:34:96:F9:7F:29": 1761240922.4061053,
+        "4D:FC:75:4A:B6:EB": 1761240921.658115,
+        "D0:D0:03:A0:5E:D3": 1761240886.8105721,
+        "48:4F:F8:E3:C2:EE": 1761240921.4741173
       },
       "discovered_device_raw": {
-        "5C:85:7E:13:99:4A": "020106030295fe141695fe712098007e4a99137e855c0d041002d3000c09466c6f7765722063617265",
+        "5C:85:7E:13:99:4A": "020106030295fe131695fe71209800cb4a99137e855c0d0810010f0c09466c6f7765722063617265",
         "54:D4:D4:D3:CB:1D": "03039ffe17169ffe000000000000000000000000000000000000000009ffe00000f3ca575116",
-        "54:44:A3:00:E1:25": "1bff750042040180665444a300e1255644a300e12401dd4c82000000",
-        "5C:85:7E:13:C1:46": "020106030295fe141695fe712098009b46c1137e855c0d09100215000c09466c6f7765722063617265",
-        "C1:0B:AF:D7:AB:7E": "020106030312180cff8e060f2d00c10bafd7ab7e",
-        "4C:7E:16:46:A3:CB": "02011a0dff4c0016080018d55192f672d2",
-        "5C:85:7E:13:6A:4D": "020106030295fe141695fe71209800b94d6a137e855c0d09100200000c09466c6f7765722063617265",
-        "E6:AC:A3:F0:F7:5A": "0201061aff4c000215ecb0583ad71b43d2a4fdd5367063032d170c0123c8",
+        "54:44:A3:00:E1:25": "0201181bff75004204012076210f002201370101000100000000000000000c08085b54565d205456",
+        "5C:85:7E:13:C1:46": "020106030295fe151695fe71209800e846c1137e855c0d0710037701000c09466c6f7765722063617265",
+        "C1:0B:AF:D7:AB:7E": "020106030312180cff8e060f2d00c10bafd7ab7e0b0952617a65722041524742",
+        "5C:85:7E:13:6A:4D": "020106030295fe141695fe71209800594d6a137e855c0d041002df000c09466c6f7765722063617265",
+        "5C:85:7E:13:C1:9D": "020106030295fe131695fe71209800769dc1137e855c0d081001080c09466c6f7765722063617265",
+        "07:2A:30:48:33:31": "0201060a094f5f5231382050726f",
+        "77:07:67:97:DD:83": "0201021bff7500021841b1e6c0cfb3e4b9cd395543e1de30aaf6e250d1d00e09ff7500461244e49778",
+        "CD:24:A6:8A:11:AA": "07ff4c0012020001",
+        "42:34:96:F9:7F:29": "02011a0dff4c001608005f896804423d70",
+        "4D:FC:75:4A:B6:EB": "0303f3fe",
         "D0:D0:03:A0:5E:D3": "1bff75004204018060d0d003a05ed3d2d003a05ed201000000000000",
-        "5C:85:7E:13:C1:9D": "020106030295fe141695fe712098002c9dc1137e855c0d041002d400",
-        "57:C5:D6:83:96:8B": "02011a020a0b0bff4c001006131e71902a08",
-        "62:14:C0:30:0B:2F": "02011a0dff4c00160800ecef1143ad7482",
-        "D6:1C:A2:86:0A:F0": "07ff4c0012029002",
-        "4C:B9:EA:3B:F9:19": "0201021107755d0375bb43a885544e3c7621dd4ec7",
-        "CE:64:EC:72:43:83": "02010609ffd601e221f3dc738e1107454c4261686f72694103ab2d4d49525012094a424c2054756e65203737354e432d4c45",
-        "4A:D8:6F:76:A6:40": "020af90d162cfe1030000000212130145a",
-        "4B:23:72:62:A8:58": "020af90d162cfe103000000021b175145a"
+        "48:4F:F8:E3:C2:EE": "0201021bff7500021841b1e6c0cfb3e4b9cd395543e1de30aaf6e250d1d00e"
       }
     }
   }

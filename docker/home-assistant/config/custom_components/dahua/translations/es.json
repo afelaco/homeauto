@@ -1,0 +1,47 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Solo se permite una \u00fanica instancia por dispositivo.",
+      "single_instance_allowed": "Solo se permite una instancia."
+    },
+    "error": {
+      "auth": "Usuario, Contrase\u00f1a o direcci\u00f3n IP no son correctas."
+    },
+    "step": {
+      "name": {
+        "data": {
+          "name": "Nombre del dispositivo"
+        },
+        "title": "Configurar el nombre del dispositivo "
+      },
+      "user": {
+        "data": {
+          "address": "Direcci\u00f3n IP",
+          "channel": "Canal (Generalmente es el 0 a menos que uses un grabador)",
+          "events": "Eventos",
+          "password": "Contrase\u00f1a",
+          "port": "Puerto",
+          "rtsp_port": "Puerto RTSP",
+          "streams": "Secuencia RTSP",
+          "username": "Usuario"
+        },
+        "description": "Direcci\u00f3n de ejemplo: 192.168.1.108",
+        "title": "Agregar una Camara Dahua"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "binary_sensor": "Sensor binario habilitado",
+          "camera": "Camara habilitada",
+          "light": "Luz habilitada",
+          "select": "Select enabled",
+          "sensor": "Sensor habilitado",
+          "switch": "Interruptor habilitado"
+        }
+      }
+    }
+  }
+}

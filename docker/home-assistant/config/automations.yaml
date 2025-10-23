@@ -1,1 +1,42 @@
-[]
+- id: '1761243303833'
+  alias: Front Camera Motion Detected
+  description: ''
+  triggers:
+  - type: motion
+    device_id: 185ad751af192e01e16af8618be0a286
+    entity_id: d8b0d271d991c63a7a50d2e891e4ea59
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: device
+    device_id: 3d02c698bf580225979856da216b6065
+    domain: alarm_control_panel
+    entity_id: 3cd6ae99a97215e6a31133badb33e9e3
+    type: is_triggered
+  actions:
+  - device_id: 61a22db0346d0b554d145e707b65f642
+    domain: mobile_app
+    type: notify
+    message: Front Camera - Motion Detected
+  mode: single
+- id: '1761243337880'
+  alias: Back Camera Motion Detection
+  description: ''
+  triggers:
+  - type: motion
+    device_id: 81b820bf3ad0f76737e99aa67ce65612
+    entity_id: 3010bb6f7d99aae7078c5e90cdf027be
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: device
+    device_id: 3d02c698bf580225979856da216b6065
+    domain: alarm_control_panel
+    entity_id: 3cd6ae99a97215e6a31133badb33e9e3
+    type: is_triggered
+  actions:
+  - device_id: 61a22db0346d0b554d145e707b65f642
+    domain: mobile_app
+    type: notify
+    message: Back Camera - Motion Detected
+  mode: single

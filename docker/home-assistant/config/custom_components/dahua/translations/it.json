@@ -1,0 +1,47 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Solo una istanza \u00e8 consentita.",
+      "single_instance_allowed": "Solo una istanza \u00e8 consentita."
+    },
+    "error": {
+      "auth": "Utente, Password e/o Indirizzo errati."
+    },
+    "step": {
+      "name": {
+        "data": {
+          "name": "Nome Dispositivo"
+        },
+        "title": "Configura Nome Dispositivo"
+      },
+      "user": {
+        "data": {
+          "address": "Indirizzo",
+          "channel": "Canale (Telecamere Singole 0, Numero Base per NVR 0)",
+          "events": "Eventi",
+          "password": "Password",
+          "port": "Porta",
+          "rtsp_port": "Porta RTSP",
+          "streams": "Stream RTSP",
+          "username": "Utente"
+        },
+        "description": "Esempio di indirizzo: 192.168.1.108",
+        "title": "Aggiungi Telecamera Dahua"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "binary_sensor": "Binary sensor abilitato",
+          "camera": "Telecamera abilitata",
+          "light": "Luce abilitata",
+          "select": "Select abilitato",
+          "sensor": "Sensore abilitato",
+          "switch": "Switch abilitato"
+        }
+      }
+    }
+  }
+}

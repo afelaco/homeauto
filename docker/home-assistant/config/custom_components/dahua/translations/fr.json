@@ -1,0 +1,47 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Une seule instance d'un p\u00e9riph\u00e9rique est autoris\u00e9e.",
+      "single_instance_allowed": "Une seule instance est autoris\u00e9e."
+    },
+    "error": {
+      "auth": "Nom d'utilisateur, mot de passe ou adresse incorrect."
+    },
+    "step": {
+      "name": {
+        "data": {
+          "name": "Nom du p\u00e9riph\u00e9rique"
+        },
+        "title": "Configurer le nom du p\u00e9riph\u00e9rique"
+      },
+      "user": {
+        "data": {
+          "address": "Adresse",
+          "channel": "Canal (les cam\u00e9ras individuelles sont 0, les NVR sont index\u00e9s \u00e0 partir de 0)",
+          "events": "\u00c9v\u00e9nements",
+          "password": "Mot de passe",
+          "port": "Port",
+          "rtsp_port": "Port RTSP",
+          "streams": "Flux RTSP",
+          "username": "Nom d'utilisateur"
+        },
+        "description": "Adresse exemple : 192.168.1.108",
+        "title": "Ajouter une cam\u00e9ra Dahua"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "binary_sensor": "Capteur binaire activ\u00e9",
+          "camera": "Cam\u00e9ra activ\u00e9e",
+          "light": "Lumi\u00e8re activ\u00e9e",
+          "select": "S\u00e9lection activ\u00e9e",
+          "sensor": "Capteur activ\u00e9",
+          "switch": "Interrupteur activ\u00e9"
+        }
+      }
+    }
+  }
+}
