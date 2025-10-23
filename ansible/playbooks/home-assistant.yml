@@ -17,19 +17,19 @@
 
     - name: Copy docker-compose.yml to Pi
       ansible.builtin.copy:
-        src: ../docker/home-assistant/docker-compose.yml
+        src: ../../docker/home-assistant/docker-compose.yml
         dest: "{{ docker_compose_path }}/docker-compose.yml"
         owner: admin
         group: admin
         mode: '0644'
 
     - name: Pull latest images
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: "{{ docker_compose_path }}"
-        pull: yes
+        pull: missing
 
     - name: Start containers using docker-compose
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: "{{ docker_compose_path }}"
         state: present
 
