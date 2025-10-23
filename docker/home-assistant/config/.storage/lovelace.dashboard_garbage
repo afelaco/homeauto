@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_garbage",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "initial_view": "listWeek",
+                  "type": "calendar",
+                  "entities": [
+                    "calendar.ilva"
+                  ],
+                  "grid_options": {
+                    "columns": 48,
+                    "rows": "auto"
+                  }
+                }
+              ],
+              "column_span": 4
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

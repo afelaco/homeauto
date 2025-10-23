@@ -21,6 +21,24 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "dashboard-plants"
+      },
+      {
+        "id": "dashboard_cameras",
+        "show_in_sidebar": true,
+        "icon": "mdi:cctv",
+        "title": "Cameras",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "dashboard-cameras"
+      },
+      {
+        "id": "dashboard_garbage",
+        "show_in_sidebar": true,
+        "icon": "mdi:delete",
+        "title": "Garbage",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "dashboard-garbage"
       }
     ]
   }
