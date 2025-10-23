@@ -48,3 +48,4 @@
         name: home-assistant
         state: started
         restart: true
+      when: not hacs_folder.stat.exists
