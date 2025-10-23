@@ -1,18 +1,34 @@
 ---
-- name: Run Portainer on Raspberry Pi
+- name: Run Portainer container on Raspberry Pi
   hosts: rpi4-1
   become: true
-  tasks:
 
-    - name: Run Portainer container
-      community.docker.docker_container:
-        name: portainer
-        image: portainer/portainer-ce:latest
-        state: started
-        restart_policy: always
-        ports:
-          - "9000:9000"
-          - "8000:8000"
-        volumes:
-          - "/var/run/docker.sock:/var/run/docker.sock"
-          - "portainer_data:/data"
+  vars:
+    docker_compose_path: /home/admin/docker/portainer
+
+  tasks:
+    - name: Ensure compose project directory exists
+      ansible.builtin.file:
+        path: "{{ docker_compose_path }}"
+        state: directory
+        owner: admin
+        group: admin
+        mode: '0755'
+
+    - name: Copy docker-compose.yml to Pi
+      ansible.builtin.copy:
+        src: ../../docker/portainer/docker-compose.yml
+        dest: "{{ docker_compose_path }}/docker-compose.yml"
+        owner: admin
+        group: admin
+        mode: '0644'
+
+    - name: Pull latest images for Portainer
+      community.docker.docker_compose_v2:
+        project_src: "{{ docker_compose_path }}"
+        pull: missing
+
+    - name: Start containers using docker-compose
+      community.docker.docker_compose_v2:
+        project_src: "{{ docker_compose_path }}"
+        state: present

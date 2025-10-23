@@ -4,7 +4,7 @@
   become: true
 
   vars:
-    docker_compose_path: /home/admin/docker-compose/home-assistant
+    docker_compose_path: /home/admin/docker/home-assistant
 
   tasks:
     - name: Ensure compose project directory exists
