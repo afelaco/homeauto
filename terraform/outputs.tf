@@ -2,7 +2,7 @@ output "infrastructure" {
   value = jsonencode(
     {
       keyvault = {
-        uri = module.kv.uri
+        uri = module.kv.key_vault_uri
       }
       datalake = {
         bronze = {
