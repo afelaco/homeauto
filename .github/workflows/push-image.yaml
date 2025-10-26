@@ -28,6 +28,8 @@ jobs:
           username: __token__
           password: ${{ secrets.GL_TOKEN }}
 
+      - run: echo $GL_REGISTRY
+
       - name: Extract Docker Metadata
         id: meta
         uses: docker/metadata-action@v5
