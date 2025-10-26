@@ -32,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: $GL_REGISTRY/airflow
+          images: ${GL_REGISTRY}/airflow
 
       - name: Build & Push Docker Image
         uses: docker/build-push-action@v5
