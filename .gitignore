@@ -27,3 +27,6 @@ private-key.pem
 # Terraform
 .terraform/
 .terraform.lock.hcl
+
+# Wireguard
+/docker/wireguard/.env
