@@ -1,12 +1,12 @@
 name: Push Image
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-#    paths:
-#      - 'airflow/Dockerfile'
-#      - 'airflow/entrypoint.sh'
+    paths:
+      - 'airflow/Dockerfile'
+      - 'airflow/entrypoint.sh'
   workflow_dispatch:
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: registry.gitlab.com/afelaco/homeauto/airflow
+          images: ${{ env.GL_REGISTRY }}/airflow
 
       - name: Build & Push Docker Image
         uses: docker/build-push-action@v5
