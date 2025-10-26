@@ -32,3 +32,9 @@ lint.select = ["E", "F", "W", "C90", "B", "B9", "I", "Q"]
 
 [tool.mypy]
 ignore_missing_imports = true
+
+[[tool.uv.index]]
+name = "gitlab"
+url = "https://gitlab.com/api/v4/projects/75607343/packages/pypi/"
+publish-url = "https://gitlab.com/api/v4/projects/75607343/packages/pypi/"
+explicit = true

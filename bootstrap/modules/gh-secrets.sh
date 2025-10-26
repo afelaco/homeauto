@@ -4,9 +4,8 @@
 echo "  ➡️ Uploading secrets to GitHub Actions..."
 secrets=(
     AZ_SUBSCRIPTION_ID
-    DH_USERNAME
-    DH_PASSWORD
     GH_TOKEN
+    GL_TOKEN
 )
 for secret in "${secrets[@]}"; do
     if [ -z "${!secret}" ]; then

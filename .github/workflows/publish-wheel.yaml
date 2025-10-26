@@ -1,0 +1,31 @@
+name: Publish Wheel
+
+on:
+  pull_request:
+    branches:
+      - main
+#    paths:
+#      - 'src/**'
+  workflow_dispatch:
+
+jobs:
+  publish-wheel:
+    name: Build & Publish Python Wheel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Build Wheel
+        run: |
+          uv build --wheel
+
+      - name: Publish Wheel to GitLab
+        run: |
+          uv publish --index gitlab
+        env:
+          UV_PUBLISH_USERNAME: __token__
+          UV_PUBLISH_PASSWORD: ${{ secrets.GL_TOKEN }}
