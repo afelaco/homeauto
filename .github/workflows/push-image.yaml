@@ -1,4 +1,4 @@
-name: Build Image
+name: Push Image
 
 on:
   push:
@@ -9,23 +9,24 @@ on:
       - 'airflow/entrypoint.sh'
   workflow_dispatch:
 
-env:
-  DH_USERNAME: ${{ secrets.DH_USERNAME }}
-  DH_PASSWORD: ${{ secrets.DH_PASSWORD }}
-
 jobs:
-  build-image:
+  push-image:
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Login to Docker Hub
+      - name: Load Environment Variables
+        working-directory: ./vars
+        run: source .env.prd
+
+      - name: Login to GitLab Container Registry
         uses: docker/login-action@v2
         with:
-          username: $DH_USERNAME
-          password: $DH_PASSWORD
+          registry: ${GL_REGISTRY}
+          username: __token__
+          password: ${{ secrets.GL_TOKEN }}
 
       - name: Extract Docker Metadata
         id: meta
@@ -33,10 +34,10 @@ jobs:
         with:
           images: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/airflow
 
-      - name: Build & Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./docker
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: Build Docker image
+        run: |
+          docker build -t ${GL_REGISTRY}:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push ${GL_REGISTRY}:latest
