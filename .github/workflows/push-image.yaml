@@ -28,7 +28,7 @@ jobs:
           username: __token__
           password: ${{ secrets.GL_TOKEN }}
 
-      - run: echo $GL_REGISTRY
+      - run: echo "GL_REGISTRY=$GL_REGISTRY"
 
       - name: Extract Docker Metadata
         id: meta
