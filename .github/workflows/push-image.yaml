@@ -1,12 +1,12 @@
 name: Push Image
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-    paths:
-      - 'airflow/Dockerfile'
-      - 'airflow/entrypoint.sh'
+#    paths:
+#      - 'airflow/Dockerfile'
+#      - 'airflow/entrypoint.sh'
   workflow_dispatch:
 
 jobs:
@@ -32,12 +32,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/airflow
+          images: ${GL_REGISTRY}/airflow
 
-      - name: Build Docker image
-        run: |
-          docker build -t ${GL_REGISTRY}:latest .
-
-      - name: Push Docker image
-        run: |
-          docker push ${GL_REGISTRY}:latest
+      - name: Build & Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
