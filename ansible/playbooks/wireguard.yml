@@ -1,10 +1,10 @@
 ---
-- name: Run PyPI Server container
+- name: Run Portainer container
   hosts: rpi4-1
   become: true
 
   vars:
-    project_src: /home/admin/docker/pypi-server
+    project_src: /home/admin/docker/wireguard
 
   tasks:
     - name: Ensure project source directory exists
@@ -17,11 +17,19 @@
 
     - name: Copy docker-compose.yml to project source directory
       ansible.builtin.copy:
-        src: ../../docker/pypi-server/docker-compose.yml
+        src: ../../docker/wireguard/docker-compose.yml
         dest: "{{ project_src }}/docker-compose.yml"
         owner: admin
         group: admin
         mode: '0644'
+
+    - name: Copy Wireguard credentials file
+      ansible.builtin.copy:
+        src: ../../docker/wireguard/.env
+        dest: "{{ project_src }}/.env"
+        owner: admin
+        group: admin
+        mode: '0600'
 
     - name: Pull latest image
       community.docker.docker_compose_v2:

@@ -9,3 +9,6 @@ pypi-server:
 
 home-assistant:
 	ansible-playbook -i inventory.ini playbooks/home-assistant.yml
+
+wireguard:
+	ansible-playbook -i inventory.ini playbooks/wireguard.yml
