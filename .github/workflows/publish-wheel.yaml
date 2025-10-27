@@ -17,15 +17,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install uv
-        run: pip install uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Build Wheel
         run: |
           uv build --wheel
 
       - name: Publish Wheel to GitLab
-        run: |
-          uv publish --index gitlab
         env:
           UV_PUBLISH_USERNAME: __token__
           UV_PUBLISH_PASSWORD: ${{ secrets.GL_TOKEN }}
+        run: |
+          uv publish --index gitlab

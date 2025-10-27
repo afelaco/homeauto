@@ -13,23 +13,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Load Environment Variables
-        working-directory: ./vars
-        run: source .env.prd
-
       - name: Install uv
-        run: pip install uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: $TF_VERSION
 
       - name: Install Workflow Dependencies
-        run: uv sync --group workflow
+        run: |
+          uv sync --group workflow
 
       - name: Run Pre-commit Hooks
-        run: uv run pre-commit run --all-files
+        run: |
+          uv run pre-commit run --all-files
 
       - name: Run Tests
-        run: uv run pytest
+        run: |
+          uv run pytest

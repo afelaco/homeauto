@@ -1,4 +1,3 @@
-echo "  ➡️ Setting repo-level Git identity..."
 git config user.name "$GIT_NAME"
 git config user.email "$GIT_EMAIL"
 echo "  ✅ Git identity set!"

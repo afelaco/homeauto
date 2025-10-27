@@ -4,7 +4,7 @@
 dist/
 
 # Vars
-.env.dev
+.env
 .terraform.tfvars.json
 
 # Home Assistant
@@ -27,6 +27,3 @@ private-key.pem
 # Terraform
 .terraform/
 .terraform.lock.hcl
-
-# Wireguard
-/docker/wireguard/.env
