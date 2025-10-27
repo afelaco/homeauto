@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Workflow Dependencies
         run: |
-          uv sync --group workflow
+          uv sync --only-group workflow
 
       - name: Run Pre-commit Hooks
         run: |
