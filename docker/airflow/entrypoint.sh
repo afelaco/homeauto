@@ -1,38 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-# Variables
-ACCOUNT_NAME="homeautopypi"
-CONTAINER_NAME="pypi"
+# Install wheel from GitLab
+WHEEL_NAME="homeauto-0.1.0-py3-none-any.whl"
+PYPI_URL="https://gitlab.com/api/v4/projects/75607343/packages/pypi/simple"
+GITLAB_TOKEN="${GITLAB_TOKEN}"
 
-# Login
-echo "Logging into Azure..."
-
-az login --service-principal \
-    --tenant $AZURE_TENANT_ID \
-    --username $AZURE_CLIENT_ID \
-    --password $AZURE_CLIENT_SECRET \
-    --output none
-
-echo "Login successful."
-
-# Generate SAS token
-echo "Generating SAS token for Azure Blob Storage..."
-
-SAS_TOKEN=$(az storage container generate-sas \
-    --account-name "$ACCOUNT_NAME" \
-    --account-key "$AZURE_STORAGE_KEY" \
-    --name "$CONTAINER_NAME" \
-    --permissions r \
-    --expiry 2025-10-19 \
-    --output tsv)
-
-echo "SAS token generated."
-
-# Install wheel from private PyPI
-echo "Installing wheel from private PyPI..."
-
-PYPI_URL="https://${ACCOUNT_NAME}.blob.core.windows.net/${CONTAINER_NAME}?${SAS_TOKEN}"
-pip install --index-url "$PYPI_URL/simple" airflow
-
+echo "Installing wheel from GitLab..."
+pip install --index-url "$PYPI_URL" "$WHEEL_NAME"
 echo "Wheel installed successfully."

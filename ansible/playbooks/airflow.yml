@@ -1,10 +1,10 @@
 ---
-- name: Run Wireguard container
+- name: Run Airflow container
   hosts: rpi4-1
   become: true
 
   vars:
-    project_src: /home/admin/docker/wireguard
+    project_src: /home/admin/docker/airflow
 
   tasks:
     - name: Ensure project source directory exists
@@ -17,15 +17,15 @@
 
     - name: Copy docker-compose.yml to project source directory
       ansible.builtin.copy:
-        src: ../../docker/wireguard/docker-compose.yml
+        src: ../../docker/airflow/docker-compose.yml
         dest: "{{ project_src }}/docker-compose.yml"
         owner: admin
         group: admin
         mode: '0644'
 
-    - name: Copy Wireguard credentials file
+    - name: Copy Airflow config file
       ansible.builtin.copy:
-        src: ../../docker/wireguard/.env
+        src: ../../docker/airflow/.env
         dest: "{{ project_src }}/.env"
         owner: admin
         group: admin
