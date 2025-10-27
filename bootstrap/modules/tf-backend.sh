@@ -49,14 +49,14 @@ if [ ! -f "$TF_BE_CONFIG_FILE" ]; then
     # -----------------------------
     echo "  ➡️ Writing Terraform backend configuration to $TF_BE_CONFIG_FILE..."
     cat >"$TF_BE_CONFIG_FILE" <<-EOF
-	terraform {
-	  backend "azurerm" {
-	    resource_group_name  = "$TF_BE_RG"
-	    storage_account_name = "$TF_BE_SA"
-	    container_name       = "$TF_BE_CONTAINER"
-	    key                  = "terraform.tfstate"
-	  }
-	}
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "$TF_BE_RG"
+    storage_account_name = "$TF_BE_SA"
+    container_name       = "$TF_BE_CONTAINER"
+    key                  = "terraform.tfstate"
+  }
+}
 EOF
     echo "  ✅ Terraform backend configuration written to $TF_BE_CONFIG_FILE!"
 else
