@@ -12,3 +12,6 @@ home-assistant:
 
 wireguard:
 	ansible-playbook -i inventory.ini playbooks/wireguard.yml
+
+airflow:
+	ansible-playbook -i inventory.ini playbooks/airflow.yml
