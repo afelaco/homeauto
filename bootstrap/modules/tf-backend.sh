@@ -1,6 +1,9 @@
 # -----------------------------
 # Create Resource Group
 # -----------------------------
+TF_BE_RG="tfstate-rg"
+TF_BE_RG_LOCATION="northeurope"
+
 echo "  ➡️ Creating Resource Group: $TF_BE_RG..."
 az group create \
     --name "$TF_BE_RG" \
@@ -9,6 +12,8 @@ az group create \
 # -----------------------------
 # Create Storage Account
 # -----------------------------
+TF_BE_SA="homeautobackend"
+
 echo "  ➡️ Creating Storage Account: $TF_BE_SA..."
 az storage account create \
     --resource-group "$TF_BE_RG" \
@@ -28,6 +33,8 @@ TF_BE_SA_KEY=$(az storage account keys list \
 # -----------------------------
 # Create Storage Container
 # -----------------------------
+TF_BE_CONTAINER="tfstate"
+
 echo "  ➡️ Creating Storage Container: $TF_BE_CONTAINER..."
 az storage container create \
     --account-name "$TF_BE_SA" \
@@ -37,6 +44,8 @@ az storage container create \
 # -----------------------------
 # Write Terraform backend configuration to file
 # -----------------------------
+TF_BE_CONFIG_FILE="terraform/backend.tf"
+
 echo "  ➡️ Writing Terraform backend configuration to $TF_BE_CONFIG_FILE..."
 cat >"$TF_BE_CONFIG_FILE" <<-EOF
 	terraform {

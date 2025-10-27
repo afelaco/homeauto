@@ -4,7 +4,7 @@
 dist/
 
 # Vars
-.env.dev
+.env
 .terraform.tfvars.json
 
 # Home Assistant

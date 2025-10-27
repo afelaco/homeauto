@@ -9,6 +9,9 @@ on:
       - 'airflow/entrypoint.sh'
   workflow_dispatch:
 
+env:
+  GL_REGISTRY: registry.gitlab.com/afelaco/homeauto
+
 jobs:
   push-image:
     name: Build & Push Docker Image

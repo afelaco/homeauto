@@ -12,13 +12,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          version: "0.9.3"
 
       - name: Load Environment Variables
         working-directory: ./vars
         run: source .env.prd
 
       - name: Install uv
-        run: pip install uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2

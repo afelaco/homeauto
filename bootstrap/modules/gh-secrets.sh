@@ -1,22 +1,18 @@
 # -----------------------------
-# Set GitHub Actions secrets
+# Login to GitHub CLI
 # -----------------------------
-echo "  ➡️ Uploading secrets to GitHub Actions..."
-secrets=(
-    AZ_SUBSCRIPTION_ID
-    GH_TOKEN
-    GL_TOKEN
-)
-for secret in "${secrets[@]}"; do
-    if [ -z "${!secret}" ]; then
-        echo "    ⚠️ Warning: $secret is empty or not set."
-    fi
-    gh secret set "$secret" --repo "$GH_REPO" --body "${!secret}"
-done
+echo "$GH_TOKEN" | gh auth login --with-token
 
 # -----------------------------
-# Set Key Vault secrets in GitHub Actions
+# Set GitHub Actions secrets
 # -----------------------------
-echo "  ➡️ Uploading Key Vault secrets to GitHub Actions..."
+GH_REPO="afelaco/homeauto"
+AZ_KV_SECRETS_FILE="terraform/.terraform.tfvars.json"
+
+echo "  ➡️ Setting secrets in GitHub Actions..."
+gh secret set "AZ_SUBSCRIPTION_ID" --repo "$GH_REPO" --body "$AZ_SUBSCRIPTION_ID"
+gh secret set "GH_TOKEN" --repo "$GH_REPO" --body "$GH_TOKEN"
+gh secret set "GL_TOKEN" --repo "$GH_REPO" --body "$GL_TOKEN"
+gh secret set "AZ_SP_TF_CREDENTIALS" --repo "$GH_REPO" --body "$AZ_SP_TF_CREDENTIALS"
 gh secret set "AZ_KV_SECRETS" --repo "$GH_REPO" --body "$(cat "$AZ_KV_SECRETS_FILE")"
-echo "    ✅ Key Vault secrets uploaded!"
+echo "  ✅  GitHub Actions secrets set!"

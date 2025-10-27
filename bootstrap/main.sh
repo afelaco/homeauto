@@ -9,43 +9,31 @@ cd "$(git rev-parse --show-toplevel)"
 # -----------------------------
 # Load configuration
 # -----------------------------
-source vars/.env.dev
-source vars/.env.prd
+source .env
 
 # -----------------------------
 # Sync system environment with Brewfile
 # -----------------------------
 echo "➡️ Syncing system environment with Brewfile..."
-brew bundle
+brew bundle check || brew bundle
 echo "✅ System environment synced!"
 
 # -----------------------------
-# Set repo-level Git identity
-# -----------------------------
-echo "➡️ Setting repo-level Git identity..."
-
-# -----------------------------
-# Login to required services
-# -----------------------------
-#source bootstrap/modules/az-login.sh
-source bootstrap/modules/gh-login.sh
-
-# -----------------------------
-# Set Git identity if not already set
+# Set repo level Git identity
 # -----------------------------
 echo "➡️ Setting Git identity on repo level..."
 source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
 # -----------------------------
-# Create/update Azure Service Principals
+# Patch Azure Service Principal for Terraform
 # -----------------------------
 echo "➡️ Creating Azure Service Principal..."
-#source bootstrap/modules/az-sp.sh
+source bootstrap/modules/az-sp.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
-# Terraform bootstrap: create backend if not exists
+# Create Terraform backend
 # -----------------------------
 echo "➡️ Running Terraform bootstrap..."
 if [ ! -f "$TF_BE_CONFIG_FILE" ]; then
