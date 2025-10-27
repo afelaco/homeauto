@@ -9,7 +9,7 @@ cd "$(git rev-parse --show-toplevel)"
 # -----------------------------
 # Load configuration
 # -----------------------------
-source .env
+source bootstrap/.env
 
 # -----------------------------
 # Sync system environment with Brewfile
@@ -36,12 +36,8 @@ echo "✅ Azure bootstrap complete!"
 # Create Terraform backend
 # -----------------------------
 echo "➡️ Running Terraform bootstrap..."
-if [ ! -f "$TF_BE_CONFIG_FILE" ]; then
-    source "modules/tf-backend.sh"
-    echo "✅ Terraform bootstrap complete!"
-else
-    echo "⚠️ Terraform backend configuration already exists at $TF_BE_CONFIG_FILE!"
-fi
+source bootstrap/modules/tf-backend.sh
+echo "✅ Terraform bootstrap complete!"
 
 # -----------------------------
 # Set GitHub Actions secrets

@@ -14,13 +14,17 @@ fi
 # -----------------------------
 AZ_SP_TF_NAME="terraform-sp"
 
-echo "  ➡️ Creating Azure Service Principal $AZ_SP_TF_NAME..."
-AZ_SP_TF_CREDENTIALS=$(az ad sp create-for-rbac \
-    --name "$AZ_SP_TF_NAME" \
-    --role Owner \
-    --scopes "/subscriptions/$AZ_SUBSCRIPTION_ID" \
-    --sdk-auth)
-echo "  ✅  Azure Service Principal $AZ_SP_TF_NAME created!"
+if [ -n "$(az ad sp list --display-name "$AZ_SP_TF_NAME" --query '[].appId' -o tsv)" ]; then
+    echo "  ✅  Azure Service Principal $AZ_SP_TF_NAME already exists!"
+else
+    echo "  ➡️ Creating Azure Service Principal $AZ_SP_TF_NAME..."
+    export AZ_SP_TF_CREDENTIALS=$(az ad sp create-for-rbac \
+        --name "$AZ_SP_TF_NAME" \
+        --role Owner \
+        --scopes "/subscriptions/$AZ_SUBSCRIPTION_ID" \
+        --sdk-auth)
+    echo "  ✅  Azure Service Principal $AZ_SP_TF_NAME created!"
+fi
 
 # -----------------------------
 # Assign Cloud Application Administrator role to Service Principal
