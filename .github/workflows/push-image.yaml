@@ -1,12 +1,12 @@
 name: Push Image
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-    paths:
-      - 'docker/airflow/Dockerfile'
-      - 'docker/airflow/entrypoint.sh'
+#    paths:
+#      - 'docker/airflow/Dockerfile'
+#      - 'docker/airflow/entrypoint.sh'
   workflow_dispatch:
 
 env:
