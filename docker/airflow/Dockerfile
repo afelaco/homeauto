@@ -1,10 +1,22 @@
-ARG AIRFLOW_VERSION=3.1.1
-ARG PYTHON_VERSION=3.13
+FROM python:3.12-slim
 
-FROM --platform=linux/arm64 apache/airflow:slim-${AIRFLOW_VERSION}-python${PYTHON_VERSION}
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-#RUN pip install azure-cli
-#COPY dags/ /opt/airflow/dags/
-#COPY entrypoint.sh /entrypoint.sh
-#
-#ENTRYPOINT ["/entrypoint.sh"]
+ENV AIRFLOW_HOME=/opt/airflow
+WORKDIR $AIRFLOW_HOME
+
+RUN mkdir -p dags logs plugins config
+#COPY airflow.cfg ./config
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY entrypoint.sh .
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
