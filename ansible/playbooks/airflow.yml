@@ -15,15 +15,7 @@
         group: admin
         mode: '0755'
 
-    - name: Copy docker-compose.yml to project source directory
-      ansible.builtin.copy:
-        src: ../../docker/airflow/docker-compose.yml
-        dest: "{{ project_src }}/docker-compose.yml"
-        owner: admin
-        group: admin
-        mode: '0644'
-
-    - name: Copy Airflow config file
+    - name: Copy .env file
       ansible.builtin.copy:
         src: ../../docker/airflow/.env
         dest: "{{ project_src }}/.env"
@@ -31,10 +23,13 @@
         group: admin
         mode: '0600'
 
-    - name: Initialize airflow.cfg
-      ansible.builtin.command:
-        cmd: docker compose run --rm airflow-cli airflow config list
-        chdir: "{{ project_src }}"
+    - name: Copy docker-compose.yml
+      ansible.builtin.copy:
+        src: ../../docker/airflow/docker-compose.yml
+        dest: "{{ project_src }}/docker-compose.yml"
+        owner: admin
+        group: admin
+        mode: '0644'
 
 #    - name: Pull latest image
 #      community.docker.docker_compose_v2:
