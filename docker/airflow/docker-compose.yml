@@ -23,13 +23,12 @@ x-airflow-common:
   user: ${AIRFLOW_UID}
   depends_on:
     &airflow-common-depends-on
-    redis:
-      condition: service_healthy
     postgres:
       condition: service_healthy
 
 services:
   postgres:
+    container_name: postgres
     image: postgres:16
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -89,7 +88,7 @@ services:
         mkdir -v -p /opt/airflow/{logs,dags,plugins,config}
         echo
         echo "Airflow version:"
-        /entrypoint airflow version
+        airflow version
         echo
         echo "Files in shared volumes:"
         echo
@@ -97,7 +96,7 @@ services:
         echo
         echo "Running airflow config list to create default config file if missing."
         echo
-        /entrypoint airflow config list >/dev/null
+        airflow config list >/dev/null
         echo
         echo "Files in shared volumes:"
         echo
@@ -124,6 +123,7 @@ services:
 
   airflow-scheduler:
     <<: *airflow-common
+    container_name: airflow-scheduler
     command: scheduler
     healthcheck:
       test: [ "CMD", "curl", "--fail", "http://localhost:8974/health" ]
@@ -139,6 +139,7 @@ services:
 
   airflow-webserver:
     <<: *airflow-common
+    container_name: airflow-webserver
     command: webserver
     ports:
       - "8080:8080"
