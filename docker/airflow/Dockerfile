@@ -7,14 +7,13 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+ENV AIRFLOW_HOME=/opt/airflow
 ARG AIRFLOW_UID=1000
 ARG AIRFLOW_GID=0
-ARG AIRFLOW_HOME=/opt/airflow
 
 WORKDIR ${AIRFLOW_HOME}
-RUN mkdir -p config dags logs plugins
-
-COPY airflow.cfg ./config/airflow.cfg
+RUN mkdir -p dags logs plugins
+COPY airflow.cfg .
 COPY requirements.txt .
 COPY entrypoint.sh .
 
