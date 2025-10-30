@@ -1,4 +1,4 @@
-FROM python:3.12-slim-trixie
+FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y \
     gcc \
@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-ENV AIRFLOW_UID=1000
+ARG AIRFLOW_UID=1000
 RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g 0 airflow
 
-ENV AIRFLOW_HOME=/opt/airflow
+ARG AIRFLOW_HOME=/opt/airflow
 WORKDIR $AIRFLOW_HOME
 
 COPY airflow.cfg .
