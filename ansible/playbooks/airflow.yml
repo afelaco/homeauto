@@ -31,14 +31,14 @@
         group: admin
         mode: '0644'
 
-    - name: Pull latest image
-      community.docker.docker_compose_v2_pull:
-        project_src: "{{ project_src }}"
-
-    - name: Start Airflow
-      community.docker.docker_compose_v2:
-        project_src: "{{ project_src }}"
-        state: present
-        services:
-          - airflow-scheduler
-          - airflow-webserver
+#    - name: Pull latest image
+#      community.docker.docker_compose_v2_pull:
+#        project_src: "{{ project_src }}"
+#
+#    - name: Start Airflow
+#      community.docker.docker_compose_v2:
+#        project_src: "{{ project_src }}"
+#        state: present
+#        services:
+#          - airflow-scheduler
+#          - airflow-webserver
