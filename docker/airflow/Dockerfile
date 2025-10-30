@@ -13,8 +13,10 @@ WORKDIR $AIRFLOW_HOME
 RUN mkdir -p dags logs plugins config
 #COPY airflow.cfg ./config
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install "apache-airflow==3.1.1" \
+    --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-3.1.1/constraints-3.10.txt"
+#COPY requirements.txt .
+#RUN pip install --no-cache-dir -r requirements.txt
 
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
