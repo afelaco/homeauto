@@ -12,10 +12,10 @@ ARG AIRFLOW_GID=0
 ARG AIRFLOW_HOME=/opt/airflow
 
 USER root
+
 RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g ${AIRFLOW_GID} airflow
 RUN mkdir -p ${AIRFLOW_HOME}/{dags,logs,plugins}
 RUN chown -v -R "${AIRFLOW_UID}:${AIRFLOW_GID}" ${AIRFLOW_HOME}
-USER airflow
 
 WORKDIR ${AIRFLOW_HOME}
 COPY airflow.cfg .
@@ -26,5 +26,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
+
+USER airflow
 
 ENTRYPOINT ["./entrypoint.sh"]
