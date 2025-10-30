@@ -16,7 +16,7 @@ RUN mkdir -p ${AIRFLOW_HOME}/{config,dags,logs,plugins}
 RUN chown -v -R "${AIRFLOW_UID}:${AIRFLOW_GID}" ${AIRFLOW_HOME}
 
 WORKDIR ${AIRFLOW_HOME}
-COPY airflow.cfg ./config
+COPY airflow.cfg ./config/airflow.cfg
 COPY requirements.txt .
 COPY entrypoint.sh .
 
