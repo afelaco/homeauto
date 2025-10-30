@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16
+    image: postgres:16-trixie
     env_file:
       - .env
     container_name: postgres
@@ -10,6 +10,8 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     restart: always
 
   airflow-base: &airflow-base

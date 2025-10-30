@@ -31,12 +31,28 @@
         group: admin
         mode: '0644'
 
-#    - name: Pull latest image
-#      community.docker.docker_compose_v2:
-#        project_src: "{{ project_src }}"
-#        pull: missing
-#
-#    - name: Start container
-#      community.docker.docker_compose_v2:
-#        project_src: "{{ project_src }}"
-#        state: present
+    - name: Pull latest image
+      community.docker.docker_compose_v2_pull:
+        project_src: "{{ project_src }}"
+
+    - name: Start Postgres
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_src }}"
+        state: present
+        services:
+          - postgres
+
+    - name: Wait for Postgres to be ready
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 5432
+        timeout: 60
+        state: started
+
+    - name: Start Airflow scheduler and webserver
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_src }}"
+        state: present
+        services:
+          - scheduler
+          - webserver
