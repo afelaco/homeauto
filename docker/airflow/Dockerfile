@@ -1,7 +1,3 @@
-ARG AIRFLOW_UID=1000
-ARG AIRFLOW_GID=0
-ARG AIRFLOW_HOME=/opt/airflow
-
 FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y \
@@ -10,6 +6,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     && rm -rf /var/lib/apt/lists/*
+
+ARG AIRFLOW_UID=1000
+ARG AIRFLOW_GID=0
+ARG AIRFLOW_HOME=/opt/airflow
 
 USER root
 RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g ${AIRFLOW_GID} airflow
