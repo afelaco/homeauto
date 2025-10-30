@@ -32,7 +32,7 @@ services:
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "airflow"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
       interval: 10s
       retries: 5
       start_period: 5s
@@ -46,8 +46,8 @@ services:
       mkdir -p ${AIRFLOW_HOME}/{logs,dags,plugins,config}
       /entrypoint airflow db init
       /entrypoint airflow users create \
-        --username ${_AIRFLOW_WWW_USER_USERNAME:-airflow} \
-        --password ${_AIRFLOW_WWW_USER_PASSWORD:-airflow} \
+        --username ${_AIRFLOW_WWW_USER_USERNAME} \
+        --password ${_AIRFLOW_WWW_USER_PASSWORD} \
         --firstname Airflow \
         --lastname Admin \
         --email admin@example.com \
