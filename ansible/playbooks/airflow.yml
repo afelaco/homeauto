@@ -35,13 +35,20 @@
       community.docker.docker_compose_v2_pull:
         project_src: "{{ project_src }}"
 
-    - name: Start Postgres
+    - name: Initialize Airflow
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present
         services:
-          - postgres
+          - airflow-init
 
+#    - name: Start Postgres
+#      community.docker.docker_compose_v2:
+#        project_src: "{{ project_src }}"
+#        state: present
+#        services:
+#          - postgres
+#
 #    - name: Wait for Postgres to be ready
 #      ansible.builtin.wait_for:
 #        host: 127.0.0.1
