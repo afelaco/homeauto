@@ -11,14 +11,15 @@ ARG AIRFLOW_UID=1000
 ARG AIRFLOW_GID=0
 ARG AIRFLOW_HOME=/opt/airflow
 
-RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g ${AIRFLOW_GID} airflow
-RUN mkdir -p ${AIRFLOW_HOME}/{config,dags,logs,plugins}
-RUN chown -v -R "${AIRFLOW_UID}:${AIRFLOW_GID}" ${AIRFLOW_HOME}
-
 WORKDIR ${AIRFLOW_HOME}
+RUN mkdir -p config dags logs plugins
+
 COPY airflow.cfg ./config/airflow.cfg
 COPY requirements.txt .
 COPY entrypoint.sh .
+
+RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g ${AIRFLOW_GID} airflow
+RUN chown -v -R "${AIRFLOW_UID}:${AIRFLOW_GID}" ${AIRFLOW_HOME}
 
 RUN pip install "apache-airflow==3.1.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-3.1.1/constraints-3.10.txt"
 RUN pip install --no-cache-dir -r requirements.txt
