@@ -11,12 +11,11 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/airflow
     AIRFLOW_CONFIG: '${AIRFLOW_HOME}/config/airflow.cfg'
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
-    - ${AIRFLOW_PROJ_DIR:-.}/dags:${AIRFLOW_HOME}/dags
-    - ${AIRFLOW_PROJ_DIR:-.}/logs:${AIRFLOW_HOME}/logs
-    - ${AIRFLOW_PROJ_DIR:-.}/config:${AIRFLOW_HOME}/config
-    - ${AIRFLOW_PROJ_DIR:-.}/plugins:${AIRFLOW_HOME}/plugins
+    - ${AIRFLOW_PROJ_DIR}/dags:${AIRFLOW_HOME}/dags
+    - ${AIRFLOW_PROJ_DIR}/logs:${AIRFLOW_HOME}/logs
+    - ${AIRFLOW_PROJ_DIR}/config:${AIRFLOW_HOME}/config
+    - ${AIRFLOW_PROJ_DIR}/plugins:${AIRFLOW_HOME}/plugins
   user: ${AIRFLOW_UID}
   depends_on:
     postgres:
