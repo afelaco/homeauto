@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
 ENV AIRFLOW_HOME=/opt/airflow
 WORKDIR $AIRFLOW_HOME
 
-RUN mkdir -p dags logs plugins config
 #COPY airflow.cfg ./config
 
 RUN pip install "apache-airflow==3.1.1" \
