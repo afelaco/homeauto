@@ -39,3 +39,10 @@
         services:
           - airflow-scheduler
           - airflow-webserver
+
+    - name: Remove airflow-init
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_src }}"
+        state: absent
+        services:
+          - airflow-init
