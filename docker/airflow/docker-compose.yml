@@ -42,6 +42,7 @@ services:
       - -c
       - |
         set -e
+        useradd -ms /bin/bash -u ${AIRFLOW_UID} -g 0 airflow
         mkdir -p /opt/airflow/{dags,logs,plugins}
         chown -v -R "${AIRFLOW_UID}:0" /opt/airflow
         airflow db migrate
