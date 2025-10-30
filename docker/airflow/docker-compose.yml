@@ -43,7 +43,7 @@ services:
       - |
         set -e
         mkdir -p /opt/airflow/{dags,logs,plugins}
-        chown -R "${AIRFLOW_UID}:0" /opt/airflow
+        chown -v -R "${AIRFLOW_UID}:0" /opt/airflow
         airflow db migrate
         airflow users create \
           --username "${_AIRFLOW_WWW_USER_USERNAME}" \
@@ -75,7 +75,7 @@ services:
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow-webserver
-    command: webserver
+    command: api-server
     ports:
       - "8080:8080"
     healthcheck:
