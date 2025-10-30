@@ -8,11 +8,9 @@ x-airflow-common:
     &airflow-common-env
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
-    AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
   volumes:
     - ${AIRFLOW_PROJ_DIR}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR}/logs:/opt/airflow/logs
-    - ${AIRFLOW_PROJ_DIR}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR}/plugins:/opt/airflow/plugins
   user: ${AIRFLOW_UID}
   depends_on:
@@ -44,7 +42,7 @@ services:
       - -c
       - |
         set -e
-        mkdir -p /opt/airflow/{dags,logs,plugins,config}
+        mkdir -p /opt/airflow/{dags,logs,plugins}
         chown -R "${AIRFLOW_UID}:0" /opt/airflow
         airflow db migrate
         airflow users create \

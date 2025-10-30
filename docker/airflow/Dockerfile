@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 ENV AIRFLOW_HOME=/opt/airflow
 WORKDIR $AIRFLOW_HOME
 
-COPY config/ ./config/
+COPY airflow.cfg .
 COPY requirements.txt .
 
 RUN pip install "apache-airflow==3.1.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-3.1.1/constraints-3.10.txt"
