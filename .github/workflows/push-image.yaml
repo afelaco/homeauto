@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'docker/airflow/Dockerfile'
-      - 'docker/airflow/entrypoint.sh'
+      - 'docker/airflow/**'
   workflow_dispatch:
 
 env:
