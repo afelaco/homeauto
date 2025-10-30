@@ -37,13 +37,12 @@ services:
 
   airflow-init:
     <<: *airflow-common
+    container_name: airflow-init
     entrypoint: /bin/bash
     command:
       - -c
       - |
         set -e
-        mkdir -p /opt/airflow/{dags,logs,plugins}
-        chown -v -R "${AIRFLOW_UID}:0" /opt/airflow
         airflow db migrate
         airflow users create \
           --username "${_AIRFLOW_WWW_USER_USERNAME}" \
