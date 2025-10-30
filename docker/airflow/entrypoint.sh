@@ -5,7 +5,7 @@ set -e
 chown -R "${AIRFLOW_UID}:0" "${AIRFLOW_HOME}"
 
 # Initialize database
-airflow db init
+#airflow db init
 
 # Create admin user
 #if ! airflow users list | grep -q "${AIRFLOW_USERNAME}"; then
