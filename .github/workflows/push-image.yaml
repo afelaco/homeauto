@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'docker/airflow/Dockerfile'
-      - 'docker/airflow/entrypoint.sh'
+      - 'docker/**'
+    paths-ignore:
+      - 'docker/dags/**'
   workflow_dispatch:
 
 env:
