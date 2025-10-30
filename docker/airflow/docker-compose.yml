@@ -1,14 +1,3 @@
-# This configuration supports basic configuration using environment variables or an .env file
-# The following variables are supported:
-#
-# AIRFLOW_IMAGE_NAME           - Docker image name used to run Airflow.
-# POSTGRES_USER                - Postgres user name.
-# POSTGRES_PASSWORD            - Postgres user password.
-# AIRFLOW_FERNET_KEY           - Fernet key used to encrypt data in the database
-# AIRFLOW_PROJ_DIR             - Base path to which all the files will be volumed.
-# AIRFLOW_UID                  - User ID in Airflow containers
-# _AIRFLOW_WWW_USER_USERNAME   - Username for the administrator account.
-# _AIRFLOW_WWW_USER_PASSWORD   - Password for the administrator account.
 ---
 x-airflow-common:
   &airflow-common
