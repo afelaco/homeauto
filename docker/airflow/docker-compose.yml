@@ -1,7 +1,6 @@
----
 x-airflow-common:
   &airflow-common
-  image: "registry.gitlab.com/afelaco/homeauto/airflow:main"
+  image: registry.gitlab.com/afelaco/homeauto/airflow:main
   env_file:
     - .env
   environment:
