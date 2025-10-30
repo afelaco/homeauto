@@ -12,11 +12,11 @@ ARG AIRFLOW_GID=0
 ARG AIRFLOW_HOME=/opt/airflow
 
 RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g ${AIRFLOW_GID} airflow
-RUN mkdir -p ${AIRFLOW_HOME}/{dags,logs,plugins}
+RUN mkdir -p ${AIRFLOW_HOME}/{config,dags,logs,plugins}
 RUN chown -v -R "${AIRFLOW_UID}:${AIRFLOW_GID}" ${AIRFLOW_HOME}
 
 WORKDIR ${AIRFLOW_HOME}
-COPY airflow.cfg .
+COPY airflow.cfg ./config
 COPY requirements.txt .
 COPY entrypoint.sh .
 
