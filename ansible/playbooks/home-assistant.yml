@@ -23,14 +23,11 @@
         group: admin
         mode: '0644'
 
-    - name: Pull latest image
-      community.docker.docker_compose_v2_pull:
-        project_src: "{{ project_src }}"
-
     - name: Start container
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present
+        pull: missing
 
     - name: Check if HACS is installed
       ansible.builtin.stat:

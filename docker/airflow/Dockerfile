@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+ENV AIRFLOW_UID=1000
+RUN useradd -ms /bin/bash -u ${AIRFLOW_UID} -g 0 airflow
+
 ENV AIRFLOW_HOME=/opt/airflow
 WORKDIR $AIRFLOW_HOME
 
