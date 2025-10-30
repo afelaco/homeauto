@@ -5,11 +5,9 @@ x-airflow-common:
     - .env
   environment:
     &airflow-common-env
-    AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
   volumes:
-    - ./config:/opt/airflow/config
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
