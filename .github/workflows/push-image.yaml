@@ -6,8 +6,6 @@ on:
       - main
     paths:
       - 'docker/**'
-    paths-ignore:
-      - 'docker/dags/**'
   workflow_dispatch:
 
 env:
