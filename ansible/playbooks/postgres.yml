@@ -5,6 +5,7 @@
 
   vars:
     project_src: /home/admin/docker/postgres
+    postgres_network: postgres_network
 
   tasks:
     - name: Ensure project source directory exists
@@ -31,7 +32,23 @@
         group: admin
         mode: '0644'
 
-    - name: Start postgres
+    - name: Copy initdb scripts
+      ansible.builtin.copy:
+        src: ../../docker/postgres/initdb/
+        dest: "{{ project_src }}/initdb/"
+        owner: admin
+        group: admin
+        mode: '0755'
+        recurse: yes
+
+    - name: Create Postgres network
+      community.docker.docker_network:
+        name: "{{ postgres_network }}"
+        state: present
+        scope: local
+        internal: false
+
+    - name: Start Postgres
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present
