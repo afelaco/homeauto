@@ -8,6 +8,8 @@ x-airflow-common:
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
   user: ${AIRFLOW_UID}
+  networks:
+    - postgres_network
 
 services:
   airflow-scheduler:
@@ -52,3 +54,7 @@ services:
     depends_on:
       airflow-scheduler:
         condition: service_healthy
+
+networks:
+  postgres_network:
+    external: true

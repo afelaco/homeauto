@@ -1,0 +1,38 @@
+---
+- name: Run Postgres container
+  hosts: rpi4-1
+  become: true
+
+  vars:
+    project_src: /home/admin/docker/postgres
+
+  tasks:
+    - name: Ensure project source directory exists
+      ansible.builtin.file:
+        path: "{{ project_src }}"
+        state: directory
+        owner: admin
+        group: admin
+        mode: '0755'
+
+    - name: Copy .env file
+      ansible.builtin.copy:
+        src: ../../docker/postgres/.env
+        dest: "{{ project_src }}/.env"
+        owner: admin
+        group: admin
+        mode: '0600'
+
+    - name: Copy docker-compose.yml
+      ansible.builtin.copy:
+        src: ../../docker/postgres/docker-compose.yml
+        dest: "{{ project_src }}/docker-compose.yml"
+        owner: admin
+        group: admin
+        mode: '0644'
+
+    - name: Start postgres
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_src }}"
+        state: present
+        pull: missing
