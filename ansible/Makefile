@@ -15,3 +15,6 @@ wireguard:
 
 airflow:
 	ansible-playbook -i inventory.ini playbooks/airflow.yml
+
+postgres:
+	ansible-playbook -i inventory.ini playbooks/postgres.yml

@@ -4,9 +4,8 @@ services:
     image: postgres:16
     env_file:
       - .env
-    environment:
-      POSTGRES_DB: airflow
     volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
       - data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
@@ -17,8 +16,25 @@ services:
       - postgres_network
     restart: always
 
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "8081:80"
+    networks:
+      - postgres_network
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   data:
+  pgadmin_data:
 
 networks:
   postgres_network:
