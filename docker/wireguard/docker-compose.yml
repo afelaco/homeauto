@@ -1,5 +1,5 @@
 services:
-  wg-easy:
+  wireguard:
     container_name: wireguard
     image: weejewel/wg-easy:latest
     env_file:
@@ -9,7 +9,7 @@ services:
       - WG_DEFAULT_DNS=1.1.1.1
       - WG_AUTO_UPDATE=false
     volumes:
-      - ./etc/wireguard:/etc/wireguard
+      - ./config:/etc/wireguard
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"

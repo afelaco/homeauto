@@ -34,8 +34,8 @@
 
     - name: Copy initdb scripts
       ansible.builtin.copy:
-        src: ../../docker/postgres/initdb/
-        dest: "{{ project_src }}/initdb/"
+        src: ../../docker/postgres/init.sql
+        dest: "{{ project_src }}/init.sql"
         owner: admin
         group: admin
         mode: '0755'
