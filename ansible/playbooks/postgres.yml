@@ -39,7 +39,6 @@
         owner: admin
         group: admin
         mode: '0755'
-        recurse: yes
 
     - name: Create Postgres network
       community.docker.docker_network:
@@ -48,7 +47,7 @@
         scope: local
         internal: false
 
-    - name: Start Postgres
+    - name: Start Postgres & pgAdmin
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present
