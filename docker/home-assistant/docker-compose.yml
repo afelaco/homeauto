@@ -2,9 +2,6 @@ services:
   home-assistant:
     container_name: home-assistant
     image: ghcr.io/home-assistant/home-assistant:stable
-    restart: unless-stopped
-    network_mode: host
-    privileged: true
     volumes:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -13,3 +10,6 @@ services:
       - /dev/ttyAMA0:/dev/ttyAMA0
       - /dev/serial/by-id:/dev/serial/by-id
       - /dev/bus/usb:/dev/bus/usb
+    network_mode: host
+    privileged: true
+    restart: unless-stopped

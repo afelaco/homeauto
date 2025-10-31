@@ -1,10 +1,10 @@
 ---
-- name: Run Airflow container
+- name: Run Postgres container
   hosts: rpi4-1
   become: true
 
   vars:
-    project_src: /home/admin/docker/airflow
+    project_src: /home/admin/docker/postgres
 
   tasks:
     - name: Ensure project source directory exists
@@ -17,7 +17,7 @@
 
     - name: Copy .env file
       ansible.builtin.copy:
-        src: ../../docker/airflow/.env
+        src: ../../docker/postgres/.env
         dest: "{{ project_src }}/.env"
         owner: admin
         group: admin
@@ -25,13 +25,13 @@
 
     - name: Copy docker-compose.yml
       ansible.builtin.copy:
-        src: ../../docker/airflow/docker-compose.yml
+        src: ../../docker/postgres/docker-compose.yml
         dest: "{{ project_src }}/docker-compose.yml"
         owner: admin
         group: admin
         mode: '0644'
 
-    - name: Start Airflow
+    - name: Start postgres
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present
