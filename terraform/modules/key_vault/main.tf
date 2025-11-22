@@ -9,7 +9,7 @@ resource "azurerm_key_vault" "this" {
 }
 
 resource "azurerm_role_assignment" "this" {
-  for_each = toset(var.officers)
+  for_each = var.officers
 
   principal_id         = each.value
   principal_type       = each.key
