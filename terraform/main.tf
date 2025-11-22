@@ -15,7 +15,10 @@ module "kv" {
   tenant_id           = data.azurerm_client_config.this.tenant_id
   resource_group_name = module.rg.resource_group_name
 
-  sp_object_id = data.azurerm_client_config.this.object_id
+  officers = {
+    "User"             = var.admin_object_id
+    "ServicePrincipal" = data.azurerm_client_config.this.object_id
+  }
 
   secrets = var.secrets
 }
@@ -31,7 +34,7 @@ module "datalake" {
 
   container_name = ["steam"]
 
-  role_assignment_id = module.kv.role_assignment_id
+  role_assignment_id = module.kv.sp_role_assignment_id
   key_vault_id       = module.kv.key_vault_id
 }
 

@@ -9,8 +9,10 @@ resource "azurerm_key_vault" "this" {
 }
 
 resource "azurerm_role_assignment" "this" {
-  principal_id         = var.sp_object_id
-  principal_type       = "ServicePrincipal"
+  for_each = nonsensitive(var.officers)
+
+  principal_id         = each.value
+  principal_type       = each.key
   role_definition_name = "Key Vault Secrets Officer"
   scope                = azurerm_key_vault.this.id
 }

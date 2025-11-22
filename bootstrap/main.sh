@@ -15,50 +15,50 @@ source bootstrap/.env
 # Sync system environment with Brewfile
 # -----------------------------
 echo "➡️ Syncing system environment with Brewfile..."
-#brew bundle check || brew bundle
+brew bundle check || brew bundle
 echo "✅ System environment synced!"
 
 # -----------------------------
 # Set repo level Git identity
 # -----------------------------
 echo "➡️ Setting Git identity on repo level..."
-#source bootstrap/modules/git-config.sh
+source bootstrap/modules/git-config.sh
 echo "✅ Git bootstrap complete!"
 
 # -----------------------------
 # Patch Azure Service Principal for Terraform
 # -----------------------------
 echo "➡️ Creating Azure Service Principal..."
-source bootstrap/modules/az-sp.sh
+#source bootstrap/modules/az-sp.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
 # Create Terraform backend
 # -----------------------------
 echo "➡️ Running Terraform bootstrap..."
-#source bootstrap/modules/tf-backend.sh
+source bootstrap/modules/tf-backend.sh
 echo "✅ Terraform bootstrap complete!"
 
 # -----------------------------
 # Set GitHub Actions secrets
 # -----------------------------
 echo "➡️ Setting GitHub Actions secrets..."
-#source bootstrap/modules/gh-secrets.sh
+source bootstrap/modules/gh-secrets.sh
 echo "✅ GitHub bootstrap complete!"
 
 # -----------------------------
 # Sync virtual environment
 # -----------------------------
 echo "➡️ Syncing virtual environment..."
-#uv sync --all-groups
+uv sync --all-groups
 echo "✅ Virtual environment synced!"
 
 # -----------------------------
 # Install pre-commit hooks
 # -----------------------------
 echo "➡️ Installing pre-commit hooks..."
-#uv run pre-commit clean
-#uv run pre-commit install
+uv run pre-commit clean
+uv run pre-commit install
 echo "✅ Pre-commit hooks installed!"
 
 # -----------------------------
