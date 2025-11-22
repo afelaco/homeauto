@@ -34,7 +34,7 @@ module "datalake" {
 
   container_name = ["steam"]
 
-  role_assignment_id = module.kv.role_assignment_id
+  role_assignment_id = module.kv.sp_role_assignment_id
   key_vault_id       = module.kv.key_vault_id
 }
 
