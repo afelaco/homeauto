@@ -29,7 +29,7 @@ echo "✅ Git bootstrap complete!"
 # Patch Azure Service Principal for Terraform
 # -----------------------------
 echo "➡️ Creating Azure Service Principal..."
-#source bootstrap/modules/az-sp.sh
+source bootstrap/modules/az-sp.sh
 echo "✅ Azure bootstrap complete!"
 
 # -----------------------------
