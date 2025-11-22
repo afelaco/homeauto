@@ -38,4 +38,4 @@ class TransformSteamOwnedGames(Transform):
 
 
 if __name__ == "__main__":
-    TransformSteamOwnedGames().run()
+    data = TransformSteamOwnedGames().get_data().to_pandas()
