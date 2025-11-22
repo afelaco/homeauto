@@ -4,11 +4,18 @@ from homeauto.core.api.response_model.steam.player_achievements import (
 )
 from homeauto.core.endpoint import Endpoint
 
-owned_games = Endpoint(
-    url="IPlayerService/GetOwnedGames/v1/",
-    response_model=SteamOwnedGamesApiResponseModel,
-)
-player_achievements = Endpoint(
-    url="ISteamUserStats/GetPlayerAchievements/v0001/",
-    response_model=SteamPlayerAchievementsApiResponseModel,
-)
+
+class IPlayerService:
+    __SERVICE = "IPlayerService"
+    owned_games = Endpoint(
+        url=f"{__SERVICE}/GetOwnedGames/v0001/",
+        response_model=SteamOwnedGamesApiResponseModel,
+    )
+
+
+class ISteamUserStats:
+    __SERVICE = "ISteamUserStats"
+    player_achievements = Endpoint(
+        url=f"{__SERVICE}/GetPlayerAchievements/v0001/",
+        response_model=SteamPlayerAchievementsApiResponseModel,
+    )
