@@ -13,6 +13,11 @@ variable "location" {
   type    = string
 }
 
+variable "admin_object_id" {
+  type      = string
+  sensitive = true
+}
+
 variable "secrets" {
   type      = map(string)
   sensitive = true

@@ -36,6 +36,7 @@ jobs:
         env:
           TF_VAR_subscription_id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
           TF_VAR_secrets: ${{ secrets.AZ_KV_SECRETS }}
+          TF_VAR_admin_object_id: ${{ secrets.AZ_ADMIN_OBJECT_ID }}
         run: |
           terraform apply -auto-approve
 
