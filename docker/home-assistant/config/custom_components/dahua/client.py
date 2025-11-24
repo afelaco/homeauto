@@ -322,7 +322,6 @@ class DahuaClient:
 
     async def async_get_floodlightmode(self) -> dict:
         """async_get_config_floodlightmode gets floodlight mode"""
-        url = "/cgi-bin/configManager.cgi?action=getConfig&name=FloodLightMode.Mode"
         try:
             return await self.async_get_config("FloodLightMode.Mode")
         except aiohttp.ClientResponseError:
