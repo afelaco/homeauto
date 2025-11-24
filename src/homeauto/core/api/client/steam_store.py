@@ -1,3 +1,4 @@
+from time import sleep
 from typing import Any
 
 from homeauto.core import get_logger
@@ -20,9 +21,10 @@ class SteamStoreApiClient(ApiClient):
             url=self.get_url(endpoint=endpoint),
             params=params,
         )
+        sleep(1)
         response.raise_for_status()
         data = endpoint.response_model.model_validate_json(response.content).model_dump(by_alias=True)
 
-        logger.info("%s records read from %s", len(data), response.url)
+        # logger.info("%s records read from %s", len(data), response.url)
 
         return data  # type: ignore

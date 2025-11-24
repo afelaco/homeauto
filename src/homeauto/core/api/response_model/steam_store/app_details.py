@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field, model_serializer
+from typing import Dict
+
+from pydantic import BaseModel, RootModel, model_serializer
 
 
 class Metacritic(BaseModel):
@@ -11,7 +13,7 @@ class Metacritic(BaseModel):
 
 class Data(BaseModel):
     name: str
-    metacritic: Metacritic
+    metacritic: Metacritic | None = None
 
 
 class Response(BaseModel):
@@ -22,8 +24,10 @@ class Response(BaseModel):
         return self.data
 
 
-class SteamStoreAppDetailsApiResponseModel(BaseModel):
-    app_id: Response = Field(alias="placeholder")
+class SteamStoreAppDetailsApiResponseModel(RootModel[Dict[str, Response]]):
+    @property
+    def app_id(self) -> Response:
+        return next(iter(self.root.values()))
 
     @model_serializer
     def serialize(self) -> Response:

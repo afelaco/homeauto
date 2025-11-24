@@ -16,11 +16,15 @@ class ExtractSteamApp(ExtractCompletionistMe):
         self.dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        owned_games = homeauto.core.dataset.bronze.steam_web.owned_games.read_parquet().get_column("appid")
+        owned_games = self.get_owned_games().get_column("appid")
         data = []
         for app_id in tqdm(owned_games):
             data.append(self.scraper.find_next(app_id=app_id))
         return pl.DataFrame(data=data)
+
+    @staticmethod
+    def get_owned_games() -> pl.DataFrame:
+        return homeauto.core.dataset.bronze.steam_web.owned_games.read_parquet()
 
 
 if __name__ == "__main__":
