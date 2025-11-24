@@ -1,10 +1,17 @@
+from abc import ABC
+
 from pandera.polars import Column, DataFrameSchema
 
-from homeauto.core.dataset.silver import SilverDataset
+from homeauto.core.infra import Database
+from homeauto.core.table import Table
 
-owned_games = SilverDataset(
-    container="steam-web",
-    name="owned-games",
+
+class FactTable(Table, ABC):
+    pass
+
+
+fact_owned_games_tags = FactTable(
+    name="fact_owned_games_tags",
     schema=DataFrameSchema(
         columns={
             "id": Column(str),
@@ -14,4 +21,5 @@ owned_games = SilverDataset(
         },
         strict=True,
     ),
+    database=Database(),
 )

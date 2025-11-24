@@ -2,13 +2,13 @@ from abc import ABC, abstractmethod
 
 import polars as pl
 
-from homeauto.core.dataset.gold import GoldDataset
+from homeauto.core.table import Table
 
 
 class Load(ABC):
     @property
     @abstractmethod
-    def output_dataset(self) -> GoldDataset:
+    def table(self) -> Table:
         pass
 
     @abstractmethod

@@ -40,4 +40,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    ExtractSteamStoreAppDetails().run()
+    data = ExtractSteamStoreAppDetails().get_data()

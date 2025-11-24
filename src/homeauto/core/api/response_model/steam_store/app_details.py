@@ -17,10 +17,10 @@ class Data(BaseModel):
 
 
 class Response(BaseModel):
-    data: Data
+    data: Data | None = None
 
     @model_serializer
-    def serialize(self) -> Data:
+    def serialize(self) -> Data | None:
         return self.data
 
 

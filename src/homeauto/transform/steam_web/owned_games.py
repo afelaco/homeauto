@@ -7,7 +7,7 @@ from homeauto.core.dataset.silver import SilverDataset
 from homeauto.transform import Transform
 
 
-class TransformSteamOwnedGames(Transform):
+class TransformSteamWebOwnedGames(Transform):
     @property
     def input_dataset(self) -> BronzeDataset:
         return homeauto.core.dataset.bronze.steam_web.owned_games
@@ -38,4 +38,4 @@ class TransformSteamOwnedGames(Transform):
 
 
 if __name__ == "__main__":
-    data = TransformSteamOwnedGames().get_data().to_pandas()
+    TransformSteamWebOwnedGames().run()
