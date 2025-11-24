@@ -4,9 +4,12 @@ from tqdm import tqdm
 import homeauto.core.dataset.bronze.steam_store
 import homeauto.core.dataset.bronze.steam_web
 import homeauto.core.endpoint.steam_store
+from homeauto.core import get_logger
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.endpoint import Endpoint
 from homeauto.extract.steam_store import ExtractSteamStore
+
+logger = get_logger(name=__name__)
 
 
 class ExtractSteamStoreAppDetails(ExtractSteamStore):
@@ -26,12 +29,16 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
         data = []
         for app_id in tqdm(owned_games):
             params = {"appids": app_id}
-            data.append(
-                self.api_client.get(
-                    endpoint=self.endpoint,
-                    params=params,
+            try:
+                data.append(
+                    self.api_client.get(
+                        endpoint=self.endpoint,
+                        params=params,
+                    )
                 )
-            )
+            except Exception:
+                logger.error("Failed to get app details for %s!", app_id)
+                continue
         return pl.DataFrame(data=data)
 
     @staticmethod
@@ -40,4 +47,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamStoreAppDetails().get_data()
+    ExtractSteamStoreAppDetails().run()
