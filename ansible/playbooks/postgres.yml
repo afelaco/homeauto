@@ -46,7 +46,7 @@
         scope: local
         internal: false
 
-    - name: Start Postgres & pgAdmin
+    - name: Start Postgres, pgAdmin & Grafana
       community.docker.docker_compose_v2:
         project_src: "{{ project_src }}"
         state: present

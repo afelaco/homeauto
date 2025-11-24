@@ -18,3 +18,6 @@ airflow:
 
 postgres:
 	ansible-playbook -i inventory.ini playbooks/postgres.yml
+
+grafana:
+	ansible-playbook -i inventory.ini playbooks/grafana.yml

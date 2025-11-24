@@ -34,9 +34,26 @@ services:
       postgres:
         condition: service_healthy
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    env_file:
+      - .env
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - postgres_network
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   data:
   pgadmin_data:
+  grafana_data:
 
 networks:
   postgres_network:
