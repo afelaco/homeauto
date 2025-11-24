@@ -1,14 +1,14 @@
 from pandera.polars import Column, DataFrameSchema
 
-from homeauto.core.dataset.bronze import BronzeDataset
+from homeauto.core.dataset.silver import SilverDataset
 
-app_details = BronzeDataset(
+app_details = SilverDataset(
     container="steam-store",
     name="app-details",
     schema=DataFrameSchema(
         columns={
-            "steam_appid": Column(int, unique=True),
-            "metacritic": Column(int, nullable=True),
+            "app_id": Column(int, unique=True),
+            "score": Column(int),
         },
         strict=True,
     ),

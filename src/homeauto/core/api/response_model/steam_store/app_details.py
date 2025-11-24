@@ -12,7 +12,7 @@ class Metacritic(BaseModel):
 
 
 class Data(BaseModel):
-    name: str
+    steam_appid: int
     metacritic: Metacritic | None = None
 
 
