@@ -2,9 +2,9 @@ from pandera.polars import Column, DataFrameSchema
 
 from homeauto.core.dataset.bronze import BronzeDataset
 
-completion_playtime_avg = BronzeDataset(
+steam_app = BronzeDataset(
     container="completionist_me",
-    name="completion-playtime-avg",
+    name="steam-app",
     schema=DataFrameSchema(
         columns={
             "app_id": Column(int, unique=True),

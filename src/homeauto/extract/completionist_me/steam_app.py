@@ -7,10 +7,10 @@ from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.extract.completionist_me import ExtractCompletionistMe
 
 
-class ExtractCompletionPlaytimeAvg(ExtractCompletionistMe):
+class ExtractSteamApp(ExtractCompletionistMe):
     @property
     def dataset(self) -> BronzeDataset:
-        return homeauto.core.dataset.bronze.completionist_me.completion_playtime_avg
+        return homeauto.core.dataset.bronze.completionist_me.steam_app
 
     def run(self) -> None:
         self.dataset.write_parquet(df=self.get_data())
@@ -24,4 +24,4 @@ class ExtractCompletionPlaytimeAvg(ExtractCompletionistMe):
 
 
 if __name__ == "__main__":
-    data = ExtractCompletionPlaytimeAvg().get_data()
+    data = ExtractSteamApp().get_data()
