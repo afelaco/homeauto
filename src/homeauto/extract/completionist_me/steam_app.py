@@ -2,7 +2,7 @@ import polars as pl
 from tqdm import tqdm
 
 import homeauto.core.dataset.bronze.completionist_me
-import homeauto.core.dataset.bronze.steam_web
+import homeauto.core.dataset.silver.steam_web
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.extract.completionist_me import ExtractCompletionistMe
 
@@ -24,7 +24,7 @@ class ExtractSteamApp(ExtractCompletionistMe):
 
     @staticmethod
     def get_owned_games() -> pl.DataFrame:
-        return homeauto.core.dataset.bronze.steam_web.owned_games.read_parquet()
+        return homeauto.core.dataset.silver.steam_web.owned_games.read_parquet()
 
 
 if __name__ == "__main__":
