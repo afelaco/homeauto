@@ -1,7 +1,7 @@
 import polars as pl
 
-import homeauto.core.dataset.bronze.steam
-import homeauto.core.dataset.silver.steam
+import homeauto.core.dataset.bronze.steam_web
+import homeauto.core.dataset.silver.steam_web
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.dataset.silver import SilverDataset
 from homeauto.transform import Transform
@@ -10,11 +10,11 @@ from homeauto.transform import Transform
 class TransformSteamOwnedGames(Transform):
     @property
     def input_dataset(self) -> BronzeDataset:
-        return homeauto.core.dataset.bronze.steam.owned_games
+        return homeauto.core.dataset.bronze.steam_web.owned_games
 
     @property
     def output_dataset(self) -> SilverDataset:
-        return homeauto.core.dataset.silver.steam.owned_games
+        return homeauto.core.dataset.silver.steam_web.owned_games
 
     @property
     def mapping(self) -> dict[str, str]:

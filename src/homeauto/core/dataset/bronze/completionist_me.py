@@ -3,7 +3,7 @@ from pandera.polars import Column, DataFrameSchema
 from homeauto.core.dataset.bronze import BronzeDataset
 
 steam_app = BronzeDataset(
-    container="completionist_me",
+    container="completionist-me",
     name="steam-app",
     schema=DataFrameSchema(
         columns={

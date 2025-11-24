@@ -13,7 +13,7 @@ class PlayerStats(BaseModel):
     achievements: list[Achievement]
 
 
-class SteamPlayerAchievementsApiResponseModel(BaseModel):
+class SteamWebPlayerAchievementsApiResponseModel(BaseModel):
     player_stats: PlayerStats = Field(alias="playerstats")
 
     @model_serializer

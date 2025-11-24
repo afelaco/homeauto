@@ -1,6 +1,6 @@
 import polars as pl
 
-import homeauto.core.dataset.bronze.steam
+import homeauto.core.dataset.bronze.steam_store
 import homeauto.core.endpoint.steam_store
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.endpoint import Endpoint

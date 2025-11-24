@@ -9,7 +9,7 @@ from homeauto.core.infra import infra
 logger = get_logger(name=__name__)
 
 
-class SteamApiClient(ApiClient, ApiKeyAuthentication):
+class SteamWebApiClient(ApiClient, ApiKeyAuthentication):
     def __init__(self) -> None:
         self.steam_id = infra.keyvault.get_secret("STEAM-ID")
         super().__init__(
