@@ -15,8 +15,6 @@ fact_owned_games_tags = FactTable(
     schema=DataFrameSchema(
         columns={
             "id": Column(str),
-            "name": Column(str),
-            "playtime": Column(int),
             "tag": Column(str, nullable=True),
         },
         strict=True,

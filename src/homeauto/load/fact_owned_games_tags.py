@@ -16,10 +16,15 @@ class LoadFactOwnedGamesTags(Load):
 
     def get_data(self) -> pl.DataFrame:
         return (
-            homeauto.core.dataset.silver.steam_web.owned_games.read_parquet()
+            self.get_owned_games()
             .filter(pl.col("tag").is_not_null())
+            .sort("id")
             .select(self.table.schema.columns.keys())
         )
+
+    @staticmethod
+    def get_owned_games() -> pl.DataFrame:
+        return homeauto.core.dataset.silver.steam_web.owned_games.read_parquet()
 
 
 if __name__ == "__main__":

@@ -14,10 +14,9 @@ dim_owned_games = DimensionTable(
     name="dim_owned_games",
     schema=DataFrameSchema(
         columns={
-            "id": Column(str),
+            "id": Column(str, unique=True),
             "name": Column(str),
             "playtime": Column(int),
-            "tag": Column(str, nullable=True),
         },
         strict=True,
     ),
