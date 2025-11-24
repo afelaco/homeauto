@@ -27,11 +27,11 @@ class TransformCompletionistMeSteamApp(Transform):
         return (
             self.input_dataset.read_parquet()
             .rename(mapping=self.mapping)
-            .with_columns(pl.col("completion_playtime_avg").str.extract(r"(\d+)h").cast(pl.Int32))
-            .filter(pl.col("completion_playtime_avg").is_not_null())
+            .with_columns(pl.col("completion_time").str.extract(r"(\d+)h").cast(pl.Int64))
+            .filter(pl.col("completion_time").is_not_null())
             .select(self.output_dataset.schema.columns.keys())
         )
 
 
 if __name__ == "__main__":
-    data = TransformCompletionistMeSteamApp().get_data().to_pandas()
+    TransformCompletionistMeSteamApp().run()

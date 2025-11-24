@@ -1,5 +1,6 @@
 import polars as pl
 
+import homeauto.core.dataset.silver.completionist_me
 import homeauto.core.dataset.silver.steam_web
 import homeauto.core.table.dimension
 from homeauto.core.table.dimension import DimensionTable
@@ -15,11 +16,25 @@ class LoadDimOwnedGames(Load):
         self.table.replace_table(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        return self.get_owned_games().unique("id").sort("id").select(self.table.schema.columns.keys())
+        return (
+            self.get_owned_games()
+            .join(
+                other=self.get_steam_app(),
+                on="app_id",
+                how="left",
+            )
+            .unique("app_id")
+            .sort("app_id")
+            .select(self.table.schema.columns.keys())
+        )
 
     @staticmethod
     def get_owned_games() -> pl.DataFrame:
         return homeauto.core.dataset.silver.steam_web.owned_games.read_parquet()
+
+    @staticmethod
+    def get_steam_app() -> pl.DataFrame:
+        return homeauto.core.dataset.silver.completionist_me.steam_app.read_parquet()
 
 
 if __name__ == "__main__":

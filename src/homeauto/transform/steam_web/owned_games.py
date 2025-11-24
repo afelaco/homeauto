@@ -19,7 +19,7 @@ class TransformSteamWebOwnedGames(Transform):
     @property
     def mapping(self) -> dict[str, str]:
         return {
-            "appid": "id",
+            "appid": "app_id",
             "playtime_forever": "playtime",
             "content_descriptorids": "tag",
         }
@@ -32,7 +32,10 @@ class TransformSteamWebOwnedGames(Transform):
             self.input_dataset.read_parquet()
             .rename(self.mapping)
             .explode("tag")
-            .with_columns(pl.col("id", "tag").cast(pl.String))
+            .with_columns(
+                pl.col("app_id", "tag").cast(pl.String),
+                pl.col("playtime").truediv(60).cast(pl.Int64),
+            )
             .select(self.output_dataset.schema.columns.keys())
         )
 

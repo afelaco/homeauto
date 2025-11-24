@@ -7,7 +7,7 @@ owned_games = SilverDataset(
     name="owned-games",
     schema=DataFrameSchema(
         columns={
-            "id": Column(str),
+            "app_id": Column(str),
             "name": Column(str),
             "playtime": Column(int),
             "tag": Column(str, nullable=True),
