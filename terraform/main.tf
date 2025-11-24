@@ -33,8 +33,9 @@ module "datalake" {
   resource_group_name      = module.rg.resource_group_name
 
   container_name = [
-    "steam",
     "completionist-me",
+    "steam-store",
+    "steam-web",
   ]
 
   role_assignment_id = module.kv.sp_role_assignment_id
