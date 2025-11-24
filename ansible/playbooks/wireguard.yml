@@ -1,4 +1,3 @@
----
 - name: Run Wireguard container
   hosts: rpi4-1
   become: true

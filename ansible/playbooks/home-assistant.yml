@@ -1,4 +1,3 @@
----
 - name: Run Home Assistant container
   hosts: rpi4-1
   become: true
