@@ -1,20 +1,23 @@
 import polars as pl
 
-import homeauto.core.dataset.bronze.steam
-import homeauto.core.endpoint.steam
+import homeauto.core.dataset.bronze.steam_web
+import homeauto.core.endpoint.steam_web
+from homeauto.core import get_logger
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.endpoint import Endpoint
-from homeauto.extract.steam import ExtractSteam
+from homeauto.extract.steam_web import ExtractSteamWeb
+
+logger = get_logger(name=__name__)
 
 
-class ExtractSteamOwnedGames(ExtractSteam):
+class ExtractSteamWebOwnedGames(ExtractSteamWeb):
     @property
     def endpoint(self) -> Endpoint:
-        return homeauto.core.endpoint.steam.owned_games
+        return homeauto.core.endpoint.steam_web.IPlayerService.owned_games
 
     @property
     def dataset(self) -> BronzeDataset:
-        return homeauto.core.dataset.bronze.steam.owned_games
+        return homeauto.core.dataset.bronze.steam_web.owned_games
 
     def run(self) -> None:
         self.dataset.write_parquet(df=self.get_data())
@@ -29,4 +32,4 @@ class ExtractSteamOwnedGames(ExtractSteam):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamOwnedGames().get_data().to_pandas()
+    ExtractSteamWebOwnedGames().run()

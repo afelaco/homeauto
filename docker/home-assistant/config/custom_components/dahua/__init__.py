@@ -191,7 +191,7 @@ class DahuaDataUpdateCoordinator(DataUpdateCoordinator):
 
     async def _close_session(self) -> None:
         _LOGGER.debug("Closing Session")
-        if self._session != None:
+        if self._session is not None:
             try:
                 await self._session.close()
                 self._session = None

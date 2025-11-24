@@ -25,6 +25,18 @@ class KeyVault(BaseModel):
         return value
 
 
+class Database:
+    host = "192.168.0.105"
+    port = "5432"
+    secret_username = "POSTGRES-USER"
+    secret_password = "POSTGRES-PASSWORD"
+
+    def get_connection_string(self, keyvault: KeyVault) -> str:
+        username = keyvault.get_secret(self.secret_username)
+        password = keyvault.get_secret(self.secret_password)
+        return f"postgresql+psycopg2://{username}:{password}@{self.host}:{self.port}/postgres"
+
+
 class StorageAccount(BaseModel):
     name: str
     secret: str

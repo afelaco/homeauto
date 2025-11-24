@@ -17,7 +17,7 @@ class Response(BaseModel):
         return self.games
 
 
-class SteamOwnedGamesApiResponseModel(BaseModel):
+class SteamWebOwnedGamesApiResponseModel(BaseModel):
     response: Response
 
     @model_serializer
