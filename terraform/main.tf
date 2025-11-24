@@ -32,7 +32,10 @@ module "datalake" {
   storage_account_location = module.rg.resource_group_location
   resource_group_name      = module.rg.resource_group_name
 
-  container_name = ["steam"]
+  container_name = [
+    "steam",
+    "completionist-me",
+  ]
 
   role_assignment_id = module.kv.sp_role_assignment_id
   key_vault_id       = module.kv.key_vault_id
