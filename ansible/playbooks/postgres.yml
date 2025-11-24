@@ -1,4 +1,3 @@
----
 - name: Run Postgres container
   hosts: rpi4-1
   become: true
