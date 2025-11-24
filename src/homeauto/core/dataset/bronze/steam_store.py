@@ -7,7 +7,7 @@ app_details = BronzeDataset(
     name="app-details",
     schema=DataFrameSchema(
         columns={
-            "name": Column(str, unique=True),
+            "name": Column(str, unique=True, nullable=True),
             "metacritic": Column(int, nullable=True),
         },
         strict=True,
