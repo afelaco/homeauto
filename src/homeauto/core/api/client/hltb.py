@@ -1,4 +1,3 @@
-import json
 from typing import Any
 
 from howlongtobeatpy import HowLongToBeat
@@ -15,11 +14,12 @@ class HltbApiClient:
         self.session = HowLongToBeat()
 
     def get(self, endpoint: Endpoint, params: dict[str, str]) -> list[dict[str, Any]]:
-        response = []
+        data = []
         for name in tqdm(params["names"]):
-            response.extend([vars(game) for game in self.session.search(game_name=name)])
-        data = endpoint.response_model.model_validate_json(json.dumps(response)).model_dump(by_alias=True)
+            data.extend(
+                [{key: vars(entry)[key] for key in params["select"]} for entry in self.session.search(game_name=name)]
+            )
 
-        logger.info("%s records read from %s", len(data))
+        logger.info("%s records read from HTLB", len(data))
 
-        return data  # type: ignore
+        return data

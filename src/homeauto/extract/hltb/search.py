@@ -22,13 +22,20 @@ class ExtractHltbSearch(ExtractHltb):
 
     def get_data(self) -> pl.DataFrame:
         owned_games = homeauto.core.dataset.bronze.steam.owned_games.read_parquet().get_column("name")
-        params = {"names": owned_games.to_list()[:3]}
-        self.api_client.get(
+        params = {
+            "names": owned_games.to_list(),
+            "select": [
+                "game_name",
+                "similarity",
+                "completionist",
+            ],
+        }
+        data = self.api_client.get(
             endpoint=self.endpoint,
             params=params,
         )
-        return pl.DataFrame(data=data)
+        return pl.DataFrame(data=data).select(self.dataset.schema.columns.keys())
 
 
 if __name__ == "__main__":
-    data = ExtractHltbSearch().get_data()
+    ExtractHltbSearch().run()

@@ -8,7 +8,7 @@ search = BronzeDataset(
     schema=DataFrameSchema(
         columns={
             "game_name": Column(str),
-            "game_alias": Column(str),
+            "similarity": Column(float),
             "completionist": Column(float),
         },
         strict=True,
