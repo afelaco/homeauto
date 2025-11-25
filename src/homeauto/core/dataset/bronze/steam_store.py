@@ -7,7 +7,7 @@ app_details = BronzeDataset(
     name="app-details",
     schema=DataFrameSchema(
         columns={
-            "steam_appid": Column(int, unique=True),
+            "steam_appid": Column(int, nullable=True),
             "metacritic": Column(int, nullable=True),
         },
         strict=True,

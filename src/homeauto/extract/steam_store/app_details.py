@@ -26,12 +26,15 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
         data = []
         for app_id in tqdm(owned_games):
             params = {"appids": app_id}
-            data.append(
-                self.api_client.get(
-                    endpoint=self.endpoint,
-                    params=params,
+            try:
+                data.append(
+                    self.api_client.get(
+                        endpoint=self.endpoint,
+                        params=params,
+                    )
                 )
-            )
+            except Exception:
+                continue
         return pl.DataFrame(data=data)
 
     @staticmethod
@@ -40,4 +43,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamStoreAppDetails().get_data()
+    ExtractSteamStoreAppDetails().run()
