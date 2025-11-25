@@ -24,9 +24,9 @@ class ExtractSteamWebPlayerAchievements(ExtractSteamWeb):
         self.dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        played_games = self.get_owned_games().get_column("app_id").unique().filter(pl.col("playtime") > 0)
+        played_games = self.get_owned_games().filter(pl.col("playtime").gt(0)).get_column("app_id").unique()
         data = []
-        for app_id in played_games["app_id"]:
+        for app_id in played_games[:3]:
             try:
                 data.extend(
                     self.api_client.get(
@@ -45,4 +45,4 @@ class ExtractSteamWebPlayerAchievements(ExtractSteamWeb):
 
 
 if __name__ == "__main__":
-    ExtractSteamWebPlayerAchievements().run()
+    data = ExtractSteamWebPlayerAchievements().get_data().to_pandas()

@@ -15,9 +15,11 @@ class KeyVault(BaseModel):
     uri: str
 
     def get_secret(self, secret_name: str) -> Any:
-        # Uses AZURE_CLIENT_ID, AZURE_TENANT_ID, and AZURE_CLIENT_SECRET environment variables
         credential = DefaultAzureCredential()
-        client = SecretClient(vault_url=self.uri, credential=credential)
+        client = SecretClient(
+            vault_url=self.uri,
+            credential=credential,
+        )
         value = client.get_secret(secret_name).value
 
         logger.info("%s read from %s", secret_name, self.uri)
