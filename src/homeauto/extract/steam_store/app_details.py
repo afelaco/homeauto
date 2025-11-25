@@ -25,7 +25,7 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
         self.dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        owned_games = self.get_owned_games().get_column("app_id").unique()
+        owned_games = self.get_owned_games().get_column("app_id")
         data = []
         for app_id in tqdm(owned_games):
             params = {"appids": app_id}
@@ -47,4 +47,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    ExtractSteamStoreAppDetails().run()
+    data = ExtractSteamStoreAppDetails().get_data()

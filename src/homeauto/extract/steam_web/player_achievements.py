@@ -24,7 +24,7 @@ class ExtractSteamWebPlayerAchievements(ExtractSteamWeb):
         self.dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        played_games = self.get_owned_games().filter(pl.col("playtime").gt(0)).get_column("app_id").unique()
+        played_games = self.get_owned_games().filter(pl.col("playtime").gt(0)).get_column("app_id")
         data = []
         for app_id in played_games[:3]:
             try:

@@ -5,7 +5,6 @@ class Game(BaseModel):
     appid: int
     name: str
     playtime_forever: int
-    content_descriptorids: list[int] | None = None
 
 
 class Response(BaseModel):
