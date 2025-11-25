@@ -18,7 +18,10 @@ class TransformSteamStoreAppDetails(Transform):
 
     @property
     def mapping(self) -> dict[str, str]:
-        return {"steam_appid": "app_id", "metacritic": "score"}
+        return {
+            "steam_appid": "app_id",
+            "metacritic": "score",
+        }
 
     def run(self) -> None:
         self.output_dataset.write_parquet(df=self.get_data())
@@ -28,6 +31,8 @@ class TransformSteamStoreAppDetails(Transform):
             self.input_dataset.read_parquet()
             .rename(self.mapping)
             .filter(pl.all_horizontal(pl.all().is_not_null()))
+            .sort("score")
+            .unique("app_id")
             .select(self.output_dataset.schema.columns.keys())
         )
 
