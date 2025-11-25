@@ -13,3 +13,19 @@ app_details = BronzeDataset(
         strict=True,
     ),
 )
+
+app_reviews = BronzeDataset(
+    container="steam-store",
+    name="app-reviews",
+    schema=DataFrameSchema(
+        columns={
+            "num_reviews": Column(int),
+            "review_score": Column(int),
+            "review_score_desc": Column(str),
+            "total_positive": Column(int),
+            "total_negative": Column(int),
+            "total_reviews": Column(int),
+        },
+        strict=True,
+    ),
+)
