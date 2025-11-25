@@ -2,6 +2,20 @@ from pandera.polars import Column, DataFrameSchema
 
 from homeauto.core.dataset.bronze import BronzeDataset
 
+get_schema_for_game = BronzeDataset(
+    container="steam-web",
+    name="get-schema-for-game",
+    schema=DataFrameSchema(
+        columns={
+            "appid": Column(int, unique=True),
+            "name": Column(str),
+            "playtime_forever": Column(int),
+            "content_descriptorids": Column(list[int], nullable=True),
+        },
+        strict=True,
+    ),
+)
+
 owned_games = BronzeDataset(
     container="steam-web",
     name="owned-games",
@@ -15,6 +29,7 @@ owned_games = BronzeDataset(
         strict=True,
     ),
 )
+
 player_achievements = BronzeDataset(
     container="steam-web",
     name="player-achievements",
