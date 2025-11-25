@@ -7,7 +7,7 @@ app_details = SilverDataset(
     name="app-details",
     schema=DataFrameSchema(
         columns={
-            "app_id": Column(int, unique=True),
+            "app_id": Column(str, unique=True),
             "score": Column(int),
         },
         strict=True,

@@ -33,6 +33,7 @@ class TransformSteamStoreAppDetails(Transform):
             .filter(pl.all_horizontal(pl.all().is_not_null()))
             .sort("score")
             .unique("app_id")
+            .with_columns(pl.col("app_id").cast(pl.String))
             .select(self.output_dataset.schema.columns.keys())
         )
 

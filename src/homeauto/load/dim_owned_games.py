@@ -1,6 +1,7 @@
 import polars as pl
 
 import homeauto.core.dataset.silver.completionist_me
+import homeauto.core.dataset.silver.steam_store
 import homeauto.core.dataset.silver.steam_web
 import homeauto.core.table.dimension
 from homeauto.core.table.dimension import DimensionTable
@@ -23,10 +24,19 @@ class LoadDimOwnedGames(Load):
                 on="app_id",
                 how="left",
             )
+            .join(
+                other=self.get_app_details(),
+                on="app_id",
+                how="left",
+            )
             .unique("app_id")
             .sort("app_id")
             .select(self.table.schema.columns.keys())
         )
+
+    @staticmethod
+    def get_app_details() -> pl.DataFrame:
+        return homeauto.core.dataset.silver.steam_store.app_details.read_parquet()
 
     @staticmethod
     def get_owned_games() -> pl.DataFrame:

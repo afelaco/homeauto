@@ -17,6 +17,7 @@ dim_owned_games = DimensionTable(
             "app_id": Column(str, unique=True),
             "name": Column(str),
             "playtime": Column(int),
+            "score": Column(int, nullable=True),
             "completion_time": Column(int, nullable=True),
         },
         strict=True,
