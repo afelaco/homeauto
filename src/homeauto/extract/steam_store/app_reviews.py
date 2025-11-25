@@ -27,12 +27,13 @@ class ExtractSteamStoreAppReviews(ExtractSteamStore):
     def get_data(self) -> pl.DataFrame:
         owned_games = self.get_owned_games().get_column("app_id").unique()
         data = []
-        for app_id in tqdm(owned_games[:3]):
+        for app_id in tqdm(owned_games):
             params = {"json": "1"}
             try:
                 self.endpoint.url = f"appreviews/{app_id}"
                 data.append(
-                    self.api_client.get(
+                    {"app_id": app_id}
+                    | self.api_client.get(
                         endpoint=self.endpoint,
                         params=params,
                     )
