@@ -1,25 +1,24 @@
 import polars as pl
-from tqdm import tqdm
 
-import homeauto.core.dataset.bronze.steam_store
+import homeauto.core.dataset.bronze.steam_web
 import homeauto.core.dataset.silver.steam_web
-import homeauto.core.endpoint.steam_store
+import homeauto.core.endpoint.steam_web
 from homeauto.core import get_logger
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.endpoint import Endpoint
-from homeauto.extract.steam_store import ExtractSteamStore
+from homeauto.extract.steam_web import ExtractSteamWeb
 
 logger = get_logger(name=__name__)
 
 
-class ExtractSteamStoreAppDetails(ExtractSteamStore):
+class ExtractGetSchemaForGame(ExtractSteamWeb):
     @property
     def endpoint(self) -> Endpoint:
-        return homeauto.core.endpoint.steam_store.appdetails
+        return homeauto.core.endpoint.steam_web.ISteamUserStats.get_schema_for_game
 
     @property
     def dataset(self) -> BronzeDataset:
-        return homeauto.core.dataset.bronze.steam_store.app_details
+        return homeauto.core.dataset.bronze.steam_web.get_schema_for_game
 
     def run(self) -> None:
         self.dataset.write_parquet(df=self.get_data())
@@ -27,13 +26,12 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
     def get_data(self) -> pl.DataFrame:
         owned_games = self.get_owned_games().get_column("app_id")
         data = []
-        for app_id in tqdm(owned_games):
-            params = {"appids": app_id}
+        for app_id in owned_games["app_id"]:
             try:
-                data.append(
+                data.extend(
                     self.api_client.get(
                         endpoint=self.endpoint,
-                        params=params,
+                        params={"appid": app_id},
                     )
                 )
             except Exception as e:
@@ -47,4 +45,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    ExtractSteamStoreAppDetails().run()
+    ExtractGetSchemaForGame().run()

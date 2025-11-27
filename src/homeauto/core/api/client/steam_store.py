@@ -15,7 +15,7 @@ class SteamStoreApiClient(ApiClient):
     def get_url(self, endpoint: Endpoint) -> str:
         return f"{self.base_url}/{endpoint.url}"
 
-    def get(self, endpoint: Endpoint, params: dict[str, str]) -> list[dict[str, Any]]:
+    def get(self, endpoint: Endpoint, params: dict[str, str]) -> dict[str, Any]:
         params = params | {"json": "1"}
         response = self.session.get(
             url=self.get_url(endpoint=endpoint),
@@ -25,6 +25,4 @@ class SteamStoreApiClient(ApiClient):
         response.raise_for_status()
         data = endpoint.response_model.model_validate_json(response.content).model_dump(by_alias=True)
 
-        # logger.info("%s records read from %s", len(data), response.url)
-
-        return data  # type: ignore
+        return data

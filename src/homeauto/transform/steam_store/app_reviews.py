@@ -1,27 +1,24 @@
 import polars as pl
 
-import homeauto.core.dataset.bronze.steam_web
-import homeauto.core.dataset.silver.steam_web
+import homeauto.core.dataset.bronze.steam_store
+import homeauto.core.dataset.silver.steam_store
 from homeauto.core.dataset.bronze import BronzeDataset
 from homeauto.core.dataset.silver import SilverDataset
 from homeauto.transform import Transform
 
 
-class TransformSteamWebOwnedGames(Transform):
+class TransformSteamStoreAppReviews(Transform):
     @property
     def input_dataset(self) -> BronzeDataset:
-        return homeauto.core.dataset.bronze.steam_web.owned_games
+        return homeauto.core.dataset.bronze.steam_store.app_reviews
 
     @property
     def output_dataset(self) -> SilverDataset:
-        return homeauto.core.dataset.silver.steam_web.owned_games
+        return homeauto.core.dataset.silver.steam_store.app_reviews
 
     @property
     def mapping(self) -> dict[str, str]:
-        return {
-            "appid": "app_id",
-            "playtime_forever": "playtime",
-        }
+        return {}
 
     def run(self) -> None:
         self.output_dataset.write_parquet(df=self.get_data())
@@ -29,14 +26,10 @@ class TransformSteamWebOwnedGames(Transform):
     def get_data(self) -> pl.DataFrame:
         return (
             self.input_dataset.read_parquet()
-            .rename(self.mapping)
-            .with_columns(
-                pl.col("app_id").cast(pl.String),
-                pl.col("playtime").truediv(60).cast(pl.Int64),
-            )
+            .with_columns(total_score=pl.col("total_positive").truediv("total_reviews"))
             .select(self.output_dataset.schema.columns.keys())
         )
 
 
 if __name__ == "__main__":
-    TransformSteamWebOwnedGames().run()
+    TransformSteamStoreAppReviews().run()

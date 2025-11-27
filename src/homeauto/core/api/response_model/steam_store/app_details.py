@@ -3,6 +3,13 @@ from typing import Dict
 from pydantic import BaseModel, RootModel, model_serializer
 
 
+class PriceOverview(BaseModel):
+    currency: str
+    initial: int
+    final: int
+    discount_percent: int
+
+
 class Metacritic(BaseModel):
     score: int
 
@@ -11,9 +18,35 @@ class Metacritic(BaseModel):
         return self.score
 
 
+class Category(BaseModel):
+    id: int
+    description: str
+
+
+class Genre(BaseModel):
+    id: str
+    description: str
+
+
+class ReleaseDate(BaseModel):
+    coming_soon: bool
+    date: str
+
+
 class Data(BaseModel):
     name: str
+    steam_appid: int
+    is_free: bool
+    detailed_description: str
+    about_the_game: str
+    short_description: str
+    developers: list[str] | None = None
+    publishers: list[str] | None = None
+    price_overview: PriceOverview | None = None
     metacritic: Metacritic | None = None
+    categories: list[Category] | None = None
+    genres: list[Genre] | None = None
+    release_date: ReleaseDate
 
 
 class Response(BaseModel):
