@@ -16,7 +16,6 @@ dim_app_details = DimensionTable(
     schema=DataFrameSchema(
         columns={
             "app_id": Column(String),
-            "name": Column(String),
             "short_description": Column(String),
             "about_the_game": Column(String),
             "detailed_description": Column(String),

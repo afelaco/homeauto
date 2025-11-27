@@ -8,10 +8,10 @@ from homeauto.core.table.fact import FactTable
 from homeauto.load import Load
 
 
-class LoadFactDeveloper(Load):
+class LoadFactAppDetails(Load):
     @property
     def table(self) -> FactTable:
-        return homeauto.core.table.fact.fact_developer
+        return homeauto.core.table.fact.fact_app_details
 
     def run(self) -> None:
         self.table.replace_table(df=self.get_data())
@@ -19,8 +19,27 @@ class LoadFactDeveloper(Load):
     def get_data(self) -> pl.DataFrame:
         return (
             self.get_app_details()
-            .filter(pl.all_horizontal(pl.col("app_id", "developer").is_not_null()))
-            .unique(["app_id", "developer"])
+            .filter(
+                ~pl.all_horizontal(
+                    pl.col(
+                        [
+                            "developer",
+                            "publisher",
+                            "genre_id",
+                            "category_id",
+                        ]
+                    ).is_null()
+                )
+            )
+            .unique(
+                [
+                    "app_id",
+                    "developer",
+                    "publisher",
+                    "genre_id",
+                    "category_id",
+                ]
+            )
             .sort("app_id")
             .select(self.table.schema.columns.keys())
         )
@@ -31,4 +50,4 @@ class LoadFactDeveloper(Load):
 
 
 if __name__ == "__main__":
-    LoadFactDeveloper().run()
+    LoadFactAppDetails().run()

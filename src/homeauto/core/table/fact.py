@@ -11,48 +11,15 @@ class FactTable(Table, ABC):
     pass
 
 
-fact_category = FactTable(
-    name="fact_category",
+fact_app_details = FactTable(
+    name="fact_app_details",
     schema=DataFrameSchema(
         columns={
             "app_id": Column(String),
-            "category_id": Column(String),
-        },
-        strict=True,
-    ),
-    database=Database(),
-)
-
-fact_developer = FactTable(
-    name="fact_developer",
-    schema=DataFrameSchema(
-        columns={
-            "app_id": Column(String),
-            "developer": Column(String),
-        },
-        strict=True,
-    ),
-    database=Database(),
-)
-
-fact_genre = FactTable(
-    name="fact_genre",
-    schema=DataFrameSchema(
-        columns={
-            "app_id": Column(String),
-            "genre_id": Column(String),
-        },
-        strict=True,
-    ),
-    database=Database(),
-)
-
-fact_publisher = FactTable(
-    name="fact_publisher",
-    schema=DataFrameSchema(
-        columns={
-            "app_id": Column(String),
-            "publisher": Column(String),
+            "developer": Column(String, nullable=True),
+            "publisher": Column(String, nullable=True),
+            "genre_id": Column(String, nullable=True),
+            "category_id": Column(String, nullable=True),
         },
         strict=True,
     ),
