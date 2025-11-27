@@ -47,5 +47,4 @@ class ExtractSteamStoreAppDetails(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamStoreAppDetails().get_data()
-    ExtractSteamStoreAppDetails().dataset.write_parquet(df=data)
+    ExtractSteamStoreAppDetails().run()
