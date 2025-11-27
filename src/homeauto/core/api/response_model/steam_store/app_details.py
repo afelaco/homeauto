@@ -44,7 +44,7 @@ class Data(BaseModel):
     publishers: list[str] | None = None
     price_overview: PriceOverview | None = None
     metacritic: Metacritic | None = None
-    categories: list[Category]
+    categories: list[Category] | None = None
     genres: list[Genre] | None = None
     release_date: ReleaseDate
 
