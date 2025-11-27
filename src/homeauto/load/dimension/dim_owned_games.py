@@ -17,34 +17,11 @@ class LoadDimOwnedGames(Load):
         self.table.replace_table(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        return (
-            self.get_owned_games()
-            .join(
-                other=self.get_steam_app(),
-                on="app_id",
-                how="left",
-            )
-            .join(
-                other=self.get_app_details(),
-                on="app_id",
-                how="left",
-            )
-            .unique("app_id")
-            .sort("app_id")
-            .select(self.table.schema.columns.keys())
-        )
-
-    @staticmethod
-    def get_app_details() -> pl.DataFrame:
-        return homeauto.core.dataset.silver.steam_store.app_details.read_parquet()
+        return self.get_owned_games().unique("app_id").sort("app_id").select(self.table.schema.columns.keys())
 
     @staticmethod
     def get_owned_games() -> pl.DataFrame:
         return homeauto.core.dataset.silver.steam_web.owned_games.read_parquet()
-
-    @staticmethod
-    def get_steam_app() -> pl.DataFrame:
-        return homeauto.core.dataset.silver.completionist_me.steam_app.read_parquet()
 
 
 if __name__ == "__main__":

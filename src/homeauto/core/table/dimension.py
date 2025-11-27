@@ -34,6 +34,18 @@ dim_app_details = DimensionTable(
     database=Database(),
 )
 
+dim_completion = DimensionTable(
+    name="dim_completion",
+    schema=DataFrameSchema(
+        columns={
+            "app_id": Column(str, unique=True),
+            "completion_time": Column(int),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
+
 dim_genre = DimensionTable(
     name="dim_genre",
     schema=DataFrameSchema(
@@ -65,8 +77,6 @@ dim_owned_games = DimensionTable(
             "app_id": Column(String, unique=True),
             "name": Column(String),
             "playtime": Column(Int64),
-            "score": Column(Int64, nullable=True),
-            "completion_time": Column(Int64, nullable=True),
         },
         strict=True,
     ),
