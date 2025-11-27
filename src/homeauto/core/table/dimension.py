@@ -33,6 +33,28 @@ dim_app_details = DimensionTable(
     ),
     database=Database(),
 )
+dim_genres = DimensionTable(
+    name="dim_genres",
+    schema=DataFrameSchema(
+        columns={
+            "genre_id": Column(String, unique=True),
+            "genre_description": Column(String),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
+dim_categories = DimensionTable(
+    name="dim_categories",
+    schema=DataFrameSchema(
+        columns={
+            "category_id": Column(String, unique=True),
+            "category_description": Column(String),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
 dim_owned_games = DimensionTable(
     name="dim_owned_games",
     schema=DataFrameSchema(
