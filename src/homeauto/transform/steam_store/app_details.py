@@ -57,10 +57,13 @@ class TransformSteamStoreAppDetails(Transform):
             .unnest("release_date")
             .rename({"date": "release_date"})
             .filter(pl.col("app_id").is_not_null())
-            .with_columns(pl.col("app_id", "category_id").cast(pl.String))
+            .with_columns(
+                pl.col("app_id", "category_id").cast(pl.String),
+                pl.col("release_date").str.strptime(pl.Date, format="%d %b, %Y", strict=False),
+            )
             .select(self.output_dataset.schema.columns.keys())
         )
 
 
 if __name__ == "__main__":
-    TransformSteamStoreAppDetails().run()
+    data = TransformSteamStoreAppDetails().get_data().to_pandas()
