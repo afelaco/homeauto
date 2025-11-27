@@ -20,7 +20,6 @@ class TransformSteamStoreAppDetails(Transform):
     def mapping(self) -> dict[str, str]:
         return {
             "steam_appid": "app_id",
-            "metacritic": "score",
         }
 
     def run(self) -> None:
@@ -30,10 +29,35 @@ class TransformSteamStoreAppDetails(Transform):
         return (
             self.input_dataset.read_parquet()
             .rename(self.mapping)
-            .filter(pl.all_horizontal(pl.all().is_not_null()))
-            .sort("score")
-            .unique("app_id")
-            .with_columns(pl.col("app_id").cast(pl.String))
+            .explode("developers")
+            .explode("publishers")
+            .explode("genres")
+            .unnest("genres")
+            .rename(
+                {
+                    "id": "genre_id",
+                    "description": "genre_description",
+                }
+            )
+            .explode("categories")
+            .unnest("categories")
+            .rename(
+                {
+                    "id": "category_id",
+                    "description": "category_description",
+                }
+            )
+            .unnest("price_overview")
+            .rename(
+                {
+                    "initial": "initial_price",
+                    "final": "final_price",
+                }
+            )
+            .unnest("release_date")
+            .rename({"date": "release_date"})
+            .filter(pl.col("app_id").is_not_null())
+            .with_columns(pl.col("app_id", "category_id").cast(pl.String))
             .select(self.output_dataset.schema.columns.keys())
         )
 

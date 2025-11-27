@@ -8,11 +8,11 @@ app_details = BronzeDataset(
     name="app-details",
     schema=DataFrameSchema(
         columns={
-            "steam_appid": Column(Int64),
-            "name": Column(String),
-            "short_description": Column(String),
-            "about_the_game": Column(String),
-            "detailed_description": Column(String),
+            "steam_appid": Column(Int64, nullable=True),
+            "name": Column(String, nullable=True),
+            "short_description": Column(String, nullable=True),
+            "about_the_game": Column(String, nullable=True),
+            "detailed_description": Column(String, nullable=True),
             "developers": Column(List(String), nullable=True),
             "publishers": Column(List(String), nullable=True),
             "genres": Column(
@@ -38,7 +38,7 @@ app_details = BronzeDataset(
                 nullable=True,
             ),
             "metacritic": Column(Int64, nullable=True),
-            "is_free": Column(Boolean),
+            "is_free": Column(Boolean, nullable=True),
             "price_overview": Column(
                 Struct(
                     {
@@ -57,6 +57,7 @@ app_details = BronzeDataset(
                         "date": String,
                     }
                 ),
+                nullable=True,
             ),
         },
         strict=True,
