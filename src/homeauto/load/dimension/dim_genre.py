@@ -3,15 +3,15 @@ import polars as pl
 import homeauto.core.dataset.silver.completionist_me
 import homeauto.core.dataset.silver.steam_store
 import homeauto.core.dataset.silver.steam_web
-import homeauto.core.table.fact
-from homeauto.core.table.fact import FactTable
+import homeauto.core.table.dimension
+from homeauto.core.table.dimension import DimensionTable
 from homeauto.load import Load
 
 
-class LoadFactGenres(Load):
+class LoadDimGenre(Load):
     @property
-    def table(self) -> FactTable:
-        return homeauto.core.table.fact.fact_genres
+    def table(self) -> DimensionTable:
+        return homeauto.core.table.dimension.dim_genre
 
     def run(self) -> None:
         self.table.replace_table(df=self.get_data())
@@ -19,8 +19,9 @@ class LoadFactGenres(Load):
     def get_data(self) -> pl.DataFrame:
         return (
             self.get_app_details()
-            .filter(pl.all_horizontal(pl.col("app_id", "genre_id").is_not_null()))
-            .sort("app_id")
+            .filter(pl.col("genre_id").is_not_null())
+            .unique("genre_id")
+            .sort("genre_id")
             .select(self.table.schema.columns.keys())
         )
 
@@ -30,4 +31,4 @@ class LoadFactGenres(Load):
 
 
 if __name__ == "__main__":
-    LoadFactGenres().run()
+    LoadDimGenre().run()

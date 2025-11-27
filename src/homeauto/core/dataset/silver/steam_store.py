@@ -1,5 +1,5 @@
 from pandera.polars import Column, DataFrameSchema
-from polars import Boolean, Int64, String
+from polars import Boolean, Date, Int64, String
 
 from homeauto.core.dataset.silver import SilverDataset
 
@@ -13,8 +13,8 @@ app_details = SilverDataset(
             "short_description": Column(String),
             "about_the_game": Column(String),
             "detailed_description": Column(String),
-            "developers": Column(String, nullable=True),
-            "publishers": Column(String, nullable=True),
+            "developer": Column(String, nullable=True),
+            "publisher": Column(String, nullable=True),
             "genre_id": Column(String, nullable=True),
             "genre_description": Column(String, nullable=True),
             "category_id": Column(String, nullable=True),
@@ -25,7 +25,7 @@ app_details = SilverDataset(
             "final_price": Column(Int64, nullable=True),
             "currency": Column(String, nullable=True),
             "discount_percent": Column(Int64, nullable=True),
-            "release_date": Column(String),
+            "release_date": Column(Date, nullable=True),
             "coming_soon": Column(Boolean),
         },
         strict=True,

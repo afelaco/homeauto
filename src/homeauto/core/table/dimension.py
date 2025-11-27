@@ -1,7 +1,7 @@
 from abc import ABC
 
 from pandera.polars import Column, DataFrameSchema
-from polars import Boolean, Int64, String
+from polars import Boolean, Date, Int64, String
 
 from homeauto.core.infra import Database
 from homeauto.core.table import Table
@@ -26,15 +26,16 @@ dim_app_details = DimensionTable(
             "final_price": Column(Int64, nullable=True),
             "currency": Column(String, nullable=True),
             "discount_percent": Column(Int64, nullable=True),
-            "release_date": Column(String),
+            "release_date": Column(Date, nullable=True),
             "coming_soon": Column(Boolean),
         },
         strict=True,
     ),
     database=Database(),
 )
-dim_genres = DimensionTable(
-    name="dim_genres",
+
+dim_genre = DimensionTable(
+    name="dim_genre",
     schema=DataFrameSchema(
         columns={
             "genre_id": Column(String, unique=True),
@@ -44,8 +45,9 @@ dim_genres = DimensionTable(
     ),
     database=Database(),
 )
-dim_categories = DimensionTable(
-    name="dim_categories",
+
+dim_category = DimensionTable(
+    name="dim_category",
     schema=DataFrameSchema(
         columns={
             "category_id": Column(String, unique=True),
@@ -55,6 +57,7 @@ dim_categories = DimensionTable(
     ),
     database=Database(),
 )
+
 dim_owned_games = DimensionTable(
     name="dim_owned_games",
     schema=DataFrameSchema(

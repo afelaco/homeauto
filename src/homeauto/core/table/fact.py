@@ -11,8 +11,8 @@ class FactTable(Table, ABC):
     pass
 
 
-fact_categories = FactTable(
-    name="fact_categories",
+fact_category = FactTable(
+    name="fact_category",
     schema=DataFrameSchema(
         columns={
             "app_id": Column(String),
@@ -23,8 +23,20 @@ fact_categories = FactTable(
     database=Database(),
 )
 
-fact_genres = FactTable(
-    name="fact_genres",
+fact_developer = FactTable(
+    name="fact_developer",
+    schema=DataFrameSchema(
+        columns={
+            "app_id": Column(String),
+            "developer": Column(String),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
+
+fact_genre = FactTable(
+    name="fact_genre",
     schema=DataFrameSchema(
         columns={
             "app_id": Column(String),
@@ -35,12 +47,12 @@ fact_genres = FactTable(
     database=Database(),
 )
 
-fact_owned_games_tags = FactTable(
-    name="fact_owned_games_tags",
+fact_publisher = FactTable(
+    name="fact_publisher",
     schema=DataFrameSchema(
         columns={
-            "id": Column(str),
-            "tag": Column(str, nullable=True),
+            "app_id": Column(String),
+            "publisher": Column(String),
         },
         strict=True,
     ),

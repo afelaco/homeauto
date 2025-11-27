@@ -8,10 +8,10 @@ from homeauto.core.table.fact import FactTable
 from homeauto.load import Load
 
 
-class LoadFactCategories(Load):
+class LoadFactCategory(Load):
     @property
     def table(self) -> FactTable:
-        return homeauto.core.table.fact.fact_categories
+        return homeauto.core.table.fact.fact_category
 
     def run(self) -> None:
         self.table.replace_table(df=self.get_data())
@@ -30,4 +30,4 @@ class LoadFactCategories(Load):
 
 
 if __name__ == "__main__":
-    LoadFactCategories().run()
+    LoadFactCategory().run()

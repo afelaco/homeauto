@@ -18,9 +18,7 @@ class TransformSteamStoreAppDetails(Transform):
 
     @property
     def mapping(self) -> dict[str, str]:
-        return {
-            "steam_appid": "app_id",
-        }
+        return {"steam_appid": "app_id"}
 
     def run(self) -> None:
         self.output_dataset.write_parquet(df=self.get_data())
@@ -30,7 +28,9 @@ class TransformSteamStoreAppDetails(Transform):
             self.input_dataset.read_parquet()
             .rename(self.mapping)
             .explode("developers")
+            .rename({"developers": "developer"})
             .explode("publishers")
+            .rename({"publishers": "publisher"})
             .explode("genres")
             .unnest("genres")
             .rename(
@@ -66,4 +66,4 @@ class TransformSteamStoreAppDetails(Transform):
 
 
 if __name__ == "__main__":
-    data = TransformSteamStoreAppDetails().get_data().to_pandas()
+    TransformSteamStoreAppDetails().run()
