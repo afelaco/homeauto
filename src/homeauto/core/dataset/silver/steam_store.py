@@ -1,5 +1,5 @@
 from pandera.polars import Column, DataFrameSchema
-from polars import Boolean, Date, Int64, String
+from polars import Boolean, Date, Float64, Int64, String
 
 from homeauto.core.dataset.silver import SilverDataset
 
@@ -27,6 +27,24 @@ app_details = SilverDataset(
             "discount_percent": Column(Int64, nullable=True),
             "release_date": Column(Date, nullable=True),
             "coming_soon": Column(Boolean),
+        },
+        strict=True,
+    ),
+)
+
+app_reviews = SilverDataset(
+    container="steam-store",
+    name="app-reviews",
+    schema=DataFrameSchema(
+        columns={
+            "app_id": Column(String, unique=True),
+            "num_reviews": Column(Int64),
+            "review_score": Column(Int64),
+            "review_score_desc": Column(String),
+            "total_positive": Column(Int64),
+            "total_negative": Column(Int64),
+            "total_reviews": Column(Int64),
+            "total_score": Column(Float64, nullable=True),
         },
         strict=True,
     ),

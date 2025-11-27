@@ -1,7 +1,7 @@
 from abc import ABC
 
 from pandera.polars import Column, DataFrameSchema
-from polars import Boolean, Date, Int64, String
+from polars import Boolean, Date, Float64, Int64, String
 
 from homeauto.core.infra import Database
 from homeauto.core.table import Table
@@ -27,6 +27,24 @@ dim_app_details = DimensionTable(
             "discount_percent": Column(Int64, nullable=True),
             "release_date": Column(Date, nullable=True),
             "coming_soon": Column(Boolean),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
+
+dim_app_reviews = DimensionTable(
+    name="dim_app_reviews",
+    schema=DataFrameSchema(
+        columns={
+            "app_id": Column(String, unique=True),
+            "num_reviews": Column(Int64),
+            "review_score": Column(Int64),
+            "review_score_desc": Column(String),
+            "total_positive": Column(Int64),
+            "total_negative": Column(Int64),
+            "total_reviews": Column(Int64),
+            "total_score": Column(Float64, nullable=True),
         },
         strict=True,
     ),
