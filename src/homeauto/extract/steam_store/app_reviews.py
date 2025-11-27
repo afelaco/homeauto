@@ -49,4 +49,4 @@ class ExtractSteamStoreAppReviews(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamStoreAppReviews().get_data()
+    ExtractSteamStoreAppReviews().run()
