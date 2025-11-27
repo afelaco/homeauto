@@ -27,7 +27,7 @@ class ExtractSteamStoreAppReviews(ExtractSteamStore):
     def get_data(self) -> pl.DataFrame:
         owned_games = self.get_owned_games().get_column("app_id")
         data = []
-        for app_id in tqdm(owned_games[:3]):
+        for app_id in tqdm(owned_games):
             params = {"json": "1"}
             try:
                 self.endpoint.url = f"appreviews/{app_id}"
@@ -49,4 +49,4 @@ class ExtractSteamStoreAppReviews(ExtractSteamStore):
 
 
 if __name__ == "__main__":
-    data = ExtractSteamStoreAppReviews().get_data().to_pandas()
+    data = ExtractSteamStoreAppReviews().get_data()

@@ -20,6 +20,7 @@ class LoadFactPublisher(Load):
         return (
             self.get_app_details()
             .filter(pl.all_horizontal(pl.col("app_id", "publisher").is_not_null()))
+            .unique(["app_id", "publisher"])
             .sort("app_id")
             .select(self.table.schema.columns.keys())
         )

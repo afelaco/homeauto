@@ -20,6 +20,7 @@ class LoadFactDeveloper(Load):
         return (
             self.get_app_details()
             .filter(pl.all_horizontal(pl.col("app_id", "developer").is_not_null()))
+            .unique(["app_id", "developer"])
             .sort("app_id")
             .select(self.table.schema.columns.keys())
         )

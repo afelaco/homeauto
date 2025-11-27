@@ -70,7 +70,7 @@ app_reviews = BronzeDataset(
     name="app-reviews",
     schema=DataFrameSchema(
         columns={
-            "app_id": Column(str, unique=True),
+            "app_id": Column(str),
             "num_reviews": Column(int),
             "review_score": Column(int),
             "review_score_desc": Column(str),
