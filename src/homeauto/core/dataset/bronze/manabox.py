@@ -16,7 +16,7 @@ collection = BronzeDataset(
             "Rarity": Column(String),
             "Quantity": Column(Int64),
             "ManaBox ID": Column(Int64),
-            "Scryfall ID": Column(String),
+            "Scryfall ID": Column(String, unique=True),
             "Purchase price": Column(Float64),
             "Misprint": Column(Boolean),
             "Altered": Column(Boolean),

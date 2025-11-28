@@ -40,8 +40,13 @@ class TransformManaBoxCollection(Transform):
         self.output_dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        return self.input_dataset.read_parquet().rename(self.mapping).select(self.output_dataset.schema.columns.keys())
+        return (
+            self.input_dataset.read_parquet()
+            .rename(self.mapping)
+            .with_columns(foil=pl.col("foil").eq("foil"))
+            .select(self.output_dataset.schema.columns.keys())
+        )
 
 
 if __name__ == "__main__":
-    data = TransformManaBoxCollection().get_data()
+    TransformManaBoxCollection().run()
