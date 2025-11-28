@@ -35,6 +35,7 @@ module "datalake" {
   container_name = [
     "completionist-me",
     "manabox",
+    "scryfall",
     "steam-store",
     "steam-web",
   ]
