@@ -24,7 +24,7 @@ class TransformScryfallCards(Transform):
         self.output_dataset.write_parquet(df=self.get_data())
 
     def get_data(self) -> pl.DataFrame:
-        return (
+        data = (
             self.input_dataset.read_parquet()
             .rename(mapping=self.mapping)
             .filter(~pl.col("digital"))
@@ -35,9 +35,31 @@ class TransformScryfallCards(Transform):
                     "eur_foil": "price_foil",
                 }
             )
+            .with_columns(pl.col("collector_number").cast(pl.Int64, strict=False))
+            .filter(pl.col("collector_number").is_not_null())
+        )
+
+        max_collector_number = (
+            data.filter(pl.col("name").eq("Forest"))
+            .sort("collector_number")
+            .unique(
+                "set",
+                keep="last",
+            )
+            .select("set", "collector_number")
+            .rename({"collector_number": "max_collector_number"})
+        )
+
+        return (
+            data.join(
+                other=max_collector_number,
+                on="set",
+                how="left",
+            )
+            .filter(pl.col("collector_number") <= pl.col("max_collector_number"))
             .select(self.output_dataset.schema.columns.keys())
         )
 
 
 if __name__ == "__main__":
-    TransformScryfallCards().run()
+    data = TransformScryfallCards().get_data().to_pandas()

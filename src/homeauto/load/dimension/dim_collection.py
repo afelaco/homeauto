@@ -25,6 +25,7 @@ class LoadDimCollection(Load):
                 how="left",
             )
             .with_columns(pl.col("collected").fill_null(False))
+            .sort("set", "collector_number")
             .select(self.table.schema.columns.keys())
         )
 

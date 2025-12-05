@@ -95,7 +95,7 @@ dim_collection = DimensionTable(
             "name": Column(String),
             "set": Column(String),
             "set_name": Column(String),
-            "collector_number": Column(String),
+            "collector_number": Column(Int64),
             "released_at": Column(String),
             "layout": Column(String),
             "cmc": Column(Float64),

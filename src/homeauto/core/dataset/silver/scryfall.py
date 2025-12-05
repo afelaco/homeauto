@@ -1,5 +1,5 @@
 from pandera.polars import Column, DataFrameSchema
-from polars import Boolean, Float64, String
+from polars import Boolean, Float64, Int64, String
 
 from homeauto.core.dataset.silver import SilverDataset
 
@@ -12,7 +12,7 @@ cards = SilverDataset(
             "name": Column(String),
             "set": Column(String),
             "set_name": Column(String),
-            "collector_number": Column(String),
+            "collector_number": Column(Int64),
             "released_at": Column(String),
             "layout": Column(String),
             "cmc": Column(Float64),
