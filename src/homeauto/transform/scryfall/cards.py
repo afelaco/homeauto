@@ -62,4 +62,4 @@ class TransformScryfallCards(Transform):
 
 
 if __name__ == "__main__":
-    data = TransformScryfallCards().get_data().to_pandas()
+    TransformScryfallCards().run()
