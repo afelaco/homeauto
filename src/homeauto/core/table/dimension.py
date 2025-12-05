@@ -87,6 +87,42 @@ dim_category = DimensionTable(
     database=Database(),
 )
 
+dim_collection = DimensionTable(
+    name="dim_collection",
+    schema=DataFrameSchema(
+        columns={
+            "scryfall_id": Column(String, unique=True),
+            "name": Column(String),
+            "set": Column(String),
+            "set_name": Column(String),
+            "collector_number": Column(Int64),
+            "released_at": Column(String),
+            "layout": Column(String),
+            "cmc": Column(Float64),
+            "type_line": Column(String),
+            "oracle_text": Column(String, nullable=True),
+            "power": Column(String, nullable=True),
+            "toughness": Column(String, nullable=True),
+            "reserved": Column(Boolean),
+            "game_changer": Column(Boolean),
+            "oversized": Column(Boolean),
+            "promo": Column(Boolean),
+            "reprint": Column(Boolean),
+            "variation": Column(Boolean),
+            "rarity": Column(String),
+            "full_art": Column(Boolean),
+            "textless": Column(Boolean),
+            "booster": Column(Boolean),
+            "price": Column(String, nullable=True),
+            "price_foil": Column(String, nullable=True),
+            "collected": Column(Boolean),
+            "foil": Column(Boolean, nullable=True),
+        },
+        strict=True,
+    ),
+    database=Database(),
+)
+
 dim_owned_games = DimensionTable(
     name="dim_owned_games",
     schema=DataFrameSchema(
